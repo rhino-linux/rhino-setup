@@ -1,39 +1,92 @@
 use relm4::adw::prelude::*;
-use relm4::{adw, ComponentParts, ComponentSender, SimpleComponent};
+use relm4::{
+    adw, Component, ComponentController, ComponentParts, ComponentSender, Controller,
+    SimpleComponent,
+};
 
-pub(crate) struct CarouselModel;
+use crate::theme::ThemeModel;
+use crate::welcome::{WelcomeModel, WelcomeOutput};
+
+pub(crate) struct CarouselModel {
+    page: u32,
+    welcome_page: Controller<WelcomeModel>,
+    theme_page: Controller<ThemeModel>,
+}
 
 #[derive(Debug)]
-pub(crate) struct CarouselMsg;
+pub(crate) enum CarouselInput {
+    /// Move to next page.
+    NextPage,
+    /// Move to the previous page.
+    PreviousPage,
+}
+
+#[derive(Debug)]
+pub(crate) enum CarouselOutput {
+    /// Show the back button.
+    ShowBackButton,
+    /// Hide the back button.
+    HideBackButton,
+}
 
 #[relm4::component(pub)]
 impl SimpleComponent for CarouselModel {
     type Init = ();
-    type Input = CarouselMsg;
-    type Output = ();
+    type Input = CarouselInput;
+    type Output = CarouselOutput;
     type Widgets = CarouselWidgets;
 
     view! {
+        #[name = "carousel"]
         adw::Carousel {
             set_vexpand: true,
             set_hexpand: true,
             set_allow_scroll_wheel: false,
             set_allow_mouse_drag: false,
             set_allow_long_swipes: false,
+
+            append: model.welcome_page.widget(),
+            append: model.theme_page.widget(),
         }
     }
 
     fn init(
         _init: Self::Init,
         root: &Self::Root,
-        _sender: relm4::ComponentSender<Self>,
+        sender: relm4::ComponentSender<Self>,
     ) -> relm4::ComponentParts<Self> {
-        let model = CarouselModel {};
+        let model = CarouselModel {
+            page: 0,
+            welcome_page: WelcomeModel::builder().launch(()).forward(
+                sender.input_sender(),
+                |msg| match msg {
+                    WelcomeOutput::NextPage => CarouselInput::NextPage,
+                },
+            ),
+            theme_page: ThemeModel::builder().launch(()).detach(),
+        };
 
         let widgets = view_output!();
 
         ComponentParts { model, widgets }
     }
 
-    fn update(&mut self, _message: Self::Input, _sender: relm4::ComponentSender<Self>) {}
+    fn update(&mut self, message: Self::Input, sender: relm4::ComponentSender<Self>) {
+        match message {
+            CarouselInput::NextPage => {
+                sender.output(CarouselOutput::ShowBackButton);
+                self.page += 1;
+            },
+            CarouselInput::PreviousPage => {
+                // When on the second page (pages starts from 0), disable the back button while
+                // going back.
+                if self.page == 1 {
+                    sender.output(CarouselOutput::HideBackButton);
+                }
+                self.page -= 1;
+            },
+        }
+    }
+
+    fn post_view() { carousel.scroll_to(&carousel.nth_page(model.page), true); }
 }
