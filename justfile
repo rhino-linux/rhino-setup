@@ -25,17 +25,14 @@ setup:
 
     @echo "=== Development tools installed! ==="
 
-    @echo "=== Installing resources ==="
-
-    sudo ln -sf {{justfile_directory()}}/res/icons/org.rollingrhino.rhino-setup.welcome.svg /usr/share/icons/hicolor/scalable/apps/org.rollingrhino.rhino-setup.welcome.svg
-
-    @echo "=== Resources installed! ==="
+    @meson build
+    @ninja -C build install
 
     @echo "=== Development environment installed successfully! ==="
 
 # Build the project
 build +ARGS="":
-    @cargo build {{ARGS}}
+    @ninja -C build install {{ARGS}}
     @echo "Successfully built the project!"
 
 # Run checks
@@ -58,5 +55,5 @@ fmt +ARGS="": spellcheck
 
 # Spellcheck the codebase
 spellcheck +ARGS="--write-changes":
-    @codespell  --builtin clear,rare,informal,code -I .codespellignore --skip target* {{ARGS}}
+    @codespell  --builtin clear,rare,informal,code -I .codespellignore --skip target* "*.svg" data{{ARGS}}
     @echo Spellings look good!

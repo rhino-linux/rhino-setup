@@ -1,1 +1,3 @@
-/target
+target/
+build/
+src/config.rs

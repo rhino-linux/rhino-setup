@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gresources>
+  <gresource prefix="/org/rhinolinux/RhinoSetup">
+    <file compressed="true" preprocess="xml-stripblanks">icons/org.rhinolinux.RhinoSetup.welcome.svg</file>
+    <file compressed="true">style.css</file>
+  </gresource>
+</gresources>

@@ -9,6 +9,7 @@ lto = true
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
+gettext-rs = { version = "0.7.0", features = ["gettext-system"] }
 log = "0.4.17"
 pretty_env_logger = "0.4.0"
 relm4 = { git = "https://github.com/Relm4/Relm4", tag = "v0.5.0-beta.3", features = ["macros", "libadwaita"]  }

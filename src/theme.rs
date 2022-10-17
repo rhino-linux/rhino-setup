@@ -1,6 +1,8 @@
 use std::process::Command;
 
+use gettextrs::gettext;
 use relm4::adw::prelude::*;
+use relm4::gtk::gio;
 use relm4::{adw, gtk, ComponentParts, ComponentSender, SimpleComponent};
 
 pub(crate) struct ThemeModel;
@@ -64,13 +66,13 @@ impl SimpleComponent for ThemeModel {
             },
 
             adw::StatusPage {
-                set_title: "Color Scheme",
-                set_description: Some("Choose a color scheme for your system."),
+                set_title: &gettext("Color Scheme"),
+                set_description: Some(&gettext("Choose a color scheme for your system.")),
                 set_halign: gtk::Align::Fill,
                 set_valign: gtk::Align::Fill,
                 set_hexpand: true,
 
-                gtk::Button::with_label("Next") {
+                gtk::Button::with_label(&gettext("Next")) {
                     set_halign: gtk::Align::Center,
                     set_css_classes: &["pill", "suggested-action"]
                 }
@@ -101,11 +103,17 @@ impl SimpleComponent for ThemeModel {
                         "--property",
                         "/Net/ThemeName",
                         "--set",
-                        "Yaru-Light",
+                        "Yaru-purple",
                     ])
                     .status()
                 {
                     log::error!("Error enabling light theme: {}", error);
+                }
+
+                if let Err(error) = gio::Settings::new("org.gnome.desktop.interface")
+                    .set_string("color-scheme", "default")
+                {
+                    log::error!("Unable to change gsettings: {}", error);
                 }
             },
             ThemeMsg::EnableDarkTheme => {
@@ -117,11 +125,17 @@ impl SimpleComponent for ThemeModel {
                         "--property",
                         "/Net/ThemeName",
                         "--set",
-                        "Yaru-Dark",
+                        "Yaru-purple-dark",
                     ])
                     .status()
                 {
                     log::error!("Error enabling dark theme: {}", error);
+                }
+
+                if let Err(error) = gio::Settings::new("org.gnome.desktop.interface")
+                    .set_string("color-scheme", "prefer-dark")
+                {
+                    log::error!("Unable to change gsettings: {}", error);
                 }
             },
         }

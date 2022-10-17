@@ -2,17 +2,19 @@
 
 <!-- Social -->
 <p align="center">
-    <a href="https://discord.gg/m34tk9643C"><img alt="join discord" src="https://img.shields.io/badge/Discord-%237289DA.svg?style=for-the-badge&logo=discord&logoColor=white"/></a>
+    <a href="https://discord.gg/uhdCz8vwV9"><img alt="join discord" src="https://img.shields.io/badge/Discord-%237289DA.svg?style=for-the-badge&logo=discord&logoColor=white"/></a>
+    <a href="https://www.reddit.com/r/rhinolinux/"><img alt="join subreddit" src="https://img.shields.io/badge/Reddit-FF4500?style=for-the-badge&logo=reddit&logoColor=white"/></a>
     <a href="https://matrix.to/#/#rolling-rhino-remix:matrix.org"><img alt="join matrix" src="https://img.shields.io/badge/matrix-000000?style=for-the-badge&logo=Matrix&logoColor=white"/></a>
     <a href="https://www.youtube.com/channel/UCLUw8_PTMXLMJ-Hz6_7LNVQ"><img alt="subscribe to youtube" src="https://img.shields.io/badge/YouTube-FF0000?style=for-the-badge&logo=youtube&logoColor=white"/></a>
     <br/>
+    <a href="https://liberapay.com/Rolling-Rhino-Remix/"><img alt="donate" src="https://img.shields.io/badge/Liberapay-F6C915?style=for-the-badge&logo=liberapay&logoColor=black"/></a>
 </p>
 
-<p align="center">Setup wizard for <a href="https://rollingrhino.org/">Rolling Rhino</a></p>
+<p align="center">Setup wizard for <a href="https://rhinolinux.org/">Rhino Linux</a></p>
 
 ## 🔱 Info
 
-Setup wizard for [Rolling Rhino](https://rollingrhino.org/) written in Rust. Inspired by [VanillaOS's setup wizard](https://github.com/Vanilla-OS/first-setup)
+Setup wizard for [Rhino Linux](https://rollinglinux.org/) written in Rust. Inspired by [VanillaOS's setup wizard](https://github.com/Vanilla-OS/first-setup)
 
 ## 🌊 Features
 
@@ -21,12 +23,17 @@ Setup wizard for [Rolling Rhino](https://rollingrhino.org/) written in Rust. Ins
 
 ## ⚙️ Building
 
-Install the build dependencies:
+Install the following dependencies:
 
-+ `libadwaita-1-dev`
-+ `libgtk-4-dev`
+* `libgtk-4-dev`
+* `libadwaita-1-dev`
+* `gettext`
+* `desktop-file-utils`
 
-Then `cargo build <--release>`
+Run the following commands:
+
+* `meson build` or `meson -D profile=development build`
+* `ninja -C build install`
 
 ## 📜 License
 
