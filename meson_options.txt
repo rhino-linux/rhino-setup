@@ -1,0 +1,10 @@
+option(
+  'profile',
+  type: 'combo',
+  choices: [
+    'default',
+    'development'
+  ],
+  value: 'default',
+  description: 'The build profile for Rhino Setup. One of "default" or "development".'
+)

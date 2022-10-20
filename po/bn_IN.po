@@ -1,0 +1,46 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE rhino-setup'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the rhino-setup package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: rhino-setup 0.1.0\n"
+"Report-Msgid-Bugs-To: https://github.com/rhino-linux/rhino-setup/issues\n"
+"POT-Creation-Date: 2022-10-17 19:21+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: bn_IN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src/theme.rs:68
+msgid "Color Scheme"
+msgstr "বর্ণবিন্যাস"
+
+#: src/theme.rs:69
+msgid "Choose a color scheme for your system."
+msgstr "আপনার সিস্টেমের জন্য একটি বর্ণবিন্যাস চয়ন করুন।"
+
+#: src/theme.rs:74
+msgid "Next"
+msgstr "পরবর্তী"
+
+#: src/welcome.rs:44
+msgid "Make your choices, this wizard will take care of everything."
+msgstr "আপনি পছন্দ করুন, এই উইজার্ড সবকিছুর যত্ন নেবে।"
+
+#: src/welcome.rs:46
+msgid "Let's Start"
+msgstr "চল শুরু করি"
+
+#: src/main.rs:55
+msgid "Back"
+msgstr "পেছনে"
+
+#: src/main.rs:123
+msgid "Rhino Setup"
+msgstr "রাইনো সেটআপ"

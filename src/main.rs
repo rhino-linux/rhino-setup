@@ -1,14 +1,17 @@
 #![allow(clippy::used_underscore_binding)]
 
 use carousel::{CarouselInput, CarouselModel, CarouselOutput};
+use config::{APP_ID, GETTEXT_PACKAGE, LOCALEDIR, RESOURCES_FILE};
+use gettextrs::{gettext, LocaleCategory};
 use relm4::adw::prelude::*;
-use relm4::gtk::gdk;
+use relm4::gtk::{gdk, gio, glib};
 use relm4::{
-    adw, gtk, Component, ComponentController, ComponentParts, ComponentSender, Controller, RelmApp,
-    SimpleComponent,
+    adw, gtk, main_application, Component, ComponentController, ComponentParts, ComponentSender,
+    Controller, RelmApp, SimpleComponent,
 };
 
 mod carousel;
+mod config;
 mod theme;
 mod welcome;
 
@@ -49,7 +52,7 @@ impl SimpleComponent for AppModel {
                     },
 
 
-                    pack_start = &gtk::Button::with_label("Back") {
+                    pack_start = &gtk::Button::with_label(&gettext("Back")) {
                         set_halign: gtk::Align::Center,
                         #[watch]
                         set_visible: model.back_button_visible,
@@ -93,56 +96,6 @@ impl SimpleComponent for AppModel {
         let carousel = model.carousel.widget();
         let carousel_sender = model.carousel.sender().clone();
 
-        let provider = gtk::CssProvider::new();
-        provider.load_from_data(
-            r#".theme-selector {
-                    border-radius: 100px;
-                    margin: 8px;
-                    border: 1px solid rgba(145, 145, 145, 0.1);
-                    padding: 30px;
-                }
-                .theme-selector radio {
-                    -gtk-icon-source: none;
-                    border: none;
-                    background: none;
-                    box-shadow: none;
-                    min-width: 12px;
-                    min-height: 12px;
-                    transform: translate(34px, 20px);
-                    padding: 2px;
-                    border-radius: 100px;
-                }
-                .theme-selector radio:checked {
-                -gtk-icon-source: -gtk-icontheme("object-select-symbolic");
-                background-color: @theme_selected_bg_color;
-                color: @theme_selected_fg_color;
-                }
-                .theme-selector:checked {
-                    border-color: @theme_selected_bg_color;
-                    border-width: 2px;
-                    background-color: @theme_selected_bg_color;
-                }
-                .theme-selector.light {
-                    background-color: #ffffff;
-                }
-                .theme-selector.dark {
-                    background-color: #202020;
-                }
-                .theme-selector.light:checked {
-                    background-color: #eeeeee;
-                }
-                .theme-selector.dark:checked {
-                    background-color: #303030;
-                }"#
-            .as_bytes(),
-        );
-
-        gtk::StyleContext::add_provider_for_display(
-            &gdk::Display::default().unwrap(),
-            &provider,
-            gtk::STYLE_PROVIDER_PRIORITY_APPLICATION,
-        );
-
         // Insert the macro code generation here
         let widgets = view_output!();
 
@@ -159,6 +112,35 @@ impl SimpleComponent for AppModel {
 
 fn main() {
     pretty_env_logger::init();
-    let app = RelmApp::new("com.rollingrhino.rhino-setup");
+
+    adw::init().unwrap();
+
+    // Prepare i18n
+    gettextrs::setlocale(LocaleCategory::LcAll, "");
+    gettextrs::bindtextdomain(GETTEXT_PACKAGE, LOCALEDIR).expect("Unable to bind the text domain");
+    gettextrs::textdomain(GETTEXT_PACKAGE).expect("Unable to switch to the text domain");
+
+    glib::set_application_name(&gettext("Rhino Setup"));
+
+    let res = gio::Resource::load(RESOURCES_FILE).expect("Could not load gresource file");
+    gio::resources_register(&res);
+
+    let provider = gtk::CssProvider::new();
+    provider.load_from_resource("/org/rhinolinux/RhinoSetup/style.css");
+
+    if let Some(display) = gdk::Display::default() {
+        gtk::StyleContext::add_provider_for_display(
+            &display,
+            &provider,
+            gtk::STYLE_PROVIDER_PRIORITY_APPLICATION,
+        );
+    }
+
+    gtk::Window::set_default_icon_name(APP_ID);
+
+    let app = main_application();
+    app.set_resource_base_path(Some("/org/rhinolinux/RhinoSetup/"));
+
+    let app = RelmApp::with_app(app);
     app.run::<AppModel>(());
 }

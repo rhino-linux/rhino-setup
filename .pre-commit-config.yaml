@@ -23,6 +23,7 @@ repos:
         language: system
         entry: just spellcheck
         types: [text]
+        exclude_types: [image]
       - id: fmt
         name: Format files
         description: Format files with cargo fmt
