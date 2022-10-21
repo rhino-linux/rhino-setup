@@ -1,21 +1,11 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE rhino-setup'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the rhino-setup package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
-#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: rhino-setup 0.1.0\n"
-"Report-Msgid-Bugs-To: https://github.com/rhino-linux/rhino-setup/issues\n"
-"POT-Creation-Date: 2022-10-17 20:03+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Generator: POEditor.com\n"
+"Project-Id-Version: Rhino Setup\n"
+"Language: en-us\n"
 
 #: src/theme.rs:68
 msgid "Color Scheme"
@@ -44,3 +34,4 @@ msgstr ""
 #: src/main.rs:123
 msgid "Rhino Setup"
 msgstr ""
+
