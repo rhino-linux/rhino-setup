@@ -9,11 +9,11 @@ msgstr ""
 
 #: src/theme.rs:68
 msgid "Color Scheme"
-msgstr "Färgschema"
+msgstr "Färgschema."
 
 #: src/theme.rs:69
 msgid "Choose a color scheme for your system."
-msgstr "Välj ett färgschema för ditt system"
+msgstr "Välj ett färgschema för ditt system."
 
 #: src/theme.rs:74
 msgid "Next"
@@ -21,7 +21,7 @@ msgstr "Nästa"
 
 #: src/welcome.rs:44
 msgid "Make your choices, this wizard will take care of everything."
-msgstr "Gör dina val, installationsguiden tar hand om resten"
+msgstr "Gör dina val, installationsguiden tar hand om resten."
 
 #: src/welcome.rs:46
 msgid "Let's Start"
@@ -29,10 +29,11 @@ msgstr "Låt oss starta"
 
 #: src/main.rs:55
 msgid "Back"
-msgstr "Tillbaka"
+msgstr "Bakåt"
 
 #. I didn't translate Rhino, core name of dist
 #: src/main.rs:123
 msgid "Rhino Setup"
-msgstr "Rhino installation"
+msgstr "Rhino installation.\n"
+""
 
