@@ -34,6 +34,5 @@ msgstr "Bakåt"
 #. I didn't translate Rhino, core name of dist
 #: src/main.rs:123
 msgid "Rhino Setup"
-msgstr "Rhino installation.\n"
-""
+msgstr "Rhino installation"
 
