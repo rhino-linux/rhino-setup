@@ -7,15 +7,15 @@ msgstr ""
 "Project-Id-Version: Rhino Setup\n"
 "Language: hi\n"
 
-#: src/theme.rs:68
+#: src/theme.rs:75
 msgid "Color Scheme"
 msgstr "रंग योजना"
 
-#: src/theme.rs:69
+#: src/theme.rs:76
 msgid "Choose a color scheme for your system."
 msgstr "अपने सिस्टम के लिए एक रंग योजना चुनें।"
 
-#: src/theme.rs:74
+#: src/extra_settings.rs:84 src/package_manager.rs:104 src/theme.rs:81
 msgid "Next"
 msgstr "अगला"
 
@@ -27,11 +27,65 @@ msgstr "अपने चुनाव करें, यह सॉफ्टवे�
 msgid "Let's Start"
 msgstr "चलो शुरू करते हैं"
 
-#: src/main.rs:55
+#: src/main.rs:58
+msgctxt "The back button"
 msgid "Back"
 msgstr "पीछे"
 
-#: src/main.rs:123
+#: src/main.rs:126
+msgctxt "Title of the application"
 msgid "Rhino Setup"
 msgstr "राइनो सेटअप"
+
+#: src/extra_settings.rs:47
+msgid "Extra Settings"
+msgstr "अतिरिक्त सेटिंग्स"
+
+#: src/extra_settings.rs:48
+msgid "The following are optional settings, leave them as they are if you don't know what they do."
+msgstr "यदि आप निम्न वैकल्पिक सेटिंग्स के बारे में नहीं जानते हैं, तो उन्हें वैसे ही रहने दें जैसे वे हैं।"
+
+#: src/extra_settings.rs:60
+msgid "Nala is an alternative front-end to APT, featuring a beautiful UI/UX."
+msgstr "Nala APT का एक वैकल्पिक फ्रंट-एंड है, जिसमें एक सुंदर UI/UX है।"
+
+#: src/extra_settings.rs:72
+msgid "Apport is a crash reporting system that helps us improve the stability of the system."
+msgstr "Apport एक क्रैश रिपोर्टिंग सिस्टम है जो सिस्टम की स्थिरता को बेहतर बनाने में हमारी मदद करता है।"
+
+#: src/package_manager.rs:50
+msgid "Package Manager"
+msgstr "पैकेज प्रबंधक"
+
+#: src/package_manager.rs:51
+msgid "Choose one or more package managers to install"
+msgstr "इंस्टॉल करने के लिए एक या अधिक पैकेज प्रबंधकों का चयन करें"
+
+#: src/package_manager.rs:63
+msgid "Will also configure the Flathub repository."
+msgstr "यह Flathub रिपॉजिटरी को भी कॉन्फ़िगर करेगा।"
+
+#: src/package_manager.rs:64
+msgid "System for application virtualization."
+msgstr "एप्लीकेशन  वर्चुअलाइजेशन के लिए एक सिस्टम।"
+
+#: src/package_manager.rs:76
+msgid "Uses the Snapcraft repository. Default in Ubuntu."
+msgstr "এটি Snapcraft সংগ্রহস্থল ব্যবহার করে। এটি উবুন্টুতে ডিফল্ট।"
+
+#: src/package_manager.rs:77
+msgid "Software deployment and package management system developed by Canonical."
+msgstr "Canonical द्वारा विकसित सॉफ्टवेयर परिनियोजन और पैकेज प्रबंधन प्रणाली।"
+
+#: src/package_manager.rs:90
+msgid "Will install the necessary dependencies to run AppImages."
+msgstr "यह AppImages को चलाने के लिए आवश्यक सॉफ़्टवेयर इंस्टॉल करेगा।"
+
+#: src/package_manager.rs:91
+msgid "Self-contained and compressed executable format for the Linux platform."
+msgstr "Linux प्लेटफॉर्म के लिए स्व-निहित और संपीड़ित निष्पादन योग्य प्रारूप।"
+
+#: src/progress.rs:37
+msgid "The changes are being applied. Please Wait..."
+msgstr "परिवर्तन लागू किए जा रहे हैं। कृपया प्रतीक्षा करें..."
 
