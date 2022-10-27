@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <gresources>
   <gresource prefix="/org/rhinolinux/RhinoSetup">
-    <file compressed="true" preprocess="xml-stripblanks">icons/org.rhinolinux.RhinoSetup.welcome.svg</file>
     <file compressed="true">style.css</file>
+  </gresource>
+  <gresource prefix="/org/rhinolinux/RhinoSetup/icons/scalable/actions/">
+    <file compressed="true" preprocess="xml-stripblanks" alias="rhinosetup-welcome.svg">icons/rhinosetup-welcome.svg</file>
+    <file compressed="true" preprocess="xml-stripblanks" alias="rhinosetup-package-symbolic.svg">icons/rhinosetup-package-symbolic.svg</file>
+    <file compressed="true" preprocess="xml-stripblanks" alias="rhinosetup-puzzle-piece-symbolic.svg">icons/rhinosetup-puzzle-piece-symbolic.svg</file>
   </gresource>
 </gresources>
