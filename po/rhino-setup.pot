@@ -28,12 +28,10 @@ msgid "Let's Start"
 msgstr ""
 
 #: src/main.rs:58
-msgctxt "The back button"
 msgid "Back"
 msgstr ""
 
 #: src/main.rs:126
-msgctxt "Title of the application"
 msgid "Rhino Setup"
 msgstr ""
 
