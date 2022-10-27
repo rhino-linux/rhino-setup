@@ -9,8 +9,7 @@ msgstr ""
 
 #: src/theme.rs:75
 msgid "Color Scheme"
-msgstr "Färgschema\n"
-""
+msgstr "Färgschema"
 
 #: src/theme.rs:76
 msgid "Choose a color scheme for your system."
@@ -29,12 +28,10 @@ msgid "Let's Start"
 msgstr "Låt oss starta"
 
 #: src/main.rs:58
-msgctxt "The back button"
 msgid "Back"
 msgstr "Bakåt"
 
 #: src/main.rs:126
-msgctxt "Title of the application"
 msgid "Rhino Setup"
 msgstr "Rhino installation"
 
