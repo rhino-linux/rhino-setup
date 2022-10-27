@@ -12,6 +12,9 @@ use relm4::{
 
 mod carousel;
 mod config;
+mod extra_settings;
+mod package_manager;
+mod progress;
 mod theme;
 mod welcome;
 
@@ -139,6 +142,7 @@ fn main() {
     gtk::Window::set_default_icon_name(APP_ID);
 
     let app = main_application();
+    app.set_application_id(Some(APP_ID));
     app.set_resource_base_path(Some("/org/rhinolinux/RhinoSetup/"));
 
     let app = RelmApp::with_app(app);

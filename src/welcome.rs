@@ -38,7 +38,7 @@ impl SimpleComponent for WelcomeModel {
             set_hexpand: true,
 
             adw::StatusPage {
-                set_icon_name: Some("org.rhinolinux.RhinoSetup.welcome"),
+                set_icon_name: Some("rhinosetup-welcome"),
                 #[watch]
                 set_title: model.title,
                 set_description: Some(&gettext("Make your choices, this wizard will take care of everything.")),
@@ -106,7 +106,7 @@ impl SimpleComponent for WelcomeModel {
         // Insert the macro code generation here
         let widgets = view_output!();
 
-        std::thread::spawn(move || loop {
+        relm4::spawn_blocking(move || loop {
             sender.input(WelcomeInput::ChangeTitle);
             std::thread::sleep(Duration::new(1, 2));
         });

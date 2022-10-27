@@ -8,16 +8,22 @@ use relm4::{adw, gtk, ComponentParts, ComponentSender, SimpleComponent};
 pub(crate) struct ThemeModel;
 
 #[derive(Debug)]
-pub(crate) enum ThemeMsg {
+pub(crate) enum ThemeInput {
     EnableDarkTheme,
     EnableLightTheme,
+}
+
+#[derive(Debug)]
+pub(crate) enum ThemeOutput {
+    /// Move to the next page.
+    NextPage,
 }
 
 #[relm4::component(pub)]
 impl SimpleComponent for ThemeModel {
     type Init = ();
-    type Input = ThemeMsg;
-    type Output = ();
+    type Input = ThemeInput;
+    type Output = ThemeOutput;
     type Widgets = ThemeWidgets;
 
     view! {
@@ -43,7 +49,7 @@ impl SimpleComponent for ThemeModel {
 
                     connect_toggled[sender] => move |btn| {
                         if btn.is_active() && btn.is_focus() {
-                            sender.input(ThemeMsg::EnableLightTheme);
+                            sender.input(Self::Input::EnableLightTheme);
                         }
                     }
                 },
@@ -59,7 +65,7 @@ impl SimpleComponent for ThemeModel {
 
                     connect_toggled[sender] => move |btn| {
                         if btn.is_active() && btn.is_focus() {
-                            sender.input(ThemeMsg::EnableDarkTheme);
+                            sender.input(Self::Input::EnableDarkTheme);
                         }
                     }
                 }
@@ -74,7 +80,11 @@ impl SimpleComponent for ThemeModel {
 
                 gtk::Button::with_label(&gettext("Next")) {
                     set_halign: gtk::Align::Center,
-                    set_css_classes: &["pill", "suggested-action"]
+                    set_css_classes: &["pill", "suggested-action"],
+
+                    connect_clicked[sender] => move |_| {
+                        sender.output(Self::Output::NextPage);
+                    }
                 }
             }
         }
@@ -94,7 +104,7 @@ impl SimpleComponent for ThemeModel {
 
     fn update(&mut self, message: Self::Input, _sender: relm4::ComponentSender<Self>) {
         match message {
-            ThemeMsg::EnableLightTheme => {
+            Self::Input::EnableLightTheme => {
                 log::debug!("Enabling on Light theme");
                 if let Err(error) = Command::new("xfconf-query")
                     .args(&[
@@ -116,7 +126,7 @@ impl SimpleComponent for ThemeModel {
                     log::error!("Unable to change gsettings: {}", error);
                 }
             },
-            ThemeMsg::EnableDarkTheme => {
+            Self::Input::EnableDarkTheme => {
                 log::debug!("Enabling Dark theme");
                 if let Err(error) = Command::new("xfconf-query")
                     .args(&[
