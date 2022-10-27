@@ -7,15 +7,16 @@ msgstr ""
 "Project-Id-Version: Rhino Setup\n"
 "Language: sv\n"
 
-#: src/theme.rs:68
+#: src/theme.rs:75
 msgid "Color Scheme"
-msgstr "Färgschema."
+msgstr "Färgschema\n"
+""
 
-#: src/theme.rs:69
+#: src/theme.rs:76
 msgid "Choose a color scheme for your system."
 msgstr "Välj ett färgschema för ditt system."
 
-#: src/theme.rs:74
+#: src/extra_settings.rs:84 src/package_manager.rs:104 src/theme.rs:81
 msgid "Next"
 msgstr "Nästa"
 
@@ -27,12 +28,65 @@ msgstr "Gör dina val, installationsguiden tar hand om resten."
 msgid "Let's Start"
 msgstr "Låt oss starta"
 
-#: src/main.rs:55
+#: src/main.rs:58
+msgctxt "The back button"
 msgid "Back"
 msgstr "Bakåt"
 
-#. I didn't translate Rhino, core name of dist
-#: src/main.rs:123
+#: src/main.rs:126
+msgctxt "Title of the application"
 msgid "Rhino Setup"
 msgstr "Rhino installation"
+
+#: src/extra_settings.rs:47
+msgid "Extra Settings"
+msgstr "Extra inställningar"
+
+#: src/extra_settings.rs:48
+msgid "The following are optional settings, leave them as they are if you don't know what they do."
+msgstr "Följande är valfria inställningar, lämna dem som de är om du inte vet vad de gör."
+
+#: src/extra_settings.rs:60
+msgid "Nala is an alternative front-end to APT, featuring a beautiful UI/UX."
+msgstr "Nala är en alternativ front-end till APT, med ett vackert UI/UX."
+
+#: src/extra_settings.rs:72
+msgid "Apport is a crash reporting system that helps us improve the stability of the system."
+msgstr "Apport är ett felrapporteringsprogram som hjälper oss att förbättra systemets stabilitet."
+
+#: src/package_manager.rs:50
+msgid "Package Manager"
+msgstr "PaketHanterare"
+
+#: src/package_manager.rs:51
+msgid "Choose one or more package managers to install"
+msgstr "Välj ett, eller flera pakethanterare att installera"
+
+#: src/package_manager.rs:63
+msgid "Will also configure the Flathub repository."
+msgstr "Kommer också konfiguerar Flathub databasen."
+
+#: src/package_manager.rs:64
+msgid "System for application virtualization."
+msgstr "System för tillämpning av virtualisering."
+
+#: src/package_manager.rs:76
+msgid "Uses the Snapcraft repository. Default in Ubuntu."
+msgstr "Använder Snapcraft databasen. Standard i Ubuntu"
+
+#: src/package_manager.rs:77
+msgid "Software deployment and package management system developed by Canonical."
+msgstr "Mjukvaruplacering och pakethanteringssystem utvecklat av Canonical"
+
+#: src/package_manager.rs:90
+msgid "Will install the necessary dependencies to run AppImages."
+msgstr "Kommer att installerar nödvändiga beroenden för att köra Appimages."
+
+#: src/package_manager.rs:91
+msgid "Self-contained and compressed executable format for the Linux platform."
+msgstr "Fristående och komprimerade körbara format för Linux Plattform. "
+
+#: src/progress.rs:37
+msgid "The changes are being applied. Please Wait..."
+msgstr "Inställningarna tillämpas. Var vänligt vänta..."
 
