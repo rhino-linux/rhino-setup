@@ -8,7 +8,7 @@ use relm4::{
     SimpleComponent,
 };
 
-use crate::carousel::COMMANDS;
+use crate::COMMANDS;
 
 #[derive(Debug)]
 struct ProgressBarModel {
@@ -81,11 +81,17 @@ pub(crate) enum ProgressInput {
     StartInstallation,
 }
 
+#[derive(Debug)]
+pub(crate) enum ProgressOutput {
+    InstallationComplete,
+    InstallationError,
+}
+
 #[relm4::component(pub)]
 impl SimpleComponent for ProgressModel {
     type Init = ();
     type Input = ProgressInput;
-    type Output = ();
+    type Output = ProgressOutput;
     type Widgets = ProgressWidget;
 
     view! {
@@ -119,9 +125,13 @@ impl SimpleComponent for ProgressModel {
     }
 
     #[allow(clippy::cast_precision_loss)]
-    fn update(&mut self, message: Self::Input, _sender: ComponentSender<Self>) {
+    fn update(&mut self, message: Self::Input, sender: ComponentSender<Self>) {
         match message {
             Self::Input::StartInstallation => {
+                COMMANDS
+                    .write_inner()
+                    .insert("pre_run", vec!["sudo apt-get update"]);
+
                 let commands = COMMANDS.read_inner();
                 let commands = commands.values().flatten();
                 let mut commands_with_results = String::new();
@@ -136,13 +146,20 @@ impl SimpleComponent for ProgressModel {
                 log::debug!("{commands_with_results}");
 
                 // Spawn a process to execute the commands
-                let processor = Command::new("pkexec")
-                    .args(["sh", "-c", &commands_with_results])
+                let mut processor = Command::new("sh")
+                    .args([
+                        "-c",
+                        &format!(
+                            r#"pkexec sh -c "{}" || echo ---failed---"#,
+                            commands_with_results
+                        ),
+                    ])
                     .stdout(Stdio::piped())
+                    .stderr(Stdio::piped())
                     .spawn()
                     .unwrap();
 
-                let stdout_reader = BufReader::new(processor.stdout.unwrap());
+                let stdout_reader = BufReader::new(processor.stdout.take().unwrap());
 
                 // Initialize the progress_bar now, as the commands are available.
                 self.progress_bar = Some(
@@ -153,14 +170,32 @@ impl SimpleComponent for ProgressModel {
 
                 let progress_bar_sender = self.progress_bar.as_ref().unwrap().sender().clone();
                 relm4::spawn_blocking(move || {
+                    let mut error_occured = false;
+
                     for line in stdout_reader.lines().map(Result::unwrap) {
-                        log::debug!("{}", line);
+                        log::debug!("{line}");
 
                         if line.contains("---successful---") {
                             progress_bar_sender.send(ProgressBarInput::Progress);
                         } else if line.contains("---failed---") {
-                            log::error!("Error executing commands");
+                            log::error!(
+                                "Error executing commands: {}",
+                                BufReader::new(processor.stderr.take().unwrap())
+                                    .lines()
+                                    .map(Result::unwrap)
+                                    .collect::<String>()
+                            );
+
+                            error_occured = true;
+                            sender.output(Self::Output::InstallationError);
+
+                            // Kill the processor to avoid any extra changes to the system.
+                            processor.kill().unwrap();
                         }
+                    }
+
+                    if !error_occured {
+                        sender.output(Self::Output::InstallationComplete);
                     }
                 });
             },

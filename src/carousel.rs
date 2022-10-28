@@ -1,20 +1,15 @@
-use std::collections::HashMap;
-
 use relm4::adw::prelude::*;
 use relm4::{
-    adw, Component, ComponentController, ComponentParts, ComponentSender, Controller, SharedState,
+    adw, Component, ComponentController, ComponentParts, ComponentSender, Controller,
     SimpleComponent,
 };
 
+use crate::done::DoneModel;
 use crate::extra_settings::{ExtraSettingsModel, ExtraSettingsOutput};
 use crate::package_manager::{PackageManagerModel, PackageManagerOutput};
-use crate::progress::{ProgressInput, ProgressModel};
+use crate::progress::{ProgressInput, ProgressModel, ProgressOutput};
 use crate::theme::{ThemeModel, ThemeOutput};
 use crate::welcome::{WelcomeModel, WelcomeOutput};
-
-/// Gathers all the commands to be executed from different pages.
-pub(crate) static COMMANDS: SharedState<HashMap<&'static str, Vec<&'static str>>> =
-    SharedState::new();
 
 pub(crate) struct CarouselModel {
     current_page: u32,
@@ -24,6 +19,7 @@ pub(crate) struct CarouselModel {
     package_manager_page: Controller<PackageManagerModel>,
     extra_settings_page: Controller<ExtraSettingsModel>,
     progress_page: Controller<ProgressModel>,
+    done_page: Controller<DoneModel>,
 }
 
 #[derive(Debug)]
@@ -32,6 +28,9 @@ pub(crate) enum CarouselInput {
     NextPage,
     /// Move to the previous page.
     PreviousPage,
+    /// An error has occured in one of the pages.
+    /// Move to the [crate::done] page, with the error state.
+    SkipToErrorPage,
 }
 
 #[derive(Debug)]
@@ -63,6 +62,7 @@ impl SimpleComponent for CarouselModel {
             append: model.package_manager_page.widget(),
             append: model.extra_settings_page.widget(),
             append: model.progress_page.widget(),
+            append: model.done_page.widget(),
         }
     }
 
@@ -83,6 +83,7 @@ impl SimpleComponent for CarouselModel {
                 .launch(())
                 .forward(sender.input_sender(), |msg| match msg {
                     ThemeOutput::NextPage => CarouselInput::NextPage,
+                    ThemeOutput::ErrorOccured => CarouselInput::SkipToErrorPage,
                 }),
             package_manager_page: PackageManagerModel::builder().launch(()).forward(
                 sender.input_sender(),
@@ -96,7 +97,14 @@ impl SimpleComponent for CarouselModel {
                     ExtraSettingsOutput::NextPage => CarouselInput::NextPage,
                 },
             ),
-            progress_page: ProgressModel::builder().launch(()).detach(),
+            progress_page: ProgressModel::builder().launch(()).forward(
+                sender.input_sender(),
+                |msg| match msg {
+                    ProgressOutput::InstallationComplete => CarouselInput::NextPage,
+                    ProgressOutput::InstallationError => CarouselInput::SkipToErrorPage,
+                },
+            ),
+            done_page: DoneModel::builder().launch(()).detach(),
         };
 
         let widgets = view_output!();
@@ -107,8 +115,12 @@ impl SimpleComponent for CarouselModel {
     fn update(&mut self, message: Self::Input, sender: relm4::ComponentSender<Self>) {
         match message {
             CarouselInput::NextPage => {
-                sender.output(CarouselOutput::ShowBackButton);
                 self.current_page += 1;
+
+                // If the user hasn't reached the progress page yet.
+                if self.current_page < 4 {
+                    sender.output(CarouselOutput::ShowBackButton);
+                }
 
                 // When the user is at the progress page.
                 if self.current_page == 4 {
@@ -122,12 +134,19 @@ impl SimpleComponent for CarouselModel {
                 }
             },
             CarouselInput::PreviousPage => {
-                // When on the second page (pages starts from 0), disable the back button while
-                // going back.
-                if self.current_page == 1 {
+                self.current_page -= 1;
+
+                // When on the first page (pages starts from 0), disable the back button.
+                if self.current_page == 0 {
                     sender.output(CarouselOutput::HideBackButton);
                 }
-                self.current_page -= 1;
+            },
+            CarouselInput::SkipToErrorPage => {
+                self.current_page = 5;
+                self.done_page
+                    .sender()
+                    .send(crate::done::DoneInput::SwitchToErrorState);
+                sender.output(CarouselOutput::HideBackButton);
             },
         }
     }

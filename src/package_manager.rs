@@ -2,7 +2,7 @@ use gettextrs::gettext;
 use relm4::adw::prelude::*;
 use relm4::{adw, gtk, ComponentParts, ComponentSender, SimpleComponent};
 
-use crate::carousel::COMMANDS;
+use crate::COMMANDS;
 
 #[derive(Debug)]
 pub(crate) struct PackageManagerModel {

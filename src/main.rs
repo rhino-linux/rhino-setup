@@ -1,5 +1,7 @@
 #![allow(clippy::used_underscore_binding)]
 
+use std::collections::HashMap;
+
 use carousel::{CarouselInput, CarouselModel, CarouselOutput};
 use config::{APP_ID, GETTEXT_PACKAGE, LOCALEDIR, RESOURCES_FILE};
 use gettextrs::{gettext, LocaleCategory};
@@ -7,16 +9,21 @@ use relm4::adw::prelude::*;
 use relm4::gtk::{gdk, gio, glib};
 use relm4::{
     adw, gtk, main_application, Component, ComponentController, ComponentParts, ComponentSender,
-    Controller, RelmApp, SimpleComponent,
+    Controller, RelmApp, SharedState, SimpleComponent,
 };
 
 mod carousel;
 mod config;
+mod done;
 mod extra_settings;
 mod package_manager;
 mod progress;
 mod theme;
 mod welcome;
+
+/// Gathers all the commands to be executed from different pages.
+pub(crate) static COMMANDS: SharedState<HashMap<&'static str, Vec<&'static str>>> =
+    SharedState::new();
 
 struct AppModel {
     carousel: Controller<CarouselModel>,

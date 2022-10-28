@@ -2,7 +2,7 @@ use gettextrs::gettext;
 use relm4::adw::prelude::*;
 use relm4::{adw, gtk, ComponentParts, ComponentSender, SimpleComponent};
 
-use crate::carousel::COMMANDS;
+use crate::COMMANDS;
 
 #[derive(Debug)]
 pub(crate) struct ExtraSettingsModel {
@@ -86,7 +86,6 @@ impl SimpleComponent for ExtraSettingsModel {
                         set_css_classes: &["pill", "suggested-action"],
 
                         connect_clicked[sender] => move |_| {
-
                             sender.output(Self::Output::NextPage);
                         }
                     }
@@ -142,7 +141,10 @@ impl SimpleComponent for ExtraSettingsModel {
 
         if self.install_nala {
             // HACK: Required to run pacstall from a root context
-            commands.push("cd /home/$(logname) && HOME=/home/$(logname) runuser -m -u $(logname) -- sh -c 'pacstall -PI nala-deb'");
+            commands.push(
+                "cd /home/$(logname) && HOME=/home/$(logname) runuser -m -u $(logname) -- sh -c \
+                 'pacstall -PI nala-deb'",
+            );
         }
 
         if self.enable_apport {

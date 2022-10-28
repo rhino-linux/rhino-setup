@@ -17,6 +17,8 @@ pub(crate) enum ThemeInput {
 pub(crate) enum ThemeOutput {
     /// Move to the next page.
     NextPage,
+    /// Move to the error page.
+    ErrorOccured,
 }
 
 #[relm4::component(pub)]
@@ -102,7 +104,7 @@ impl SimpleComponent for ThemeModel {
         ComponentParts { model, widgets }
     }
 
-    fn update(&mut self, message: Self::Input, _sender: relm4::ComponentSender<Self>) {
+    fn update(&mut self, message: Self::Input, sender: relm4::ComponentSender<Self>) {
         match message {
             Self::Input::EnableLightTheme => {
                 log::debug!("Enabling on Light theme");
@@ -118,12 +120,14 @@ impl SimpleComponent for ThemeModel {
                     .status()
                 {
                     log::error!("Error enabling light theme: {}", error);
+                    sender.output(Self::Output::ErrorOccured);
                 }
 
                 if let Err(error) = gio::Settings::new("org.gnome.desktop.interface")
                     .set_string("color-scheme", "default")
                 {
                     log::error!("Unable to change gsettings: {}", error);
+                    sender.output(Self::Output::ErrorOccured);
                 }
             },
             Self::Input::EnableDarkTheme => {
@@ -140,12 +144,14 @@ impl SimpleComponent for ThemeModel {
                     .status()
                 {
                     log::error!("Error enabling dark theme: {}", error);
+                    sender.output(Self::Output::ErrorOccured);
                 }
 
                 if let Err(error) = gio::Settings::new("org.gnome.desktop.interface")
                     .set_string("color-scheme", "prefer-dark")
                 {
                     log::error!("Unable to change gsettings: {}", error);
+                    sender.output(Self::Output::ErrorOccured);
                 }
             },
         }
