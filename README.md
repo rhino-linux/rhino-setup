@@ -35,6 +35,14 @@ Run the following commands:
 * `meson build` or `meson -D profile=development build`
 * `ninja -C build install`
 
+## 🗣️ Translation Status
+
+<div align="center">
+    <a href="https://weblate.makedeb.org/engage/rhino-linux/">
+        <img src="https://weblate.makedeb.org/widgets/rhino-linux/-/rhino-setup/horizontal-auto.svg" alt="Translation status" />
+    </a>
+</div>
+
 ## 📜 License
 
 <p align="center"><img alt="GPL-3.0-or-later" height="100" src="https://www.gnu.org/graphics/gplv3-or-later.svg" /></p>
