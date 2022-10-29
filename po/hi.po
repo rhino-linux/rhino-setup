@@ -1,55 +1,64 @@
 msgid ""
 msgstr ""
+"Project-Id-Version: Rhino Setup\n"
+"Report-Msgid-Bugs-To: https://github.com/rhino-linux/rhino-setup/issues\n"
+"POT-Creation-Date: 2022-10-29 20:26+0000\n"
+"Language: hi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: POEditor.com\n"
-"Project-Id-Version: Rhino Setup\n"
-"Language: hi\n"
 
-#: src/theme.rs:75
-msgid "Color Scheme"
-msgstr "रंग योजना"
+#: src/done.rs:56
+msgid "Reboot Now"
+msgstr ""
 
-#: src/theme.rs:76
-msgid "Choose a color scheme for your system."
-msgstr "अपने सिस्टम के लिए एक रंग योजना चुनें।"
+#: src/done.rs:67
+msgid "Close"
+msgstr ""
 
-#: src/extra_settings.rs:84 src/package_manager.rs:104 src/theme.rs:81
-msgid "Next"
-msgstr "अगला"
+#: src/done.rs:90
+msgid "All done!"
+msgstr ""
 
-#: src/welcome.rs:44
-msgid "Make your choices, this wizard will take care of everything."
-msgstr "अपने चुनाव करें, यह सॉफ्टवेयर सब कुछ संभाल लेगा।"
+#: src/done.rs:91
+msgid "Restart your device to enjoy your Rhino Linux experience."
+msgstr ""
 
-#: src/welcome.rs:46
-msgid "Let's Start"
-msgstr "चलो शुरू करते हैं"
+#: src/done.rs:108
+msgid "Something went wrong"
+msgstr ""
 
-#: src/main.rs:58
-msgid "Back"
-msgstr "पीछे"
-
-#: src/main.rs:126
-msgid "Rhino Setup"
-msgstr "राइनो सेटअप"
+#: src/done.rs:109
+msgid "Please contact the distribution developers."
+msgstr ""
 
 #: src/extra_settings.rs:47
 msgid "Extra Settings"
 msgstr "अतिरिक्त सेटिंग्स"
 
 #: src/extra_settings.rs:48
-msgid "The following are optional settings, leave them as they are if you don't know what they do."
-msgstr "यदि आप निम्न वैकल्पिक सेटिंग्स के बारे में नहीं जानते हैं, तो उन्हें वैसे ही रहने दें जैसे वे हैं।"
+msgid ""
+"The following are optional settings, leave them as they are if you don't "
+"know what they do."
+msgstr ""
+"यदि आप निम्न वैकल्पिक सेटिंग्स के बारे में नहीं जानते हैं, तो उन्हें वैसे ही रहने दें जैसे वे हैं।"
 
 #: src/extra_settings.rs:60
 msgid "Nala is an alternative front-end to APT, featuring a beautiful UI/UX."
 msgstr "Nala APT का एक वैकल्पिक फ्रंट-एंड है, जिसमें एक सुंदर UI/UX है।"
 
 #: src/extra_settings.rs:72
-msgid "Apport is a crash reporting system that helps us improve the stability of the system."
-msgstr "Apport एक क्रैश रिपोर्टिंग सिस्टम है जो सिस्टम की स्थिरता को बेहतर बनाने में हमारी मदद करता है।"
+msgid ""
+"Apport is a crash reporting system that helps us improve the stability of "
+"the system."
+msgstr ""
+"Apport एक क्रैश रिपोर्टिंग सिस्टम है जो सिस्टम की स्थिरता को बेहतर बनाने में हमारी मदद "
+"करता है।"
+
+#: src/extra_settings.rs:84 src/package_manager.rs:104 src/theme.rs:83
+msgid "Next"
+msgstr "अगला"
 
 #: src/package_manager.rs:50
 msgid "Package Manager"
@@ -72,7 +81,8 @@ msgid "Uses the Snapcraft repository. Default in Ubuntu."
 msgstr "এটি Snapcraft সংগ্রহস্থল ব্যবহার করে। এটি উবুন্টুতে ডিফল্ট।"
 
 #: src/package_manager.rs:77
-msgid "Software deployment and package management system developed by Canonical."
+msgid ""
+"Software deployment and package management system developed by Canonical."
 msgstr "Canonical द्वारा विकसित सॉफ्टवेयर परिनियोजन और पैकेज प्रबंधन प्रणाली।"
 
 #: src/package_manager.rs:90
@@ -87,3 +97,26 @@ msgstr "Linux प्लेटफॉर्म के लिए स्व-नि�
 msgid "The changes are being applied. Please Wait..."
 msgstr "परिवर्तन लागू किए जा रहे हैं। कृपया प्रतीक्षा करें..."
 
+#: src/theme.rs:77
+msgid "Color Scheme"
+msgstr "रंग योजना"
+
+#: src/theme.rs:78
+msgid "Choose a color scheme for your system."
+msgstr "अपने सिस्टम के लिए एक रंग योजना चुनें।"
+
+#: src/welcome.rs:44
+msgid "Make your choices, this wizard will take care of everything."
+msgstr "अपने चुनाव करें, यह सॉफ्टवेयर सब कुछ संभाल लेगा।"
+
+#: src/welcome.rs:46
+msgid "Let's Start"
+msgstr "चलो शुरू करते हैं"
+
+#: src/main.rs:69
+msgid "Back"
+msgstr "पीछे"
+
+#: src/main.rs:149
+msgid "Rhino Setup"
+msgstr "राइनो सेटअप"
