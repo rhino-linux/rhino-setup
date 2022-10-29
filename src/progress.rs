@@ -128,6 +128,8 @@ impl SimpleComponent for ProgressModel {
     fn update(&mut self, message: Self::Input, sender: ComponentSender<Self>) {
         match message {
             Self::Input::StartInstallation => {
+                tracing::info!("Starting installation");
+
                 COMMANDS
                     .write_inner()
                     .insert("pre_run", vec!["sudo apt-get update"]);
@@ -143,7 +145,7 @@ impl SimpleComponent for ProgressModel {
                     );
                 }
 
-                log::debug!("{commands_with_results}");
+                tracing::debug!("{commands_with_results}");
 
                 // Spawn a process to execute the commands
                 let mut processor = Command::new("sh")
@@ -173,12 +175,12 @@ impl SimpleComponent for ProgressModel {
                     let mut error_occured = false;
 
                     for line in stdout_reader.lines().map(Result::unwrap) {
-                        log::debug!("{line}");
+                        tracing::debug!("{line}");
 
                         if line.contains("---successful---") {
                             progress_bar_sender.send(ProgressBarInput::Progress);
                         } else if line.contains("---failed---") {
-                            log::error!(
+                            tracing::error!(
                                 "Error executing commands: {}",
                                 BufReader::new(processor.stderr.take().unwrap())
                                     .lines()
@@ -196,6 +198,7 @@ impl SimpleComponent for ProgressModel {
 
                     if !error_occured {
                         sender.output(Self::Output::InstallationComplete);
+                        tracing::info!("Installation complete")
                     }
                 });
             },

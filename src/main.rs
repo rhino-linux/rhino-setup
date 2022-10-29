@@ -1,6 +1,8 @@
 #![allow(clippy::used_underscore_binding)]
 
 use std::collections::HashMap;
+use std::env;
+use std::path::Path;
 
 use carousel::{CarouselInput, CarouselModel, CarouselOutput};
 use config::{APP_ID, GETTEXT_PACKAGE, LOCALEDIR, RESOURCES_FILE};
@@ -11,6 +13,8 @@ use relm4::{
     adw, gtk, main_application, Component, ComponentController, ComponentParts, ComponentSender,
     Controller, RelmApp, SharedState, SimpleComponent,
 };
+use tracing_appender::rolling::{RollingFileAppender, Rotation};
+use tracing_subscriber::fmt::writer::MakeWriterExt;
 
 mod carousel;
 mod config;
@@ -121,7 +125,19 @@ impl SimpleComponent for AppModel {
 }
 
 fn main() {
-    pretty_env_logger::init();
+    let logfile = RollingFileAppender::new(
+        Rotation::NEVER,
+        Path::new(&env::var("HOME").unwrap()).join(".local/share/"),
+        "rhino-setup.log",
+    )
+    .with_max_level(tracing::Level::DEBUG);
+
+    let stdout = std::io::stdout.with_max_level(tracing::Level::INFO);
+
+    tracing_subscriber::fmt()
+        .with_max_level(tracing::Level::DEBUG)
+        .with_writer(logfile.and(stdout))
+        .init();
 
     adw::init().unwrap();
 

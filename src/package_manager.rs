@@ -133,7 +133,7 @@ impl SimpleComponent for PackageManagerModel {
     fn update(&mut self, message: Self::Input, _sender: ComponentSender<Self>) {
         match message {
             Self::Input::Flatpak(switched_on) => {
-                log::info!(
+                tracing::info!(
                     "{}",
                     if switched_on {
                         "Enabling Flatpak installation"
@@ -145,7 +145,7 @@ impl SimpleComponent for PackageManagerModel {
                 self.install_flatpak = switched_on;
             },
             Self::Input::Snap(switched_on) => {
-                log::info!(
+                tracing::info!(
                     "{}",
                     if switched_on {
                         "Disabling Snap removal"
@@ -157,7 +157,7 @@ impl SimpleComponent for PackageManagerModel {
                 self.remove_snap = !switched_on;
             },
             Self::Input::AppImage(switched_on) => {
-                log::info!(
+                tracing::info!(
                     "{}",
                     if switched_on {
                         "Enabling AppImage installation"

@@ -118,7 +118,7 @@ impl SimpleComponent for WelcomeModel {
         match msg {
             WelcomeInput::ChangeTitle => {
                 self.title = self.titles.next().unwrap();
-                log::trace!("Changing title to: {}", self.title);
+                tracing::trace!("Changing title to: {}", self.title);
             },
         }
     }

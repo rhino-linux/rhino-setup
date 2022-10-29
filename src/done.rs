@@ -109,7 +109,7 @@ impl SimpleComponent for DoneModel {
                 self.description = gettext("Please contact the distribution developers.");
             },
             Self::Input::CloseApp => {
-                log::info!("Closing the application");
+                tracing::info!("Closing the application");
                 main_application().quit();
             },
         }

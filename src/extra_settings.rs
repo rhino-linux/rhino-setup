@@ -112,7 +112,7 @@ impl SimpleComponent for ExtraSettingsModel {
     fn update(&mut self, message: Self::Input, _sender: ComponentSender<Self>) {
         match message {
             Self::Input::Nala(switched_on) => {
-                log::info!(
+                tracing::info!(
                     "{}",
                     if switched_on {
                         "Enabling Nala installation"
@@ -124,7 +124,7 @@ impl SimpleComponent for ExtraSettingsModel {
                 self.install_nala = switched_on;
             },
             Self::Input::Apport(switched_on) => {
-                log::info!(
+                tracing::info!(
                     "{}",
                     if switched_on {
                         "Enabling Apport"

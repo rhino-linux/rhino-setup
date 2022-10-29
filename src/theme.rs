@@ -107,7 +107,7 @@ impl SimpleComponent for ThemeModel {
     fn update(&mut self, message: Self::Input, sender: relm4::ComponentSender<Self>) {
         match message {
             Self::Input::EnableLightTheme => {
-                log::debug!("Enabling on Light theme");
+                tracing::info!("Enabling on Light theme");
                 if let Err(error) = Command::new("xfconf-query")
                     .args(&[
                         "--channel",
@@ -119,19 +119,19 @@ impl SimpleComponent for ThemeModel {
                     ])
                     .status()
                 {
-                    log::error!("Error enabling light theme: {}", error);
+                    tracing::error!("Error enabling light theme: {}", error);
                     sender.output(Self::Output::ErrorOccured);
                 }
 
                 if let Err(error) = gio::Settings::new("org.gnome.desktop.interface")
                     .set_string("color-scheme", "default")
                 {
-                    log::error!("Unable to change gsettings: {}", error);
+                    tracing::error!("Unable to change gsettings: {}", error);
                     sender.output(Self::Output::ErrorOccured);
                 }
             },
             Self::Input::EnableDarkTheme => {
-                log::debug!("Enabling Dark theme");
+                tracing::info!("Enabling Dark theme");
                 if let Err(error) = Command::new("xfconf-query")
                     .args(&[
                         "--channel",
@@ -143,14 +143,14 @@ impl SimpleComponent for ThemeModel {
                     ])
                     .status()
                 {
-                    log::error!("Error enabling dark theme: {}", error);
+                    tracing::error!("Error enabling dark theme: {}", error);
                     sender.output(Self::Output::ErrorOccured);
                 }
 
                 if let Err(error) = gio::Settings::new("org.gnome.desktop.interface")
                     .set_string("color-scheme", "prefer-dark")
                 {
-                    log::error!("Unable to change gsettings: {}", error);
+                    tracing::error!("Unable to change gsettings: {}", error);
                     sender.output(Self::Output::ErrorOccured);
                 }
             },
