@@ -140,11 +140,7 @@ impl SimpleComponent for ExtraSettingsModel {
         let mut commands: Vec<&str> = Vec::new();
 
         if self.install_nala {
-            // HACK: Required to run pacstall from a root context
-            commands.push(
-                "cd /home/$(logname) && HOME=/home/$(logname) runuser -m -u $(logname) -- sh -c \
-                 'pacstall -PI nala-deb'",
-            );
+            commands.push("sudo apt-get install -y nala");
         }
 
         if self.enable_apport {
