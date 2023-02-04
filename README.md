@@ -29,6 +29,10 @@ Install the following dependencies:
 * `libadwaita-1-dev`
 * `gettext`
 * `desktop-file-utils`
+* `rustc`
+* `cargo`
+* `meson`
+* `ninja-build`
 
 Run the following commands:
 

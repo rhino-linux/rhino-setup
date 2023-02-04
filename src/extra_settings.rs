@@ -6,7 +6,7 @@ use crate::COMMANDS;
 
 #[derive(Debug)]
 pub(crate) struct ExtraSettingsModel {
-    install_nala: bool,
+    remove_nala: bool,
     enable_apport: bool,
 }
 
@@ -60,6 +60,7 @@ impl SimpleComponent for ExtraSettingsModel {
                                 set_subtitle: &gettext("Nala is an alternative front-end to APT, featuring a beautiful UI/UX."),
 
                                 add_suffix = &gtk::Switch {
+                                    set_active: true,
                                     set_valign: gtk::Align::Center,
 
                                     connect_active_notify[sender] => move |switch| {
@@ -100,7 +101,7 @@ impl SimpleComponent for ExtraSettingsModel {
         sender: ComponentSender<Self>,
     ) -> ComponentParts<Self> {
         let model = ExtraSettingsModel {
-            install_nala: false,
+            remove_nala: false,
             enable_apport: false,
         };
 
@@ -115,13 +116,13 @@ impl SimpleComponent for ExtraSettingsModel {
                 tracing::info!(
                     "{}",
                     if switched_on {
-                        "Enabling Nala installation"
+                        "Disabling Nala removal"
                     } else {
-                        "Disabling Nala installation"
+                        "Enabling Nala removal"
                     }
                 );
 
-                self.install_nala = switched_on;
+                self.remove_nala = !switched_on;
             },
             Self::Input::Apport(switched_on) => {
                 tracing::info!(
@@ -139,12 +140,8 @@ impl SimpleComponent for ExtraSettingsModel {
 
         let mut commands: Vec<&str> = Vec::new();
 
-        if self.install_nala {
-            // HACK: Required to run pacstall from a root context
-            commands.push(
-                "cd /home/$(logname) && HOME=/home/$(logname) runuser -m -u $(logname) -- sh -c \
-                 'pacstall -PI nala-deb'",
-            );
+        if self.remove_nala {
+            commands.push("sudo apt-get remove -y nala");
         }
 
         if self.enable_apport {
