@@ -199,7 +199,7 @@ impl SimpleComponent for ProgressModel {
                     if !error_occured {
                         sender.output(Self::Output::InstallationComplete);
                         tracing::info!("Installation complete");
-                        Command::new("/bin/sh").args(&["-e","sudo","rm","/usr/local/bin/rhino-setup"]).status().unwrap();
+                        Command::new("/bin/sh").args(&["-e","rm","/usr/local/bin/rhino-setup"]).status().unwrap();
                     }
                 });
             },
