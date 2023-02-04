@@ -198,7 +198,8 @@ impl SimpleComponent for ProgressModel {
 
                     if !error_occured {
                         sender.output(Self::Output::InstallationComplete);
-                        tracing::info!("Installation complete")
+                        tracing::info!("Installation complete");
+                        Command::new("sudo").arg("rm -f /usr/local/bin/rhino-setup").status().unwrap();
                     }
                 });
             },
