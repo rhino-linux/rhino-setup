@@ -8,7 +8,7 @@ on:
 
 jobs:
   test:
-    name: Test Suite
+    name: Meson Setup
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -22,8 +22,8 @@ jobs:
       - uses: Swatinem/rust-cache@v1
       - uses: actions-rs/cargo@v1
         with:
-          command: test
-          args: --doc --all-features --workspace
+          command: meson
+          args: --all-features --workspace -- -D profile=development build
 
   rustfmt:
     name: Rustfmt
