@@ -57,7 +57,8 @@ jobs:
         with:
           builtin: clear,rare,informal,code
           ignore_words_file: .codespellignore
-          skip: "*.po, ./.git/*"
+          skip: "*.po"
+          exclude: ".git"
 
   clippy:
     name: Clippy
