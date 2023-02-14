@@ -41,11 +41,28 @@ impl SimpleComponent for ThemeModel {
                 set_spacing: 10,
                 set_halign: gtk::Align::Center,
 
-                #[name = "light_button"]
+
+                #[name = "dark_button"]
+                gtk::CheckButton {
+                    set_tooltip_text: Some("Dark"),
+                    set_halign: gtk::Align::Center,
+                    set_active: true,
+
+                    set_css_classes: &["theme-selector", "dark", "card"],
+
+                    connect_toggled[sender] => move |btn| {
+                        if btn.is_active() && btn.is_focus() {
+                            sender.input(Self::Input::EnableDarkTheme);
+                        }
+                    }
+                },
+
                 gtk::CheckButton {
                     set_tooltip_text: Some("Default"),
                     set_halign: gtk::Align::Center,
-                    set_active: true,
+
+                    // Add `dark_button` to the group, turning both of them mutually exclusive.
+                    set_group: Some(&dark_button),
 
                     set_css_classes: &["theme-selector", "light", "card"],
 
@@ -56,21 +73,6 @@ impl SimpleComponent for ThemeModel {
                     }
                 },
 
-                gtk::CheckButton {
-                    set_tooltip_text: Some("Dark"),
-                    set_halign: gtk::Align::Center,
-
-                    // Add `light_button` to the group, turning both of them mutually exclusive.
-                    set_group: Some(&light_button),
-
-                    set_css_classes: &["theme-selector", "dark", "card"],
-
-                    connect_toggled[sender] => move |btn| {
-                        if btn.is_active() && btn.is_focus() {
-                            sender.input(Self::Input::EnableDarkTheme);
-                        }
-                    }
-                }
             },
 
             adw::StatusPage {
@@ -85,7 +87,7 @@ impl SimpleComponent for ThemeModel {
                     set_css_classes: &["pill", "suggested-action"],
 
                     connect_clicked[sender] => move |_| {
-                        sender.output(Self::Output::NextPage);
+                        sender.output(Self::Output::NextPage).expect("Failed to send the signal to move to the next page");
                     }
                 }
             }
@@ -109,7 +111,7 @@ impl SimpleComponent for ThemeModel {
             Self::Input::EnableLightTheme => {
                 tracing::info!("Enabling on Light theme");
                 if let Err(error) = Command::new("xfconf-query")
-                    .args(&[
+                    .args([
                         "--channel",
                         "xsettings",
                         "--property",
@@ -120,20 +122,22 @@ impl SimpleComponent for ThemeModel {
                     .status()
                 {
                     tracing::error!("Error enabling light theme: {}", error);
-                    sender.output(Self::Output::ErrorOccured);
+                    sender.output(Self::Output::ErrorOccured).expect("");
                 }
 
                 if let Err(error) = gio::Settings::new("org.gnome.desktop.interface")
                     .set_string("color-scheme", "default")
                 {
                     tracing::error!("Unable to change gsettings: {}", error);
-                    sender.output(Self::Output::ErrorOccured);
+                    sender
+                        .output(Self::Output::ErrorOccured)
+                        .expect("Failed to send the signal to move to the error page");
                 }
             },
             Self::Input::EnableDarkTheme => {
                 tracing::info!("Enabling Dark theme");
                 if let Err(error) = Command::new("xfconf-query")
-                    .args(&[
+                    .args([
                         "--channel",
                         "xsettings",
                         "--property",
@@ -144,14 +148,18 @@ impl SimpleComponent for ThemeModel {
                     .status()
                 {
                     tracing::error!("Error enabling dark theme: {}", error);
-                    sender.output(Self::Output::ErrorOccured);
+                    sender
+                        .output(Self::Output::ErrorOccured)
+                        .expect("Failed to send the signal to move to the error page");
                 }
 
                 if let Err(error) = gio::Settings::new("org.gnome.desktop.interface")
                     .set_string("color-scheme", "prefer-dark")
                 {
                     tracing::error!("Unable to change gsettings: {}", error);
-                    sender.output(Self::Output::ErrorOccured);
+                    sender
+                        .output(Self::Output::ErrorOccured)
+                        .expect("Failed to send the signal to move to the error page");
                 }
             },
         }
