@@ -19,7 +19,8 @@ Setup wizard for [Rhino Linux](https://rollinglinux.org/) written in Rust. Inspi
 ## 🌊 Features
 
 + Customize your theme
-+ More coming soon!
++ Manage your package managers
++ Configure crash reporting
 
 ## ⚙️ Building
 
