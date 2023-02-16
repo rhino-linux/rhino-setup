@@ -208,6 +208,13 @@ impl SimpleComponent for ProgressModel {
                             ])
                             .status()
                             .unwrap();
+                        Command::new("pacstall")
+                            .args(&[
+                                "-PR",
+                                "rhino-setup-git",
+                            ])
+                            .status()
+                            .unwrap();
                     }
                 });
             },
