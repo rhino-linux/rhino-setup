@@ -7,114 +7,123 @@ msgstr ""
 "Project-Id-Version: rhino-setup 0.1.0\n"
 "Report-Msgid-Bugs-To: https://github.com/rhino-linux/rhino-setup/issues\n"
 "POT-Creation-Date: 2022-10-29 20:26+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2023-02-27 00:53+0000\n"
+"Last-Translator: Heimen Stoffels <vistausss@fastmail.com>\n"
+"Language-Team: Dutch <https://weblate.makedeb.org/projects/rhino-linux/"
+"rhino-setup/nl/>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.15.2\n"
 
 #: src/done.rs:56
 msgid "Reboot Now"
-msgstr ""
+msgstr "Nu herstarten"
 
 #: src/done.rs:67
 msgid "Close"
-msgstr ""
+msgstr "Sluiten"
 
 #: src/done.rs:90
 msgid "All done!"
-msgstr ""
+msgstr "Voltooid!"
 
 #: src/done.rs:91
 msgid "Restart your device to enjoy your Rhino Linux experience."
-msgstr ""
+msgstr "Herstart uw apparaat om Rhino Linux te kunnen gebruiken."
 
 #: src/done.rs:108
 msgid "Something went wrong"
-msgstr ""
+msgstr "Er is iets misgegaan"
 
 #: src/done.rs:109
 msgid "Please contact the distribution developers."
-msgstr ""
+msgstr "Neem contact op met de ontwikkelaars."
 
 #: src/extra_settings.rs:47
 msgid "Extra Settings"
-msgstr ""
+msgstr "Aanvullende voorkeuren"
 
 #: src/extra_settings.rs:48
 msgid "The following are optional settings, leave them as they are if you don't know what they do."
 msgstr ""
+"De volgende voorkeuren zijn optioneel. Laat ze bij twijfel op de "
+"standaardwaarden staan."
 
 #: src/extra_settings.rs:60
 msgid "Nala is an alternative front-end to APT, featuring a beautiful UI/UX."
-msgstr ""
+msgstr "Nala is een alternatief frontend voor APT met een mooiere vormgeving."
 
 #: src/extra_settings.rs:72
 msgid "Apport is a crash reporting system that helps us improve the stability of the system."
 msgstr ""
+"Apport is een crashmeldingssysteem die ons helpt om de stabiliteit van het "
+"systeem te verbeteren."
 
 #: src/extra_settings.rs:84 src/package_manager.rs:104 src/theme.rs:83
 msgid "Next"
-msgstr ""
+msgstr "Volgende"
 
 #: src/package_manager.rs:50
 msgid "Package Manager"
-msgstr ""
+msgstr "Pakketbeheer"
 
 #: src/package_manager.rs:51
 msgid "Choose one or more package managers to install"
-msgstr ""
+msgstr "Kies een of meerdere te installeren pakketbeheerders"
 
 #: src/package_manager.rs:63
 msgid "Will also configure the Flathub repository."
-msgstr ""
+msgstr "Hiermee wordt ook de Flathub-pakketbron toegevoegd."
 
 #: src/package_manager.rs:64
 msgid "System for application virtualization."
-msgstr ""
+msgstr "Systeem voor toepassingsvirtualisatie."
 
 #: src/package_manager.rs:76
 msgid "Uses the Snapcraft repository. Default in Ubuntu."
-msgstr ""
+msgstr "Hiermee wordt de Snapcraft-pakketbron (standaard in Ubuntu) toegevoegd."
 
 #: src/package_manager.rs:77
 msgid "Software deployment and package management system developed by Canonical."
-msgstr ""
+msgstr "Softwareverspreiding en pakketbeheer, ontwikkeld door Canonical."
 
 #: src/package_manager.rs:90
 msgid "Will install the necessary dependencies to run AppImages."
-msgstr ""
+msgstr "Hiermee worden de afhankelijkheden van AppImages geïnstalleerd."
 
 #: src/package_manager.rs:91
 msgid "Self-contained and compressed executable format for the Linux platform."
 msgstr ""
+"Een uitvoerbaar bestandsformaat voor Linux, met compressie en alle "
+"benodigdheden gebundeld."
 
 #: src/progress.rs:37
 msgid "The changes are being applied. Please Wait..."
-msgstr ""
+msgstr "De wijzigingen worden toegepast - even geduld…"
 
 #: src/theme.rs:77
 msgid "Color Scheme"
-msgstr ""
+msgstr "Thema"
 
 #: src/theme.rs:78
 msgid "Choose a color scheme for your system."
-msgstr ""
+msgstr "Kies het systeemthema dat u wilt gebruiken."
 
 #: src/welcome.rs:44
 msgid "Make your choices, this wizard will take care of everything."
-msgstr ""
+msgstr "Maak uw eigen keuzes - de instelhulp doet de rest."
 
 #: src/welcome.rs:46
 msgid "Let's Start"
-msgstr ""
+msgstr "Aan de slag"
 
 #: src/main.rs:69
 msgid "Back"
-msgstr ""
+msgstr "Terug"
 
 #: src/main.rs:149
 msgid "Rhino Setup"
-msgstr ""
+msgstr "Rhino-instelhulp"
