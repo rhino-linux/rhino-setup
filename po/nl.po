@@ -9,8 +9,8 @@ msgstr ""
 "POT-Creation-Date: 2022-10-29 20:26+0000\n"
 "PO-Revision-Date: 2023-02-27 00:53+0000\n"
 "Last-Translator: Heimen Stoffels <vistausss@fastmail.com>\n"
-"Language-Team: Dutch <https://weblate.makedeb.org/projects/rhino-linux/"
-"rhino-setup/nl/>\n"
+"Language-Team: Dutch <https://weblate.makedeb.org/projects/rhino-linux/rhino-"
+"setup/nl/>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -47,7 +47,9 @@ msgid "Extra Settings"
 msgstr "Aanvullende voorkeuren"
 
 #: src/extra_settings.rs:48
-msgid "The following are optional settings, leave them as they are if you don't know what they do."
+msgid ""
+"The following are optional settings, leave them as they are if you don't "
+"know what they do."
 msgstr ""
 "De volgende voorkeuren zijn optioneel. Laat ze bij twijfel op de "
 "standaardwaarden staan."
@@ -57,7 +59,9 @@ msgid "Nala is an alternative front-end to APT, featuring a beautiful UI/UX."
 msgstr "Nala is een alternatief frontend voor APT met een mooiere vormgeving."
 
 #: src/extra_settings.rs:72
-msgid "Apport is a crash reporting system that helps us improve the stability of the system."
+msgid ""
+"Apport is a crash reporting system that helps us improve the stability of "
+"the system."
 msgstr ""
 "Apport is een crashmeldingssysteem die ons helpt om de stabiliteit van het "
 "systeem te verbeteren."
@@ -84,10 +88,12 @@ msgstr "Systeem voor toepassingsvirtualisatie."
 
 #: src/package_manager.rs:76
 msgid "Uses the Snapcraft repository. Default in Ubuntu."
-msgstr "Hiermee wordt de Snapcraft-pakketbron (standaard in Ubuntu) toegevoegd."
+msgstr ""
+"Hiermee wordt de Snapcraft-pakketbron (standaard in Ubuntu) toegevoegd."
 
 #: src/package_manager.rs:77
-msgid "Software deployment and package management system developed by Canonical."
+msgid ""
+"Software deployment and package management system developed by Canonical."
 msgstr "Softwareverspreiding en pakketbeheer, ontwikkeld door Canonical."
 
 #: src/package_manager.rs:90
