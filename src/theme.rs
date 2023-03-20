@@ -2,10 +2,13 @@ use std::process::Command;
 
 use gettextrs::gettext;
 use relm4::adw::prelude::*;
-use relm4::gtk::gio;
+use relm4::adw::StyleManager;
+use relm4::gtk::{gdk, gio};
 use relm4::{adw, gtk, ComponentParts, ComponentSender, SimpleComponent};
 
-pub(crate) struct ThemeModel;
+pub(crate) struct ThemeModel {
+    style_manager: StyleManager,
+}
 
 #[derive(Debug)]
 pub(crate) enum ThemeInput {
@@ -99,7 +102,12 @@ impl SimpleComponent for ThemeModel {
         root: &Self::Root,
         sender: ComponentSender<Self>,
     ) -> ComponentParts<Self> {
-        let model = ThemeModel {};
+        let model = ThemeModel {
+            style_manager: relm4::main_application()
+                .downcast_ref::<adw::Application>()
+                .unwrap()
+                .style_manager(),
+        };
 
         let widgets = view_output!();
 
@@ -107,6 +115,7 @@ impl SimpleComponent for ThemeModel {
     }
 
     fn update(&mut self, message: Self::Input, sender: relm4::ComponentSender<Self>) {
+        let style_manager = &self.style_manager;
         match message {
             Self::Input::EnableLightTheme => {
                 tracing::info!("Enabling on Light theme");
@@ -125,13 +134,16 @@ impl SimpleComponent for ThemeModel {
                     sender.output(Self::Output::ErrorOccured).expect("");
                 }
 
+                style_manager.set_color_scheme(adw::ColorScheme::ForceLight);
+
                 if let Err(error) = gio::Settings::new("org.gnome.desktop.interface")
                     .set_string("color-scheme", "default")
                 {
                     tracing::error!("Unable to change gsettings: {}", error);
-                    sender
-                        .output(Self::Output::ErrorOccured)
-                        .expect("Failed to send the signal to move to the error page");
+                    sender.output(Self::Output::ErrorOccured).expect(
+                        "Failed to send the signal to move to the
+                error page",
+                    );
                 }
             },
             Self::Input::EnableDarkTheme => {
@@ -153,13 +165,16 @@ impl SimpleComponent for ThemeModel {
                         .expect("Failed to send the signal to move to the error page");
                 }
 
+                style_manager.set_color_scheme(adw::ColorScheme::ForceDark);
+
                 if let Err(error) = gio::Settings::new("org.gnome.desktop.interface")
                     .set_string("color-scheme", "prefer-dark")
                 {
                     tracing::error!("Unable to change gsettings: {}", error);
-                    sender
-                        .output(Self::Output::ErrorOccured)
-                        .expect("Failed to send the signal to move to the error page");
+                    sender.output(Self::Output::ErrorOccured).expect(
+                        "Failed to send the signal to move to the
+                error page",
+                    );
                 }
             },
         }

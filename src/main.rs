@@ -168,6 +168,12 @@ fn main() {
     app.set_application_id(Some(APP_ID));
     app.set_resource_base_path(Some("/org/rhinolinux/RhinoSetup/"));
 
+    main_application()
+        .downcast_ref::<adw::Application>()
+        .unwrap()
+        .style_manager()
+        .set_color_scheme(adw::ColorScheme::PreferDark);
+
     let app = RelmApp::with_app(app);
     app.run::<AppModel>(());
 }
