@@ -16,7 +16,7 @@ jobs:
         sudo apt-get update && sudo apt-get install libgtk-4-dev libadwaita-1-dev gettext desktop-file-utils rustc cargo meson ninja-build -y
 
     - name: Setup
-      run: sudo meson build
+      run: sudo meson build && mkdir -p builds/amd64
 
     - name: Build
       run: sudo DESTDIR="builds/amd64" ninja -C build install
@@ -38,7 +38,7 @@ jobs:
         sudo apt-get update && sudo apt-get install libgtk-4-dev libadwaita-1-dev gettext desktop-file-utils rustc cargo meson ninja-build -y
 
     - name: Setup
-      run: sudo meson build
+      run: sudo meson build && mkdir -p builds/arm64
 
     - name: Build
       run: sudo DESTDIR="builds/arm64" ninja -C build install
