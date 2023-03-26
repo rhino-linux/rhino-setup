@@ -24,7 +24,7 @@ jobs:
     - uses: actions/upload-artifact@v3.1.0
       with:
         name: Rhino Setup (AMD64)
-        path: builds/amd64/
+        path: build/builds/amd64/
         
   build_arm64:
     runs-on: buildjet-4vcpu-ubuntu-2204-arm
@@ -46,5 +46,5 @@ jobs:
     - uses: actions/upload-artifact@v3.1.0
       with:
         name: Rhino Setup (ARM64)
-        path: builds/arm64/
+        path: build/builds/arm64/
 
