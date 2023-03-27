@@ -129,15 +129,17 @@ impl SimpleComponent for ThemeModel {
                         "Yaru-purple",
                     ])
                     .status()
-                Command::new("xfconf-query")
-                    .args([
-                        "--channel",
-                        "xsettings",
-                        "--property",
-                        "/general/theme",
-                        "--set",
-                        "Yaru",
-                    ])
+                {
+                    Command::new("xfconf-query")
+                        .args([
+                            "--channel",
+                            "xsettings",
+                            "--property",
+                            "/general/theme",
+                            "--set",
+                            "Yaru",
+                        ])
+                }
                 {
                     tracing::error!("Error enabling light theme: {}", error);
                     sender.output(Self::Output::ErrorOccured).expect("");
@@ -167,15 +169,17 @@ impl SimpleComponent for ThemeModel {
                         "Yaru-purple-dark",
                     ])
                     .status()
-                Command::new("xfconf-query")
-                    .args([
-                        "--channel",
-                        "xsettings",
-                        "--property",
-                        "/general/theme",
-                        "--set",
-                        "Yaru-dark",
-                    ])
+                {
+                    Command::new("xfconf-query")
+                        .args([
+                            "--channel",
+                            "xsettings",
+                            "--property",
+                            "/general/theme",
+                            "--set",
+                            "Yaru-dark",
+                        ])
+                }
                 {
                     tracing::error!("Error enabling dark theme: {}", error);
                     sender
