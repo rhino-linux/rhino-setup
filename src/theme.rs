@@ -133,17 +133,23 @@ impl SimpleComponent for ThemeModel {
                     tracing::error!("Error enabling light theme: {}", error);
                     sender.output(Self::Output::ErrorOccured).expect("");
                 }
+                
+                if let Err(error) = Command::new("xfconf-query")
+                    .args([
+                        "--channel",
+                        "xsettings",
+                        "--property",
+                        "/general/theme",
+                        "--set",
+                        "Yaru",
+                    ])
+                    .status()
                 {
-                    Command::new("xfconf-query")
-                        .args([
-                            "--channel",
-                            "xsettings",
-                            "--property",
-                            "/general/theme",
-                            "--set",
-                            "Yaru",
-                        ]);
-                };
+                    tracing::error!("Error enabling dark theme: {}", error);
+                    sender
+                        .output(Self::Output::ErrorOccured)
+                        .expect("Failed to send the signal to move to the error page");
+                }
 
                 style_manager.set_color_scheme(adw::ColorScheme::ForceLight);
 
@@ -175,17 +181,23 @@ impl SimpleComponent for ThemeModel {
                         .output(Self::Output::ErrorOccured)
                         .expect("Failed to send the signal to move to the error page");
                 }
+
+                if let Err(error) = Command::new("xfconf-query")
+                    .args([
+                        "--channel",
+                        "xsettings",
+                        "--property",
+                        "/general/theme",
+                        "--set",
+                        "Yaru-dark",
+                    ])
+                    .status()
                 {
-                    Command::new("xfconf-query")
-                        .args([
-                            "--channel",
-                            "xsettings",
-                            "--property",
-                            "/general/theme",
-                            "--set",
-                            "Yaru-dark",
-                        ]);
-                };
+                    tracing::error!("Error enabling dark theme: {}", error);
+                    sender
+                        .output(Self::Output::ErrorOccured)
+                        .expect("Failed to send the signal to move to the error page");
+                }
                 
                 style_manager.set_color_scheme(adw::ColorScheme::ForceDark);
 
