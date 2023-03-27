@@ -130,6 +130,10 @@ impl SimpleComponent for ThemeModel {
                     ])
                     .status()
                 {
+                    tracing::error!("Error enabling light theme: {}", error);
+                    sender.output(Self::Output::ErrorOccured).expect("");
+                }
+                {
                     Command::new("xfconf-query")
                         .args([
                             "--channel",
@@ -140,10 +144,6 @@ impl SimpleComponent for ThemeModel {
                             "Yaru",
                         ]);
                 };
-                {
-                    tracing::error!("Error enabling light theme: {}", error);
-                    sender.output(Self::Output::ErrorOccured).expect("");
-                }
 
                 style_manager.set_color_scheme(adw::ColorScheme::ForceLight);
 
@@ -170,6 +170,12 @@ impl SimpleComponent for ThemeModel {
                     ])
                     .status()
                 {
+                    tracing::error!("Error enabling dark theme: {}", error);
+                    sender
+                        .output(Self::Output::ErrorOccured)
+                        .expect("Failed to send the signal to move to the error page");
+                }
+                {
                     Command::new("xfconf-query")
                         .args([
                             "--channel",
@@ -180,13 +186,7 @@ impl SimpleComponent for ThemeModel {
                             "Yaru-dark",
                         ]);
                 };
-                {
-                    tracing::error!("Error enabling dark theme: {}", error);
-                    sender
-                        .output(Self::Output::ErrorOccured)
-                        .expect("Failed to send the signal to move to the error page");
-                }
-
+                
                 style_manager.set_color_scheme(adw::ColorScheme::ForceDark);
 
                 if let Err(error) = gio::Settings::new("org.gnome.desktop.interface")
