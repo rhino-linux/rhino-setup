@@ -138,6 +138,7 @@ impl SimpleComponent for ThemeModel {
                         "--set",
                         "Yaru",
                     ])
+                    }
                 {
                     tracing::error!("Error enabling light theme: {}", error);
                     sender.output(Self::Output::ErrorOccured).expect("");
@@ -176,6 +177,7 @@ impl SimpleComponent for ThemeModel {
                         "--set",
                         "Yaru-dark",
                     ])
+                    }
                 {
                     tracing::error!("Error enabling dark theme: {}", error);
                     sender
