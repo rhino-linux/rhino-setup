@@ -137,7 +137,7 @@ impl SimpleComponent for ThemeModel {
                 if let Err(error) = Command::new("xfconf-query")
                     .args([
                         "--channel",
-                        "xsettings",
+                        "xfwm4",
                         "--property",
                         "/general/theme",
                         "--set",
@@ -185,7 +185,7 @@ impl SimpleComponent for ThemeModel {
                 if let Err(error) = Command::new("xfconf-query")
                     .args([
                         "--channel",
-                        "xsettings",
+                        "xfwm4",
                         "--property",
                         "/general/theme",
                         "--set",
