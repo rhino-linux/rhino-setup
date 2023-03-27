@@ -166,7 +166,7 @@ impl SimpleComponent for ThemeModel {
                         "--set",
                         "Yaru-purple-dark",
                     ])
-                    .status()
+                    .status();
                 if let Err(error) = Command::new("xfconf-query")
                     .args([
                         "--channel",
