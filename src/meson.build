@@ -30,19 +30,21 @@ else
   message('Building in debug mode')
 endif
 
-cargo_build = custom_target(
-  'cargo-build',
-  build_by_default: true,
-  build_always_stale: true,
-  output: meson.project_name(),
-  console: true,
-  install: true,
-  install_dir: bindir,
-  depends: resources,
-  command: [
-    cargo, 'build',
-    cargo_options,
-    '&&',
-    'cp', 'src' / rust_target / meson.project_name(), '@OUTPUT@',
-  ]
-)
+if get_option('profile') != 'CI'
+  cargo_build = custom_target(
+    'cargo-build',
+    build_by_default: true,
+    build_always_stale: true,
+    output: meson.project_name(),
+    console: true,
+    install: true,
+    install_dir: bindir,
+    depends: resources,
+    command: [
+      cargo, 'build',
+      cargo_options,
+      '&&',
+      'cp', 'src' / rust_target / meson.project_name(), '@OUTPUT@',
+    ]
+  )
+endif
