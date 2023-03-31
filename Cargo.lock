@@ -901,11 +901,10 @@ dependencies = [
 
 [[package]]
 name = "relm4-components"
-version = "0.5.0"
+version = "0.5.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "5903c6260efa42847589a938429eaf6925d0cf9b07776895cba0f768bb5b4c8f"
+checksum = "28eccf5b92be562651bb0137232b6d0f6833ad72f3e11e093aed14c9c6b53210"
 dependencies = [
- "log",
  "once_cell",
  "relm4",
  "tracker",
