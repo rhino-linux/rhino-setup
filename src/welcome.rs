@@ -48,7 +48,7 @@ impl SimpleComponent for WelcomeModel {
                     set_halign: gtk::Align::Center,
 
                     connect_clicked[sender] => move|_| {
-                        sender.output(WelcomeOutput::NextPage);
+                        sender.output(WelcomeOutput::NextPage).unwrap();
                     }
                 }
             }

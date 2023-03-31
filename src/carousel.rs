@@ -1,8 +1,5 @@
 use relm4::adw::prelude::*;
-use relm4::{
-    adw, Component, ComponentController, ComponentParts, ComponentSender, Controller,
-    SimpleComponent,
-};
+use relm4::{adw, Component, ComponentController, ComponentParts, Controller, SimpleComponent};
 
 use crate::done::DoneModel;
 use crate::extra_settings::{ExtraSettingsModel, ExtraSettingsOutput};
@@ -23,6 +20,7 @@ pub(crate) struct CarouselModel {
 }
 
 #[derive(Debug)]
+#[allow(clippy::enum_variant_names)]
 pub(crate) enum CarouselInput {
     /// Move to next page.
     NextPage,
@@ -119,18 +117,19 @@ impl SimpleComponent for CarouselModel {
 
                 // If the user hasn't reached the progress page yet.
                 if self.current_page < 4 {
-                    sender.output(CarouselOutput::ShowBackButton);
+                    sender.output(CarouselOutput::ShowBackButton).unwrap();
                 }
 
                 // When the user is at the progress page.
                 if self.current_page == 4 {
                     // Hide the back button, as the user is not supposed to return to previous pages
                     // after this point.
-                    sender.output(CarouselOutput::HideBackButton);
+                    sender.output(CarouselOutput::HideBackButton).unwrap();
 
                     self.progress_page
                         .sender()
-                        .send(ProgressInput::StartInstallation);
+                        .send(ProgressInput::StartInstallation)
+                        .unwrap();
                 }
             },
             CarouselInput::PreviousPage => {
@@ -138,15 +137,16 @@ impl SimpleComponent for CarouselModel {
 
                 // When on the first page (pages starts from 0), disable the back button.
                 if self.current_page == 0 {
-                    sender.output(CarouselOutput::HideBackButton);
+                    sender.output(CarouselOutput::HideBackButton).unwrap();
                 }
             },
             CarouselInput::SkipToErrorPage => {
                 self.current_page = 5;
                 self.done_page
                     .sender()
-                    .send(crate::done::DoneInput::SwitchToErrorState);
-                sender.output(CarouselOutput::HideBackButton);
+                    .send(crate::done::DoneInput::SwitchToErrorState)
+                    .unwrap();
+                sender.output(CarouselOutput::HideBackButton).unwrap();
             },
         }
     }

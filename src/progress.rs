@@ -151,10 +151,7 @@ impl SimpleComponent for ProgressModel {
                 let mut processor = Command::new("sh")
                     .args([
                         "-c",
-                        &format!(
-                            r#"pkexec sh -c "{}" || echo ---failed---"#,
-                            commands_with_results
-                        ),
+                        &format!(r#"pkexec sh -c "{commands_with_results}" || echo ---failed---"#,),
                     ])
                     .stdout(Stdio::piped())
                     .stderr(Stdio::piped())
@@ -178,7 +175,9 @@ impl SimpleComponent for ProgressModel {
                         tracing::debug!("{line}");
 
                         if line.contains("---successful---") {
-                            progress_bar_sender.send(ProgressBarInput::Progress);
+                            progress_bar_sender
+                                .send(ProgressBarInput::Progress)
+                                .unwrap();
                         } else if line.contains("---failed---") {
                             tracing::error!(
                                 "Error executing commands: {}",
@@ -189,7 +188,7 @@ impl SimpleComponent for ProgressModel {
                             );
 
                             error_occured = true;
-                            sender.output(Self::Output::InstallationError);
+                            sender.output(Self::Output::InstallationError).unwrap();
 
                             // Kill the processor to avoid any extra changes to the system.
                             processor.kill().unwrap();
@@ -197,10 +196,10 @@ impl SimpleComponent for ProgressModel {
                     }
 
                     if !error_occured {
-                        sender.output(Self::Output::InstallationComplete);
+                        sender.output(Self::Output::InstallationComplete).unwrap();
                         tracing::info!("Installation complete");
                         Command::new("pkexec")
-                            .args(&[
+                            .args([
                                 "sh",
                                 "-c",
                                 "rm /usr/local/bin/rhino-setup \
@@ -209,7 +208,7 @@ impl SimpleComponent for ProgressModel {
                             .status()
                             .unwrap();
                         Command::new("pacstall")
-                            .args(&["-PR", "rhino-setup-git"])
+                            .args(["-PR", "rhino-setup-git"])
                             .status()
                             .unwrap();
                     }

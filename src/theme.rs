@@ -3,7 +3,7 @@ use std::process::Command;
 use gettextrs::gettext;
 use relm4::adw::prelude::*;
 use relm4::adw::StyleManager;
-use relm4::gtk::{gdk, gio};
+use relm4::gtk::gio;
 use relm4::{adw, gtk, ComponentParts, ComponentSender, SimpleComponent};
 
 pub(crate) struct ThemeModel {
@@ -133,7 +133,7 @@ impl SimpleComponent for ThemeModel {
                     tracing::error!("Error enabling light theme: {}", error);
                     sender.output(Self::Output::ErrorOccured).expect("");
                 }
-                
+
                 if let Err(error) = Command::new("xfconf-query")
                     .args([
                         "--channel",
@@ -198,7 +198,7 @@ impl SimpleComponent for ThemeModel {
                         .output(Self::Output::ErrorOccured)
                         .expect("Failed to send the signal to move to the error page");
                 }
-                
+
                 style_manager.set_color_scheme(adw::ColorScheme::ForceDark);
 
                 if let Err(error) = gio::Settings::new("org.gnome.desktop.interface")

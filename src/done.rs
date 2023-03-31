@@ -101,7 +101,7 @@ impl SimpleComponent for DoneModel {
         match message {
             Self::Input::Reboot => {
                 Command::new("pkexec")
-                    .args(&["sh", "-c", "reboot"])
+                    .args(["sh", "-c", "reboot"])
                     .status()
                     .unwrap();
             },

@@ -106,7 +106,7 @@ impl SimpleComponent for PackageManagerModel {
                         set_css_classes: &["pill", "suggested-action"],
 
                         connect_clicked[sender] => move |_| {
-                            sender.output(Self::Output::NextPage);
+                            sender.output(Self::Output::NextPage).unwrap();
                         }
                     }
                 }

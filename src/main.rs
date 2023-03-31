@@ -72,7 +72,7 @@ impl SimpleComponent for AppModel {
                         set_visible: model.back_button_visible,
 
                         connect_clicked[carousel_sender] => move |_| {
-                            carousel_sender.send(CarouselInput::PreviousPage);
+                            carousel_sender.send(CarouselInput::PreviousPage).unwrap();
                         }
                     },
                 },
