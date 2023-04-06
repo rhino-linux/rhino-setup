@@ -207,8 +207,8 @@ impl SimpleComponent for ProgressModel {
                             ])
                             .status()
                             .unwrap();
-                        Command::new("pacstall")
-                            .args(["-PR", "rhino-setup-git"])
+                        Command::new("pkexec")
+                            .args(["sh", "-c", "sudo apt remove -yq rhino-setup"])
                             .status()
                             .unwrap();
                     }
