@@ -199,15 +199,6 @@ impl SimpleComponent for ProgressModel {
                         sender.output(Self::Output::InstallationComplete).unwrap();
                         tracing::info!("Installation complete");
                         Command::new("pkexec")
-                            .args([
-                                "sh",
-                                "-c",
-                                "rm /usr/local/bin/rhino-setup \
-                                 /usr/local/share/applications/org.rhinolinux.RhinoSetup.desktop",
-                            ])
-                            .status()
-                            .unwrap();
-                        Command::new("pkexec")
                             .args(["sh", "-c", "sudo apt remove -yq rhino-setup"])
                             .status()
                             .unwrap();
