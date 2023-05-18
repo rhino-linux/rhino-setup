@@ -7,7 +7,7 @@ use crate::COMMANDS;
 #[derive(Debug)]
 pub(crate) struct PackageManagerModel {
     install_flatpak: bool,
-    remove_snap: bool,
+    install_snap: bool,
     install_appimage: bool,
 }
 
@@ -77,7 +77,6 @@ impl SimpleComponent for PackageManagerModel {
                                 set_tooltip_text: Some(&gettext("Software deployment and package management system developed by Canonical.")),
 
                                 add_suffix = &gtk::Switch {
-                                    set_active: true,
                                     set_valign: gtk::Align::Center,
 
                                     connect_active_notify[sender] => move |switch| {
@@ -121,7 +120,7 @@ impl SimpleComponent for PackageManagerModel {
     ) -> ComponentParts<Self> {
         let model = PackageManagerModel {
             install_flatpak: false,
-            remove_snap: false,
+            install_snap: false,
             install_appimage: false,
         };
 
@@ -148,13 +147,13 @@ impl SimpleComponent for PackageManagerModel {
                 tracing::info!(
                     "{}",
                     if switched_on {
-                        "Disabling Snap removal"
+                        "Enabling Snap installation"
                     } else {
-                        "Enabling Snap removal"
+                        "Disabling Snap installation"
                     }
                 );
 
-                self.remove_snap = !switched_on;
+                self.install_snap = switched_on;
             },
             Self::Input::AppImage(switched_on) => {
                 tracing::info!(
@@ -181,9 +180,8 @@ impl SimpleComponent for PackageManagerModel {
             );
         }
 
-        if self.remove_snap {
-            commands.push("sudo rm -rf /var/cache/snapd/");
-            commands.push("sudo apt-get autopurge -y snapd gnome-software-plugin-snap");
+        if self.install_snap {
+            commands.push("sudo apt-get install -y snap snapd gnome-software-plugin-snap");
         }
 
         if self.install_appimage {
