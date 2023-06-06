@@ -171,7 +171,7 @@ impl SimpleComponent for PackageManagerModel {
         let mut commands: Vec<&str> = Vec::new();
 
         if self.install_flatpak {
-            commands.push("sudo apt-get install -y flatpak gnome-software-plugin-flatpak");
+            commands.push("sudo apt-get install -y flatpak");
             commands.push("flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo");
             commands.push(
                 "sudo sed -i 's/distro.eol/datetime.datetime.now().date() + \
@@ -181,7 +181,7 @@ impl SimpleComponent for PackageManagerModel {
         }
 
         if self.install_snap {
-            commands.push("sudo apt-get install -y snap snapd gnome-software-plugin-snap");
+            commands.push("sudo apt-get install -y snap snapd");
         }
 
         if self.install_appimage {
