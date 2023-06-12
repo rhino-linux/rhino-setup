@@ -78,7 +78,7 @@ impl SimpleComponent for PackageManagerModel {
 
                                 add_suffix = &gtk::Switch {
                                     set_valign: gtk::Align::Center,
-                                    set_active: false;
+                                    set_active: false,
                                     connect_active_notify[sender] => move |switch| {
                                         sender.input(Self::Input::Snap(switch.is_active()));
                                     }
@@ -91,7 +91,7 @@ impl SimpleComponent for PackageManagerModel {
 
                                 add_suffix = &gtk::Switch {
                                     set_valign: gtk::Align::Center,
-                                    set_active: false;
+                                    set_active: false,
                                     connect_active_notify[sender] => move |switch| {
                                         sender.input(Self::Input::AppImage(switch.is_active()));
                                     }
