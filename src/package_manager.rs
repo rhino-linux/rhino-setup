@@ -181,7 +181,7 @@ impl SimpleComponent for PackageManagerModel {
         }
 
         if self.install_snap {
-            commands.push("sudo apt-get install -y snap snapd");
+            commands.push("sudo apt-get install -y snapd");
         }
 
         if self.install_appimage {
