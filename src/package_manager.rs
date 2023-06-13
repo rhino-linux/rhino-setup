@@ -65,7 +65,7 @@ impl SimpleComponent for PackageManagerModel {
 
                                 add_suffix = &gtk::Switch {
                                     set_valign: gtk::Align::Center,
-
+                                    set_active: true,
                                     connect_active_notify[sender] => move |switch| {
                                         sender.input(Self::Input::Flatpak(switch.is_active()));
                                     }
@@ -78,7 +78,7 @@ impl SimpleComponent for PackageManagerModel {
 
                                 add_suffix = &gtk::Switch {
                                     set_valign: gtk::Align::Center,
-
+                                    set_active: false,
                                     connect_active_notify[sender] => move |switch| {
                                         sender.input(Self::Input::Snap(switch.is_active()));
                                     }
@@ -91,7 +91,7 @@ impl SimpleComponent for PackageManagerModel {
 
                                 add_suffix = &gtk::Switch {
                                     set_valign: gtk::Align::Center,
-
+                                    set_active: false,
                                     connect_active_notify[sender] => move |switch| {
                                         sender.input(Self::Input::AppImage(switch.is_active()));
                                     }
@@ -181,7 +181,7 @@ impl SimpleComponent for PackageManagerModel {
         }
 
         if self.install_snap {
-            commands.push("sudo apt-get install -y snap snapd");
+            commands.push("sudo apt-get install -y snapd");
         }
 
         if self.install_appimage {
