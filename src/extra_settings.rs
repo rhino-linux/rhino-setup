@@ -45,7 +45,7 @@ impl SimpleComponent for ExtraSettingsModel {
 
                 set_icon_name: Some("rhinosetup-puzzle-piece-symbolic"),
                 set_title: &gettext("Extra Settings"),
-                set_description: Some(&gettext("The following are optional settings, leave them as they are if you don't know what they do.")),
+                set_description: Some(&gettext("The following are optional settings or packages, leave them as they are if you don't know what they do.")),
 
                 gtk::Box {
                     set_orientation: gtk::Orientation::Vertical,
@@ -77,6 +77,30 @@ impl SimpleComponent for ExtraSettingsModel {
 
                                     connect_active_notify[sender] => move |switch| {
                                         sender.input(Self::Input::Apport(switch.is_active()));
+                                    }
+                                }
+                            },
+                            adw::ActionRow {
+                                set_title: "GNOME",
+                                set_subtitle: &gettext("Install the GNOME Desktop environment alongside Unicorn"),
+
+                                add_suffix = &gtk::Switch {
+                                    set_valign: gtk::Align::Center,
+
+                                    connect_active_notify[sender] => move |switch| {
+                                        sender.input(Self::Input::Nala(switch.is_active()));
+                                    }
+                                }
+                            },
+                            adw::ActionRow {
+                                set_title: "KDE Plasma",
+                                set_subtitle: &gettext("Install the Plasma Desktop environment alongside Unicorn"),
+
+                                add_suffix = &gtk::Switch {
+                                    set_valign: gtk::Align::Center,
+
+                                    connect_active_notify[sender] => move |switch| {
+                                        sender.input(Self::Input::Nala(switch.is_active()));
                                     }
                                 }
                             },
