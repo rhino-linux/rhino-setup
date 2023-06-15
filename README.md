@@ -44,8 +44,8 @@ Run the following commands:
 ## 🗣️ Translation Status
 
 <div align="center">
-    <a href="https://weblate.makedeb.org/engage/rhino-linux/">
-        <img src="https://weblate.makedeb.org/widgets/rhino-linux/-/rhino-setup/horizontal-auto.svg" alt="Translation status" />
+    <a href="https://hosted.weblate.org/engage/rhino-linux/">
+        <img src="https://hosted.weblate.org/widgets/rhino-linux/-/rhino-setup/horizontal-auto.svg" alt="Translation status" />
     </a>
 </div>
 
