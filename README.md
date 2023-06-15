@@ -43,6 +43,9 @@ Run the following commands:
 
 ## 🗣️ Translation Status
 
+### How you can help
+* Work on translations into languages not finished yet by either editing the `po/<language_code>.po` file, making a new one by running `cp po/rhino-setup.pot po/<language_code>.po`, or using weblate (https://hosted.weblate.org/projects/rhino-linux/rhino-setup/). Once you have completed or partially completed a po file, make a PR and we will merge it! Our goal is to have as many languages translated as possible due to the amount of people who may not be fluent in English.
+
 <div align="center">
     <a href="https://hosted.weblate.org/engage/rhino-linux/">
         <img src="https://hosted.weblate.org/widgets/rhino-linux/-/rhino-setup/horizontal-auto.svg" alt="Translation status" />
