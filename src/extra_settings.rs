@@ -203,10 +203,10 @@ impl SimpleComponent for ExtraSettingsModel {
             commands.push("sudo apt-get install -y apport");
             commands.push("systemctl enable apport.service || true");
         }
-        if self.enable_Gnome {
+        if self.enable_gnome {
             commands.push("sudo apt-get install -y vanilla-gnome-desktop");
         }
-        if self.enable_Kde {
+        if self.enable_kde {
             commands.push("sudo apt-get install -y kde-full");
         }
 
