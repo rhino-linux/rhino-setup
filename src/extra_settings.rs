@@ -88,7 +88,7 @@ impl SimpleComponent for ExtraSettingsModel {
                                     set_valign: gtk::Align::Center,
 
                                     connect_active_notify[sender] => move |switch| {
-                                        sender.input(Self::Input::Nala(switch.is_active()));
+                                        sender.input(Self::Input::Gnome(switch.is_active()));
                                     }
                                 }
                             },
@@ -100,7 +100,7 @@ impl SimpleComponent for ExtraSettingsModel {
                                     set_valign: gtk::Align::Center,
 
                                     connect_active_notify[sender] => move |switch| {
-                                        sender.input(Self::Input::Nala(switch.is_active()));
+                                        sender.input(Self::Input::Kde(switch.is_active()));
                                     }
                                 }
                             },
@@ -160,6 +160,30 @@ impl SimpleComponent for ExtraSettingsModel {
 
                 self.enable_apport = switched_on;
             },
+            Self::Input::Gnome(switched_on) => {
+                tracing::info!(
+                    "{}",
+                    if switched_on {
+                        "Enabling Gnome"
+                    } else {
+                        "Disabling Gnome"
+                    }
+                );
+
+                self.enable_Gnome = switched_on;
+            },
+            Self::Input::Kde(switched_on) => {
+                tracing::info!(
+                    "{}",
+                    if switched_on {
+                        "Enabling Kde"
+                    } else {
+                        "Disabling Kde"
+                    }
+                );
+
+                self.enable_Kde = switched_on;
+            },
         }
 
         let mut commands: Vec<&str> = Vec::new();
@@ -171,6 +195,12 @@ impl SimpleComponent for ExtraSettingsModel {
         if self.enable_apport {
             commands.push("sudo apt-get install -y apport");
             commands.push("systemctl enable apport.service || true");
+        }
+        if self.enable_Gnome {
+            commands.push("sudo apt-get install -y vanilla-gnome-desktop");
+        }
+        if self.enable_Kde {
+            commands.push("sudo apt-get install -y kde-full");
         }
 
         COMMANDS.write_inner().insert("extra_settings", commands);
