@@ -134,6 +134,8 @@ impl SimpleComponent for ExtraSettingsModel {
         let model = ExtraSettingsModel {
             remove_nala: false,
             enable_apport: false,
+            enable_gnome: false,
+            enable_kde: false,
         };
 
         let widgets = view_output!();
