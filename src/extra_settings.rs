@@ -8,6 +8,8 @@ use crate::COMMANDS;
 pub(crate) struct ExtraSettingsModel {
     remove_nala: bool,
     enable_apport: bool,
+    enable_gnome: bool,
+    enable_kde: bool,
 }
 
 #[derive(Debug)]
@@ -16,6 +18,10 @@ pub(crate) enum ExtraSettingsInput {
     Nala(bool),
     /// Represents the Apport switch state
     Apport(bool),
+    /// Represents the GNOME switch state
+    Gnome(bool),
+    /// Represents the KDE switch state
+    Kde(bool),
 }
 
 #[derive(Debug)]
@@ -171,7 +177,7 @@ impl SimpleComponent for ExtraSettingsModel {
                     }
                 );
 
-                self.enable_Gnome = switched_on;
+                self.enable_gnome = switched_on;
             },
             Self::Input::Kde(switched_on) => {
                 tracing::info!(
@@ -183,7 +189,7 @@ impl SimpleComponent for ExtraSettingsModel {
                     }
                 );
 
-                self.enable_Kde = switched_on;
+                self.enable_kde = switched_on;
             },
         }
 
