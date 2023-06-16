@@ -44,8 +44,9 @@ impl SimpleComponent for ExtraSettingsModel {
                 set_hexpand: true,
 
                 set_icon_name: Some("rhinosetup-puzzle-piece-symbolic"),
-                set_title: &gettext("Extra Settings"),
-                set_description: Some(&gettext("The following are optional settings or packages, leave them as they are if you don't know what they do.")),
+                set_title: &gettext("Extras"),
+                set_description: Some(&gettext("The following are optional settings, packages and desktop environments. For the best Rhino Linux experience, leave them as they are. ")),
+                
 
                 gtk::Box {
                     set_orientation: gtk::Orientation::Vertical,
@@ -82,7 +83,7 @@ impl SimpleComponent for ExtraSettingsModel {
                             },
                             adw::ActionRow {
                                 set_title: "GNOME",
-                                set_subtitle: &gettext("Install the GNOME Desktop environment alongside Unicorn"),
+                                set_subtitle: &gettext("Install the GNOME Desktop environment alongside Unicorn (XFCE)"),
 
                                 add_suffix = &gtk::Switch {
                                     set_valign: gtk::Align::Center,
@@ -94,7 +95,7 @@ impl SimpleComponent for ExtraSettingsModel {
                             },
                             adw::ActionRow {
                                 set_title: "KDE Plasma",
-                                set_subtitle: &gettext("Install the Plasma Desktop environment alongside Unicorn"),
+                                set_subtitle: &gettext("Install the Plasma Desktop environment alongside Unicorn (XFCE)"),
 
                                 add_suffix = &gtk::Switch {
                                     set_valign: gtk::Align::Center,
