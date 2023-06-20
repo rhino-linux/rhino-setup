@@ -1,119 +1,129 @@
-# Copyright (C) 2022-present Rhino Setup Translators
-# This file is distributed under the same license as the rhino-setup package.
-#
+# Pierre Lindblom <pierrelindblom@europe.com>, 2022.
 msgid ""
 msgstr ""
-"Project-Id-Version: rhino-setup 0.1.0\n"
+"Project-Id-Version: Rhino Setup\n"
 "Report-Msgid-Bugs-To: https://github.com/rhino-linux/rhino-setup/issues\n"
 "POT-Creation-Date: 2022-10-29 20:26+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2022-10-31 19:02+0000\n"
+"Last-Translator: Pierre Lindblom <pierrelindblom@europe.com>\n"
+"Language-Team: Swedish <https://weblate.makedeb.org/projects/rhino-linux/"
+"rhino-setup/sv/>\n"
 "Language: sv\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.14.1\n"
 
 #: src/done.rs:56
 msgid "Reboot Now"
-msgstr ""
+msgstr "Starta om nu"
 
 #: src/done.rs:67
 msgid "Close"
-msgstr ""
+msgstr "Stäng"
 
 #: src/done.rs:90
 msgid "All done!"
-msgstr ""
+msgstr "allt klart!"
 
 #: src/done.rs:91
 msgid "Restart your device to enjoy your Rhino Linux experience."
-msgstr ""
+msgstr "Starta om enheten för att njuta av din Rhino Linux-upplevelse."
 
 #: src/done.rs:108
 msgid "Something went wrong"
-msgstr ""
+msgstr "Någonting gick fel"
 
 #: src/done.rs:109
 msgid "Please contact the distribution developers."
-msgstr ""
+msgstr "snälla kontakta distribution utvecklarna."
 
 #: src/extra_settings.rs:47
 msgid "Extra Settings"
-msgstr ""
+msgstr "Extra inställningar"
 
 #: src/extra_settings.rs:48
-msgid "The following are optional settings, leave them as they are if you don't know what they do."
+msgid ""
+"The following are optional settings, leave them as they are if you don't "
+"know what they do."
 msgstr ""
+"Följande är valfria inställningar, lämna dem som de är om du inte vet vad de "
+"gör."
 
 #: src/extra_settings.rs:60
 msgid "Nala is an alternative front-end to APT, featuring a beautiful UI/UX."
-msgstr ""
+msgstr "Nala är en alternativ front-end till APT, med ett vackert UI/UX."
 
 #: src/extra_settings.rs:72
-msgid "Apport is a crash reporting system that helps us improve the stability of the system."
+msgid ""
+"Apport is a crash reporting system that helps us improve the stability of "
+"the system."
 msgstr ""
+"Apport är ett felrapporteringsprogram som hjälper oss att förbättra "
+"systemets stabilitet."
 
 #: src/extra_settings.rs:84 src/package_manager.rs:104 src/theme.rs:83
 msgid "Next"
-msgstr ""
+msgstr "Nästa"
 
 #: src/package_manager.rs:50
 msgid "Package Manager"
-msgstr ""
+msgstr "PaketHanterare"
 
 #: src/package_manager.rs:51
 msgid "Choose one or more package managers to install"
-msgstr ""
+msgstr "Välj ett, eller flera pakethanterare att installera"
 
 #: src/package_manager.rs:63
 msgid "Will also configure the Flathub repository."
-msgstr ""
+msgstr "Kommer också att konfiguerar Flathub databasen."
 
 #: src/package_manager.rs:64
 msgid "System for application virtualization."
-msgstr ""
+msgstr "System för tillämpning av virtualisering."
 
 #: src/package_manager.rs:76
 msgid "Uses the Snapcraft repository. Default in Ubuntu."
-msgstr ""
+msgstr "Använder Snapcraft databasen. Standard i Ubuntu."
 
 #: src/package_manager.rs:77
-msgid "Software deployment and package management system developed by Canonical."
-msgstr ""
+msgid ""
+"Software deployment and package management system developed by Canonical."
+msgstr "Mjukvaruplacering och pakethanteringssystem utvecklat av Canonical."
 
 #: src/package_manager.rs:90
 msgid "Will install the necessary dependencies to run AppImages."
-msgstr ""
+msgstr "Kommer att installerar nödvändiga beroenden för att köra Appimages."
 
 #: src/package_manager.rs:91
 msgid "Self-contained and compressed executable format for the Linux platform."
-msgstr ""
+msgstr "Fristående och komprimerade körbara format för Linux Plattform."
 
 #: src/progress.rs:37
 msgid "The changes are being applied. Please Wait..."
-msgstr ""
+msgstr "Inställningarna tillämpas. Var vänligt vänta..."
 
 #: src/theme.rs:77
 msgid "Color Scheme"
-msgstr ""
+msgstr "Färgschema"
 
 #: src/theme.rs:78
 msgid "Choose a color scheme for your system."
-msgstr ""
+msgstr "Välj ett färgschema för ditt system."
 
 #: src/welcome.rs:44
 msgid "Make your choices, this wizard will take care of everything."
-msgstr ""
+msgstr "Gör dina val, installationsguiden tar hand om resten."
 
 #: src/welcome.rs:46
 msgid "Let's Start"
-msgstr ""
+msgstr "Låt oss starta"
 
 #: src/main.rs:69
 msgid "Back"
-msgstr ""
+msgstr "Bakåt"
 
 #: src/main.rs:149
 msgid "Rhino Setup"
-msgstr ""
+msgstr "Rhino installation"
