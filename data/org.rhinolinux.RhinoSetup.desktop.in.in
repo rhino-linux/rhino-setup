@@ -1,6 +1,6 @@
 [Desktop Entry]
-Name=Rhino Setup
-Comment=Setup wizard for Rolling Rhino
+Name=Setup Wizard
+Comment=Setup wizard for Rhino Linux
 Type=Application
 Exec=rhino-setup
 Terminal=false
