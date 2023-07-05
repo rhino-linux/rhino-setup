@@ -85,6 +85,8 @@ impl SimpleComponent for ExtraSettingsModel {
                                             }
                                         }
                                     },
+                                },
+                            },
                             adw::ActionRow {
                                 set_title: "Apport",
                                 set_subtitle: &gettext("Apport is a crash reporting system that helps us improve the stability of the system."),
