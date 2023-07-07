@@ -2,7 +2,7 @@ subdir('icons')
 subdir('resources')
 
 install_data('org.rhinolinux.RhinoSetup.policy', install_dir: get_option('datadir') / 'polkit-1' / 'actions')
-meson.add_install_script('sh', '-c', 'pkaction --update-actions')
+meson.add_install_script('/usr/bin/pkaction', '--update-actions')
 
 # Desktop file
 desktop_conf = configuration_data()
