@@ -146,7 +146,8 @@ impl SimpleComponent for ProgressModel {
                 }
 
                 // Add the final removal command to the end.
-                commands_with_results += "sudo apt remove -yq rhino-setup && { echo ---successful---; } || { echo ---failed---; };";
+                commands_with_results += "sudo apt remove -yq rhino-setup && { echo \
+                                          ---successful---; } || { echo ---failed---; };";
 
                 tracing::debug!("{commands_with_results}");
 

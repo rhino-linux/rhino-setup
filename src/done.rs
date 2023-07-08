@@ -100,10 +100,7 @@ impl SimpleComponent for DoneModel {
     fn update(&mut self, message: Self::Input, _sender: ComponentSender<Self>) {
         match message {
             Self::Input::Reboot => {
-                Command::new("pkexec")
-                    .arg("/sbin/reboot")
-                    .status()
-                    .unwrap();
+                Command::new("pkexec").arg("/sbin/reboot").status().unwrap();
             },
             Self::Input::SwitchToErrorState => {
                 self.error_state = true;
