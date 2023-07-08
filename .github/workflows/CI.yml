@@ -38,7 +38,7 @@ jobs:
         with:
           builtin: clear,rare,informal,code
           ignore_words_file: .codespellignore
-          skip: "*.po,./.git"
+          skip: "*.po,./.git,*.svg"
   clippy:
     name: Clippy
     runs-on: ubuntu-latest
