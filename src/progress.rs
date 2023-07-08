@@ -145,6 +145,10 @@ impl SimpleComponent for ProgressModel {
                     );
                 }
 
+                // Add the final removal command to the end.
+                commands_with_results += "sudo apt remove -yq rhino-setup && { echo \
+                                          ---successful---; } || { echo ---failed---; };";
+
                 tracing::debug!("{commands_with_results}");
 
                 // Spawn a process to execute the commands
@@ -163,7 +167,7 @@ impl SimpleComponent for ProgressModel {
                 // Initialize the progress_bar now, as the commands are available.
                 self.progress_bar = Some(
                     ProgressBarModel::builder()
-                        .launch(commands.count() as f64)
+                        .launch((commands.count() + 1) as f64) // Add 1 for the removal command
                         .detach(),
                 );
 
@@ -192,16 +196,13 @@ impl SimpleComponent for ProgressModel {
 
                             // Kill the processor to avoid any extra changes to the system.
                             processor.kill().unwrap();
+                            break; // Exit the loop upon encountering an error.
                         }
                     }
 
                     if !error_occured {
                         sender.output(Self::Output::InstallationComplete).unwrap();
                         tracing::info!("Installation complete");
-                        Command::new("pkexec")
-                            .args(["sh", "-c", "sudo apt remove -yq rhino-setup"])
-                            .status()
-                            .unwrap();
                     }
                 });
             },
