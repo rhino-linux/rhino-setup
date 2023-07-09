@@ -140,18 +140,6 @@ impl SimpleComponent for ExtraSettingsModel {
 
                 self.remove_nala = !switched_on;
             },
-            Self::Input::Apport(switched_on) => {
-                tracing::info!(
-                    "{}",
-                    if switched_on {
-                        "Enabling Apport"
-                    } else {
-                        "Disabling Apport"
-                    }
-                );
-
-                self.enable_apport = switched_on;
-            },
             Self::Input::Github(switched_on) => {
                 tracing::info!(
                     "{}",
@@ -163,6 +151,18 @@ impl SimpleComponent for ExtraSettingsModel {
                 );
 
                 self.enable_github = switched_on;
+            },
+            Self::Input::Apport(switched_on) => {
+                tracing::info!(
+                    "{}",
+                    if switched_on {
+                        "Enabling Apport"
+                    } else {
+                        "Disabling Apport"
+                    }
+                );
+
+                self.enable_apport = switched_on;
             },
         }
 
