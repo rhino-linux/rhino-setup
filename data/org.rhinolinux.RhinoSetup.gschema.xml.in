@@ -14,7 +14,7 @@
       <summary>Window maximized state</summary>
     </key>
     <key name="gtk-theme" type="s">
-      <default>'Yaru-purple'</default>
+      <default>'Yaru-purple-dark'</default>
       <summary>Gtk+ Theme</summary>
     </key>
   </schema>
