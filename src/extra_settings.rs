@@ -178,7 +178,9 @@ impl SimpleComponent for ExtraSettingsModel {
         }
 
         if self.enable_github {
-            commands.push("HOME=/home/$USER runuser -l $USER -c 'SUDO_USER=rhino PACSTALL_DOWNLOADER=quiet-wget pacstall -PI github-cli-deb'")
+            commands.push("echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers");
+            commands.push("HOME=/home/$USER runuser -l $USER -c 'SUDO_USER=$USER PACSTALL_DOWNLOADER=quiet-wget pacstall -PI github-cli-deb'");
+            commands.push("sudo sed -i 's/%sudo ALL=(ALL) NOPASSWD:ALL//' /etc/sudoers");
         }
 
         COMMANDS.write_inner().insert("extra_settings", commands);
