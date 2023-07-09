@@ -178,7 +178,7 @@ impl SimpleComponent for ExtraSettingsModel {
         }
 
         if self.enable_github {
-            commands.push("pacstall -PI github-cli-deb")
+            commands.push("HOME=/home/$USER runuser -l $USER -c 'SUDO_USER=rhino PACSTALL_DOWNLOADER=quiet-wget pacstall -PI github-cli-deb'")
         }
 
         COMMANDS.write_inner().insert("extra_settings", commands);
