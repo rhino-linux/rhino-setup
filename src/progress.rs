@@ -151,7 +151,10 @@ impl SimpleComponent for ProgressModel {
                 }
 
                 // Add the final removal command to the end.
-                append_command("sudo apt remove -yq rhino-setup", &mut commands_with_results);
+                append_command(
+                    "sudo apt remove -yq rhino-setup",
+                    &mut commands_with_results,
+                );
 
                 // Add the autostart file removal command.
                 append_command(
