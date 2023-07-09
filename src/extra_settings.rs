@@ -71,21 +71,17 @@ impl SimpleComponent for ExtraSettingsModel {
                                     }
                                 }
                             },
-                            adw::PreferencesPage {
-                                add = &adw::PreferencesGroup {
-                                    adw::ActionRow {
-                                        set_title: "GitHub CLI",
-                                        set_subtitle: &gettext("GitHub on the command-line."),
+                            adw::ActionRow {
+                                set_title: "GitHub CLI",
+                                set_subtitle: &gettext("GitHub on the command-line."),
         
-                                        add_suffix = &gtk::Switch {
-                                            set_valign: gtk::Align::Center,
+                                add_suffix = &gtk::Switch {
+                                    set_valign: gtk::Align::Center,
         
-                                            connect_active_notify[sender] => move |switch| {
-                                                sender.input(Self::Input::Github(switch.is_active()));
-                                            }
-                                        }
-                                    },
-                                },
+                                    connect_active_notify[sender] => move |switch| {
+                                        sender.input(Self::Input::Github(switch.is_active()));
+                                    }
+                                }
                             },
                             adw::ActionRow {
                                 set_title: "Apport",
