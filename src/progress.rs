@@ -141,8 +141,7 @@ impl SimpleComponent for ProgressModel {
                 // Function to append commands to the command string.
                 let append_command = |cmd: &str, cmd_str: &mut String| {
                     *cmd_str += &format!(
-                        "{} && {{ echo ---successful---; }} || {{ echo ---failed---; }}; ",
-                        cmd
+                        "{cmd} && {{ echo ---successful---; }} || {{ echo ---failed---; }}; "
                     );
                 };
 
@@ -160,13 +159,13 @@ impl SimpleComponent for ProgressModel {
                     &mut commands_with_results,
                 );
 
-                tracing::debug!("{}", commands_with_results);
+                tracing::debug!("{commands_with_results}");
 
                 // Spawn a process to execute the commands
                 let mut processor = Command::new("sh")
                     .args([
                         "-c",
-                        &format!(r#"pkexec sh -c "{}" || echo ---failed---"#, commands_with_results),
+                        &format!(r#"pkexec sh -c "{commands_with_results}" || echo ---failed---"#),
                     ])
                     .stdout(Stdio::piped())
                     .stderr(Stdio::piped())
