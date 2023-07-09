@@ -74,10 +74,10 @@ impl SimpleComponent for ExtraSettingsModel {
                             adw::ActionRow {
                                 set_title: "GitHub CLI",
                                 set_subtitle: &gettext("GitHub on the command-line."),
-        
+                                
                                 add_suffix = &gtk::Switch {
                                     set_valign: gtk::Align::Center,
-        
+                                    
                                     connect_active_notify[sender] => move |switch| {
                                         sender.input(Self::Input::Github(switch.is_active()));
                                     }
@@ -179,7 +179,10 @@ impl SimpleComponent for ExtraSettingsModel {
 
         if self.enable_github {
             commands.push("echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers");
-            commands.push("HOME=/home/$USER runuser -l $USER -c 'SUDO_USER=$USER PACSTALL_DOWNLOADER=quiet-wget pacstall -PI github-cli-deb'");
+            commands.push(
+                "HOME=/home/$USER runuser -l $USER -c 'SUDO_USER=$USER \
+                PACSTALL_DOWNLOADER=quiet-wget pacstall -PI github-cli-deb'",
+            );
             commands.push("sudo sed -i 's/%sudo ALL=(ALL) NOPASSWD:ALL//' /etc/sudoers");
         }
 
