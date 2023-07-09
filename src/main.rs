@@ -178,7 +178,7 @@ fn main() {
     // it.
     if config::PROFILE != "Devel" {
         if let Err(error) =
-            gio::Settings::new("org.gnome.desktop.interface").set_string("gtk-theme", "Yaru-purple")
+            gio::Settings::new("org.gnome.desktop.interface").set_string("gtk-theme", "Yaru-purple-dark")
         {
             tracing::error!("Error FORCING GTK theme: {error}");
         }
