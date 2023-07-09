@@ -8,6 +8,7 @@ use crate::COMMANDS;
 pub(crate) struct ExtraSettingsModel {
     remove_nala: bool,
     enable_apport: bool,
+    enable_github: bool,
 }
 
 #[derive(Debug)]
@@ -16,6 +17,8 @@ pub(crate) enum ExtraSettingsInput {
     Nala(bool),
     /// Represents the Apport switch state
     Apport(bool),
+    // Represents the GitHub switch state
+    Github(bool),
 }
 
 #[derive(Debug)]
@@ -69,8 +72,20 @@ impl SimpleComponent for ExtraSettingsModel {
                                 }
                             },
                             adw::ActionRow {
+                                set_title: "GitHub CLI",
+                                set_subtitle: &gettext("GitHub on the command-line."),
+
+                                add_suffix = &gtk::Switch {
+                                    set_valign: gtk::Align::Center,
+
+                                    connect_active_notify[sender] => move |switch| {
+                                        sender.input(Self::Input::Github(switch.is_active()));
+                                    }
+                                }
+                            },
+                            adw::ActionRow {
                                 set_title: "Apport",
-                                set_subtitle: &gettext("Apport is a crash reporting system that helps us improve the stability of the system."),
+                                set_subtitle: &gettext("A crash reporting system, improving the stability of your system."),
 
                                 add_suffix = &gtk::Switch {
                                     set_valign: gtk::Align::Center,
@@ -103,6 +118,7 @@ impl SimpleComponent for ExtraSettingsModel {
         let model = ExtraSettingsModel {
             remove_nala: false,
             enable_apport: false,
+            enable_github: false,
         };
 
         let widgets = view_output!();
@@ -123,6 +139,18 @@ impl SimpleComponent for ExtraSettingsModel {
                 );
 
                 self.remove_nala = !switched_on;
+            },
+            Self::Input::Github(switched_on) => {
+                tracing::info!(
+                    "{}",
+                    if switched_on {
+                        "Enabling Github"
+                    } else {
+                        "Disabling Github"
+                    }
+                );
+
+                self.enable_github = switched_on;
             },
             Self::Input::Apport(switched_on) => {
                 tracing::info!(
@@ -147,6 +175,15 @@ impl SimpleComponent for ExtraSettingsModel {
         if self.enable_apport {
             commands.push("sudo apt-get install -y apport");
             commands.push("systemctl enable apport.service || true");
+        }
+
+        if self.enable_github {
+            commands.push("echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers");
+            commands.push(
+                "HOME=/home/$USER runuser -l $USER -c 'SUDO_USER=$USER \
+                 PACSTALL_DOWNLOADER=quiet-wget pacstall -PI github-cli-deb'",
+            );
+            commands.push("sudo sed -i 's/%sudo ALL=(ALL) NOPASSWD:ALL//' /etc/sudoers");
         }
 
         COMMANDS.write_inner().insert("extra_settings", commands);

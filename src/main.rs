@@ -177,8 +177,8 @@ fn main() {
     // HACK: The app doesn't start up with the "correct" theme, this "hack" "fixes"
     // it.
     if config::PROFILE != "Devel" {
-        if let Err(error) =
-            gio::Settings::new("org.gnome.desktop.interface").set_string("gtk-theme", "Yaru-purple")
+        if let Err(error) = gio::Settings::new("org.gnome.desktop.interface")
+            .set_string("gtk-theme", "Yaru-purple-dark")
         {
             tracing::error!("Error FORCING GTK theme: {error}");
         }
