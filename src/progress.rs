@@ -165,7 +165,7 @@ impl SimpleComponent for ProgressModel {
                 let mut processor = Command::new("sh")
                     .args([
                         "-c",
-                        &format!("pkexec {commands_with_results} && {removal_with_results} || echo ---failed---",)
+                        &format!("pkexec '{commands_with_results}' && '{removal_with_results}' || echo ---failed---",)
                     ])
                     .stdout(Stdio::piped())
                     .stderr(Stdio::piped())
