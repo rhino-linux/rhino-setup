@@ -141,7 +141,8 @@ impl SimpleComponent for ProgressModel {
                 // Function to append commands to the command string.
                 let append_command = |cmd: &str, cmd_str: &mut String| {
                     *cmd_str += &format!(
-                        "{cmd} && {{ echo ---successful---; }} || {{ echo ---failed---; error_occured=1; }}; "
+                        "{cmd} && {{ echo ---successful---; }} || {{ echo ---failed---; \
+                         error_occured=1; }}; "
                     );
                 };
 
@@ -154,9 +155,9 @@ impl SimpleComponent for ProgressModel {
                 commands_with_results += "if [ $error_occured -eq 0 ]; then ";
                 let removal_commands = vec![
                     "sudo apt remove -yq rhino-setup",
-                    "sudo rm /home/$USER/.config/autostart/setup.desktop"
+                    "sudo rm /home/$USER/.config/autostart/setup.desktop",
                 ];
-            
+
                 for command in removal_commands {
                     append_command(command, &mut commands_with_results);
                 }
