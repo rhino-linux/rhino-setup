@@ -178,7 +178,7 @@ impl SimpleComponent for ProgressModel {
                 // Initialize the progress_bar now, as the commands are available.
                 self.progress_bar = Some(
                     ProgressBarModel::builder()
-                        .launch((commands.count() + 1) as f64) // Add 1 for the removal command
+                        .launch((commands.count() + 2) as f64) // Add 1 for the removal commands
                         .detach(),
                 );
 
