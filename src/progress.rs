@@ -153,7 +153,7 @@ impl SimpleComponent for ProgressModel {
 
                 // Add the final removal command to the end.
                 append_command(
-                    "sudo apt remove -yq rhino-setup && rm \
+                    "sudo apt remove -yq rhino-setup ; rm \
                      /home/$USER/.config/autostart/setup.desktop",
                     &mut removal_with_results,
                 );
@@ -162,10 +162,11 @@ impl SimpleComponent for ProgressModel {
                 tracing::debug!("{removal_with_results}");
 
                 // Spawn a process to execute the commands
-                let mut processor = Command::new("sh")
+                let mut processor = Command::new("pkexec")
                     .args([
+                        "sh",
                         "-c",
-                        &format!(r#"pkexec sh -c "{commands_with_results}" && "{removal_with_results}" || echo ---failed---"#),
+                        (""{commands_with_results}" && "{removal_with_results}" || echo ---failed---",),
                     ])
                     .stdout(Stdio::piped())
                     .stderr(Stdio::piped())
@@ -213,6 +214,10 @@ impl SimpleComponent for ProgressModel {
                     if !error_occured {
                         sender.output(Self::Output::InstallationComplete).unwrap();
                         tracing::info!("Installation complete");
+                        Command::new("pkexec")
+                            .args(["sh", "-c", "sudo apt remove -yq rhino-setup"])
+                            .status()
+                            .unwrap();
                     }
                 });
             },
