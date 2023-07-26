@@ -165,7 +165,7 @@ impl SimpleComponent for ProgressModel {
                     .args([
                         "sh",
                         "-c",
-                        &format!(r#"pkexec sh -c "{commands_with_results}" && pkexec sh -c "{removal_with_results}" || echo ---failed---"#,)
+                        &format!(r#"pkexec sh -c "{commands_with_results}" && pkexec sh -c "{removal_with_results}" || echo ---failed---"#),
                     ])
                     .stdout(Stdio::piped())
                     .stderr(Stdio::piped())
