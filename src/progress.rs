@@ -162,11 +162,10 @@ impl SimpleComponent for ProgressModel {
                 tracing::debug!("{removal_with_results}");
 
                 // Spawn a process to execute the commands
-                let mut processor = Command::new("pkexec")
+                let mut processor = Command::new("sh")
                     .args([
-                        "sh",
                         "-c",
-                        &format!("{commands_with_results} && {removal_with_results} || echo ---failed---"),
+                        &format!("pkexec bash -c '{commands_with_results} && {removal_with_results} || echo ---failed---'"),
                     ])
                     .stdout(Stdio::piped())
                     .stderr(Stdio::piped())
