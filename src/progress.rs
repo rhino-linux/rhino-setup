@@ -162,11 +162,10 @@ impl SimpleComponent for ProgressModel {
                 tracing::debug!("{removal_with_results}");
 
                 // Spawn a process to execute the commands
-                let mut processor = Command::new("pkexec")
+                let mut processor = Command::new("sh")
                     .args([
-                        "sh",
                         "-c",
-                        &format!("'{commands_with_results}' && '{removal_with_results}' || {{ echo ---failed---; }}; ",)
+                        &format!("pkexec {commands_with_results} && {removal_with_results} || echo ---failed---",)
                     ])
                     .stdout(Stdio::piped())
                     .stderr(Stdio::piped())
@@ -178,7 +177,7 @@ impl SimpleComponent for ProgressModel {
                 // Initialize the progress_bar now, as the commands are available.
                 self.progress_bar = Some(
                     ProgressBarModel::builder()
-                        .launch((commands.count() + 2) as f64) // Add 1 for the removal commands
+                        .launch((commands.count() + 2) as f64) // Add 2 for the removal commands
                         .detach(),
                 );
 
