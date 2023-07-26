@@ -158,7 +158,8 @@ impl SimpleComponent for ProgressModel {
                     &mut removal_with_results,
                 );
 
-                tracing::debug!("{commands_with_results}", "{removal_with_results}");
+                tracing::debug!("{commands_with_results}");
+                tracing::debug!("{removal_with_results}");
 
                 // Spawn a process to execute the commands
                 let mut processor = Command::new("sh")
