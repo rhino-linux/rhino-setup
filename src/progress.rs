@@ -153,7 +153,7 @@ impl SimpleComponent for ProgressModel {
 
                 // Add the final removal command to the end.
                 append_command(
-                    "/bin/apt remove -yq rhino-setup && rm \
+                    "sudo apt remove -yq rhino-setup && rm \
                      /home/$USER/.config/autostart/setup.desktop",
                     &mut removal_with_results,
                 );
@@ -165,7 +165,7 @@ impl SimpleComponent for ProgressModel {
                 let mut processor = Command::new("sh")
                     .args([
                         "-c",
-                        &format!(r#"pkexec bash "{commands_with_results} && {removal_with_results} || echo ---failed---""#),
+                        &format!(r#"pkexec bash exec '{commands_with_results} && {removal_with_results} || echo ---failed---'"#),
                     ])
                     .stdout(Stdio::piped())
                     .stderr(Stdio::piped())
