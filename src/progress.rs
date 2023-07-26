@@ -214,10 +214,6 @@ impl SimpleComponent for ProgressModel {
                     if !error_occured {
                         sender.output(Self::Output::InstallationComplete).unwrap();
                         tracing::info!("Installation complete");
-                        Command::new("pkexec")
-                            .args(["sh", "-c", "sudo apt remove -yq rhino-setup"])
-                            .status()
-                            .unwrap();
                     }
                 });
             },
