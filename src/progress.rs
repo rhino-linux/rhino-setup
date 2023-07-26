@@ -166,7 +166,7 @@ impl SimpleComponent for ProgressModel {
                     .args([
                         "sh",
                         "-c",
-                        (""{commands_with_results}" && "{removal_with_results}" || echo ---failed---",),
+                        ""{commands_with_results}" && "{removal_with_results}" || echo ---failed---",
                     ])
                     .stdout(Stdio::piped())
                     .stderr(Stdio::piped())
