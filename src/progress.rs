@@ -151,18 +151,13 @@ impl SimpleComponent for ProgressModel {
                     append_command(command, &mut commands_with_results);
                 }
 
-                // Append removal commands to be executed only if no error occurred
-                commands_with_results += "if [ $error_occured -eq 0 ]; then ";
-                let removal_commands = vec![
-                    "sudo apt remove -yq rhino-setup",
-                    "sudo rm /home/$USER/.config/autostart/setup.desktop",
-                ];
-
-                for command in removal_commands {
-                    append_command(command, &mut commands_with_results);
-                }
-
-                commands_with_results += "fi";
+                append_command(
+                    "if [ $error_occured -eq 0 ]; then \
+                    sudo apt remove -yq rhino-setup \
+                    sudo rm /home/$USER/.config/autostart/setup.desktop \
+                    fi",
+                    &mut commands_with_results,
+                );
 
                 tracing::debug!("{commands_with_results}");
 
