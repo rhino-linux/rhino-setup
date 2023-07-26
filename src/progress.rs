@@ -137,6 +137,7 @@ impl SimpleComponent for ProgressModel {
                 let commands = COMMANDS.read_inner();
                 let commands = commands.values().flatten();
                 let mut commands_with_results = String::new();
+                let mut removal_with_results = String::new();
 
                 // Function to append commands to the command string.
                 let append_command = |cmd: &str, cmd_str: &mut String| {
@@ -153,16 +154,16 @@ impl SimpleComponent for ProgressModel {
                 // Add the final removal command to the end.
                 append_command(
                     "sudo apt remove -yq rhino-setup && rm /home/$USER/.config/autostart/setup.desktop",
-                    &mut commands_with_results,
+                    &mut removal_with_results,
                 );
 
-                tracing::debug!("{commands_with_results}");
+                tracing::debug!("{commands_with_results}","{removal_with_results}");
 
                 // Spawn a process to execute the commands
                 let mut processor = Command::new("sh")
                     .args([
                         "-c",
-                        &format!(r#"pkexec sh -c "{commands_with_results}" || echo ---failed---"#),
+                        &format!(r#"pkexec sh -c ""{commands_with_results}" && "{removal_with_results}" || echo ---failed---""#),
                     ])
                     .stdout(Stdio::piped())
                     .stderr(Stdio::piped())
