@@ -141,7 +141,7 @@ impl SimpleComponent for ProgressModel {
                 // Function to append commands to the command string.
                 let append_command = |cmd: &str, cmd_str: &mut String| {
                     *cmd_str += &format!(
-                        "{cmd} && {{ echo ---successful---; }} || {{ echo ---failed---; }}; "
+                        "{cmd} && {{ echo ---successful---; }} || {{ echo ---failed---; error_occured=1; }}; "
                     );
                 };
 
@@ -150,17 +150,18 @@ impl SimpleComponent for ProgressModel {
                     append_command(command, &mut commands_with_results);
                 }
 
-                // Add the final removal command to the end.
-                append_command(
+                // Append removal commands to be executed only if no error occurred
+                commands_with_results += "if [ $error_occured -eq 0 ]; then ";
+                let removal_commands = vec![
                     "sudo apt remove -yq rhino-setup",
-                    &mut commands_with_results,
-                );
+                    "sudo rm /home/$USER/.config/autostart/setup.desktop"
+                ];
+            
+                for command in removal_commands {
+                    append_command(command, &mut commands_with_results);
+                }
 
-                // Add the autostart file removal command.
-                append_command(
-                    "sudo rm /home/$USER/.config/autostart/setup.desktop",
-                    &mut commands_with_results,
-                );
+                commands_with_results += "fi";
 
                 tracing::debug!("{commands_with_results}");
 
@@ -168,7 +169,7 @@ impl SimpleComponent for ProgressModel {
                 let mut processor = Command::new("sh")
                     .args([
                         "-c",
-                        &format!(r#"pkexec sh -c "{commands_with_results}" || echo ---failed---"#),
+                        &format!(r#"pkexec sh -c "error_occured=0; {commands_with_results}" || echo ---failed---"#),
                     ])
                     .stdout(Stdio::piped())
                     .stderr(Stdio::piped())
