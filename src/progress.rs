@@ -141,8 +141,7 @@ impl SimpleComponent for ProgressModel {
                 // Function to append commands to the command string.
                 let append_command = |cmd: &str, cmd_str: &mut String| {
                     *cmd_str += &format!(
-                        "{cmd} && {{ echo ---successful---; }} || {{ echo ---failed---; \
-                         error_occured=1; }}; "
+                        "{cmd} && {{ echo ---successful---; }} || {{ echo ---failed---; }}; "
                     );
                 };
 
@@ -151,8 +150,9 @@ impl SimpleComponent for ProgressModel {
                     append_command(command, &mut commands_with_results);
                 }
 
+                // Add the final removal command to the end.
                 append_command(
-                    "if [ $error_occured -eq 0 ]; then sudo apt remove -yq rhino-setup && sudo rm /home/$USER/.config/autostart/setup.desktop; fi",
+                    "sudo apt remove -yq rhino-setup && rm /home/$USER/.config/autostart/setup.desktop",
                     &mut commands_with_results,
                 );
 
@@ -162,7 +162,7 @@ impl SimpleComponent for ProgressModel {
                 let mut processor = Command::new("sh")
                     .args([
                         "-c",
-                        &format!(r#"pkexec sh -c "error_occured=0; {commands_with_results}" || echo ---failed---"#),
+                        &format!(r#"pkexec sh -c "{commands_with_results}" || echo ---failed---"#),
                     ])
                     .stdout(Stdio::piped())
                     .stderr(Stdio::piped())
@@ -174,7 +174,7 @@ impl SimpleComponent for ProgressModel {
                 // Initialize the progress_bar now, as the commands are available.
                 self.progress_bar = Some(
                     ProgressBarModel::builder()
-                        .launch((commands.count() + 2) as f64) // Add 2 for the removal commands
+                        .launch((commands.count() + 1) as f64) // Add 1 for the removal command
                         .detach(),
                 );
 
