@@ -152,10 +152,7 @@ impl SimpleComponent for ProgressModel {
                 }
 
                 append_command(
-                    "if [ $error_occured -eq 0 ]; then \
-                    sudo apt remove -yq rhino-setup \
-                    sudo rm /home/$USER/.config/autostart/setup.desktop \
-                    fi",
+                    "if [ $error_occured -eq 0 ]; then sudo apt remove -yq rhino-setup && sudo rm /home/$USER/.config/autostart/setup.desktop; fi",
                     &mut commands_with_results,
                 );
 
