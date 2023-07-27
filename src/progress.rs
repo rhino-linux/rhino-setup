@@ -141,7 +141,8 @@ impl SimpleComponent for ProgressModel {
                 // Function to append commands to the command string.
                 let append_command = |cmd: &str, cmd_str: &mut String| {
                     *cmd_str += &format!(
-                        "{cmd} && {{ echo ---successful---; export failure=0; }} || {{ echo ---failed---; export failure=1; }}; "
+                        "{cmd} && {{ echo ---successful---; export failure=0; }} || {{ echo \
+                         ---failed---; export failure=1; }}; "
                     );
                 };
 
@@ -157,8 +158,8 @@ impl SimpleComponent for ProgressModel {
                 );
 
                 append_command(
-                    "if [ -f /home/$USER/.config/autostart/setup.desktop ]; then \
-                     sudo rm /home/$USER/.config/autostart/setup.desktop; fi",
+                    "if [ -f /home/$USER/.config/autostart/setup.desktop ]; then sudo rm \
+                     /home/$USER/.config/autostart/setup.desktop; fi",
                     &mut commands_with_results,
                 );
 
