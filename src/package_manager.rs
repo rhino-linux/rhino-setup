@@ -173,11 +173,6 @@ impl SimpleComponent for PackageManagerModel {
         if self.install_flatpak {
             commands.push("sudo apt-get install -y flatpak");
             commands.push("flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo");
-            commands.push(
-                "sudo sed -i 's/distro.eol/datetime.datetime.now().date() + \
-                 datetime.timedelta(days=3650)/g' \
-                 /usr/lib/python3/dist-packages/softwareproperties/gtk/SoftwarePropertiesGtk.py",
-            );
         }
 
         if self.install_snap {

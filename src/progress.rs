@@ -138,29 +138,12 @@ impl SimpleComponent for ProgressModel {
                 let commands = commands.values().flatten();
                 let mut commands_with_results = String::new();
 
-                // Function to append commands to the command string.
-                let append_command = |cmd: &str, cmd_str: &mut String| {
-                    *cmd_str += &format!(
-                        "{cmd} && {{ echo ---successful---; }} || {{ echo ---failed---; }}; "
-                    );
-                };
-
                 // Aggregate all the commands.
                 for command in commands.clone() {
-                    append_command(command, &mut commands_with_results);
+                    commands_with_results += &format!(
+                        "{command} && {{ echo ---successful---; }} || {{ echo ---failed---; }}; "
+                    );
                 }
-
-                // Add the final removal command to the end.
-                append_command(
-                    "sudo apt remove -yq rhino-setup",
-                    &mut commands_with_results,
-                );
-
-                // Add the autostart file removal command.
-                append_command(
-                    "sudo rm /home/$USER/.config/autostart/setup.desktop",
-                    &mut commands_with_results,
-                );
 
                 tracing::debug!("{commands_with_results}");
 
@@ -168,7 +151,7 @@ impl SimpleComponent for ProgressModel {
                 let mut processor = Command::new("sh")
                     .args([
                         "-c",
-                        &format!(r#"pkexec sh -c "{commands_with_results}" || echo ---failed---"#),
+                        &format!(r#"pkexec sh -c "{commands_with_results}" || echo ---failed---"#,),
                     ])
                     .stdout(Stdio::piped())
                     .stderr(Stdio::piped())
@@ -180,7 +163,7 @@ impl SimpleComponent for ProgressModel {
                 // Initialize the progress_bar now, as the commands are available.
                 self.progress_bar = Some(
                     ProgressBarModel::builder()
-                        .launch((commands.count() + 2) as f64) // Add 2 for the removal commands
+                        .launch(commands.count() as f64)
                         .detach(),
                 );
 
@@ -209,13 +192,16 @@ impl SimpleComponent for ProgressModel {
 
                             // Kill the processor to avoid any extra changes to the system.
                             processor.kill().unwrap();
-                            break; // Exit the loop upon encountering an error.
                         }
                     }
 
                     if !error_occured {
                         sender.output(Self::Output::InstallationComplete).unwrap();
                         tracing::info!("Installation complete");
+                        Command::new("pkexec")
+                            .args(["sh", "-c", "sudo apt remove -yq rhino-setup"])
+                            .status()
+                            .unwrap();
                     }
                 });
             },
