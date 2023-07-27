@@ -137,12 +137,11 @@ impl SimpleComponent for ProgressModel {
                 let commands = COMMANDS.read_inner();
                 let commands = commands.values().flatten();
                 let mut commands_with_results = String::new();
-                let mut removal_with_results = String::new();
 
                 // Function to append commands to the command string.
                 let append_command = |cmd: &str, cmd_str: &mut String| {
                     *cmd_str += &format!(
-                        "{cmd} && {{ echo ---successful---; }} || {{ echo ---failed---; }}; "
+                        "{cmd} && {{ echo ---successful---; export failure=0; }} || {{ echo ---failed---; export failure=1; }}; "
                     );
                 };
 
@@ -153,18 +152,23 @@ impl SimpleComponent for ProgressModel {
 
                 // Add the final removal command to the end.
                 append_command(
-                    "sudo apt remove -yq rhino-setup",
-                    &mut removal_with_results,
+                    "if ! [ ${failure} -eq 1 ]; then sudo apt remove -yq rhino-setup; fi",
+                    &mut commands_with_results,
+                );
+
+                append_command(
+                    "if [ -f /home/$USER/.config/autostart/setup.desktop ]; then \
+                     sudo rm /home/$USER/.config/autostart/setup.desktop; fi",
+                    &mut commands_with_results,
                 );
 
                 tracing::debug!("{commands_with_results}");
-                tracing::debug!("{removal_with_results}");
 
                 // Spawn a process to execute the commands
                 let mut processor = Command::new("sh")
                     .args([
                         "-c",
-                        &format!(r#"pkexec sh -c "{commands_with_results}" && pkexec sh -c "{removal_with_results}" || echo ---failed---"#),
+                        &format!(r#"pkexec sh -c "{commands_with_results}" || echo ---failed---"#),
                     ])
                     .stdout(Stdio::piped())
                     .stderr(Stdio::piped())
