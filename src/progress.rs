@@ -159,8 +159,8 @@ impl SimpleComponent for ProgressModel {
 
                 // Add the autostart file removal command.
                 append_command(
-                    "if [ -f /home/$USER/.config/autostart/setup.desktop ]; then sudo rm \
-                     /home/$USER/.config/autostart/setup.desktop; fi",
+                    "if [ -f /home/$USER/.config/autostart/setup.desktop ] && ! [ ${failure} -eq 1 ]; \
+                    then sudo rm /home/$USER/.config/autostart/setup.desktop; fi",
                     &mut commands_with_results,
                 );
 
