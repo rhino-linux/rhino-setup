@@ -156,7 +156,7 @@ impl SimpleComponent for ProgressModel {
                     "if ! [ ${failure} -eq 1 ]; then sudo apt remove -yq rhino-setup; fi",
                     &mut commands_with_results,
                 );
-                
+
                 // Add the autostart file removal command.
                 append_command(
                     "if [ -f /home/$USER/.config/autostart/setup.desktop ]; then sudo rm \
