@@ -15,105 +15,117 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: src/done.rs:56
-msgid "Jetzt neustarten"
-msgstr ""
+msgid "Reboot Now"
+msgstr "Jetzt neustarten"
 
 #: src/done.rs:67
-msgid "Schließen"
-msgstr ""
+msgid "Close"
+msgstr "Schließen"
 
 #: src/done.rs:90
-msgid "Alles fertig!"
-msgstr ""
+msgid "All done!"
+msgstr "Alles fertig!"
 
 #: src/done.rs:91
-msgid "Um die Rhino Linux erfahrung zu beginnen und genießen, starten sie Ihr Gerät neu."
-msgstr ""
+msgid "Restart your device to enjoy your Rhino Linux experience."
+msgstr "Um die Rhino Linux erfahrung zu beginnen und genießen, starten sie Ihr Gerät neu."
 
 #: src/done.rs:108
-msgid "Etwas ging schief"
-msgstr ""
+msgid "Something went wrong"
+msgstr "Etwas ging schief"
 
 #: src/done.rs:109
-msgid "Bitte kontaktieren Sie die Distributionsentwickler."
-msgstr ""
+msgid "Please contact the distribution developers."
+msgstr "Bitte kontaktieren Sie die Distributionsentwickler."
 
 #: src/extra_settings.rs:47
-msgid "Zusätzliche Einstellungen"
-msgstr ""
+msgid "Extra Settings"
+msgstr "Zusätzliche Einstellungen"
 
 #: src/extra_settings.rs:48
-msgid "Folgendes sind Zusätzliche Einstellungen. Lassen Sie diese unverändert wenn Sie nicht wissen was sie bewirken."
-msgstr ""
+msgid "The following are optional settings, leave them as they are if you don't know what they do."
+msgstr "Folgendes sind Zusätzliche Einstellungen. Lassen Sie diese unverändert wenn Sie nicht wissen was sie bewirken."
 
 #: src/extra_settings.rs:60
-msgid "Nala ist ein alternatives front-end für APT, mit einem/einer schönen UI/UX."
-msgstr ""
+msgid "Nala is an alternative front-end to APT, featuring a beautiful UI/UX."
+msgstr "Nala ist ein alternatives front-end für APT, mit einem/einer schönen UI/UX."
 
 #: src/extra_settings.rs:72
-msgid "Apport ist ein Absturzberichtsprogramm, welches uns hilft die Stabilität des Systems zu verbessern."
-msgstr ""
+msgid "Apport is a crash reporting system that helps us improve the stability of the system."
+msgstr "Apport ist ein Absturzberichtsprogramm, welches uns hilft die Stabilität des Systems zu verbessern."
 
 #: src/extra_settings.rs:84 src/package_manager.rs:104 src/theme.rs:83
-msgid "Nächstes"
-msgstr ""
+msgid "Next"
+msgstr "Nächstes"
 
 #: src/package_manager.rs:50
-msgid "Paketmanager"
-msgstr ""
+msgid "Package Manager"
+msgstr "Paketmanager"
 
 #: src/package_manager.rs:51
-msgid "Wählen Sie einen oder mehrere Paketmanager zum Installieren"
-msgstr ""
+msgid "Choose one or more package managers to install"
+msgstr "Wählen Sie einen oder mehrere Paketmanager zum Installieren"
 
 #: src/package_manager.rs:63
-msgid "Wird auch das Flathub repository konfigurieren."
-msgstr ""
+msgid "Will also configure the Flathub repository."
+msgstr "Wird auch das Flathub repository konfigurieren."
 
 #: src/package_manager.rs:64
-msgid "System für die Virtualisierung von Anwendungen."
-msgstr ""
+msgid "System for application virtualization."
+msgstr "System für die Virtualisierung von Anwendungen."
+
 
 #: src/package_manager.rs:76
-msgid "Nutzt das Snapcraft repository. Standard in Ubuntu."
-msgstr ""
+msgid "Uses the Snapcraft repository. Default in Ubuntu."
+msgstr "Nutzt das Snapcraft repository. Standard in Ubuntu."
+
 
 #: src/package_manager.rs:77
-msgid "Softwareveröffentlichung und Paketmanagementsystem entwickelt von Canonical."
-msgstr ""
+msgid "Software deployment and package management system developed by Canonical."
+msgstr "Softwareveröffentlichung und Paketmanagementsystem entwickelt von Canonical."
+
 
 #: src/package_manager.rs:90
-msgid "Wird die nötigen Abhängigkeiten Installieren, damit Sie AppImages ausführen können."
-msgstr ""
+msgid "Will install the necessary dependencies to run AppImages."
+msgstr "Wird die nötigen Abhängigkeiten Installieren, damit Sie AppImages ausführen können."
+
 
 #: src/package_manager.rs:91
-msgid "Komprimiertes Format für Ausführbare Dateien für Linux-Plattformen, unabhängig der Distribution."
-msgstr ""
+msgid "Self-contained and compressed executable format for the Linux platform."
+msgstr "Komprimiertes Format für Ausführbare Dateien für Linux-Plattformen, unabhängig der Distribution."
+
 
 #: src/progress.rs:37
-msgid "Die Änderungen werden angewandt. Bitte warten Sie..."
-msgstr ""
+msgid "The changes are being applied. Please Wait..."
+msgstr "Die Änderungen werden angewandt. Bitte warten Sie..."
+
 
 #: src/theme.rs:77
-msgid "Farbschema"
-msgstr ""
+msgid "Color Scheme"
+msgstr "Farbschema"
+
 
 #: src/theme.rs:78
-msgid "Wählen Sie ein Farbschema für Ihr System"
-msgstr ""
+msgid "Choose a color scheme for your system."
+msgstr "Wählen Sie ein Farbschema für Ihr System"
+
 
 #: src/welcome.rs:44
-msgid "Treffen Sie Ihre Auswahl, dieser Assistent wird sich um alles weitere kümmern."
-msgstr ""
+msgid "Make your choices, this wizard will take care of everything."
+msgstr "Treffen Sie Ihre Auswahl, dieser Assistent wird sich um alles weitere kümmern."
+
 
 #: src/welcome.rs:46
-msgid "Los geht's"
-msgstr ""
+msgid "Let's Start"
+msgstr "Los geht's"
+
 
 #: src/main.rs:69
-msgid "Zurück"
-msgstr ""
+msgid "Back"
+msgstr "Zurück"
+
 
 #: src/main.rs:149
-msgid "Rhino Installation"
-msgstr ""
+msgid "Rhino Setup"
+msgstr "Rhino Installation"
+
