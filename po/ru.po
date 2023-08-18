@@ -6,114 +6,120 @@ msgstr ""
 "Project-Id-Version: rhino-setup 0.1.0\n"
 "Report-Msgid-Bugs-To: https://github.com/rhino-linux/rhino-setup/issues\n"
 "POT-Creation-Date: 2022-10-29 20:26+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2023-08-18 21:21+0000\n"
+"Last-Translator: OIS <mistresssilvara@hotmail.com>\n"
+"Language-Team: Russian <https://hosted.weblate.org/projects/rhino-linux/"
+"rhino-setup/ru/>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 5.0-dev\n"
 
 #: src/done.rs:56
 msgid "Reboot Now"
-msgstr ""
+msgstr "Перезагрузить"
 
 #: src/done.rs:67
 msgid "Close"
-msgstr ""
+msgstr "Закрыть"
 
 #: src/done.rs:90
 msgid "All done!"
-msgstr ""
+msgstr "Готово!"
 
 #: src/done.rs:91
 msgid "Restart your device to enjoy your Rhino Linux experience."
-msgstr ""
+msgstr "Перезагрузите устройство для работы с Rhino Linux."
 
 #: src/done.rs:108
 msgid "Something went wrong"
-msgstr ""
+msgstr "Что-то пошло не так"
 
 #: src/done.rs:109
 msgid "Please contact the distribution developers."
-msgstr ""
+msgstr "Свяжитесь с разработчиками дистрибутива."
 
 #: src/extra_settings.rs:47
 msgid "Extra Settings"
-msgstr ""
+msgstr "Дополнительные настройки"
 
 #: src/extra_settings.rs:48
 msgid "The following are optional settings, leave them as they are if you don't know what they do."
-msgstr ""
+msgstr "Не изменяйте их, если не знаете, что они делают."
 
 #: src/extra_settings.rs:60
 msgid "Nala is an alternative front-end to APT, featuring a beautiful UI/UX."
-msgstr ""
+msgstr "Nala — альтернативный красиво выглядящий интерфейс для APT."
 
 #: src/extra_settings.rs:72
 msgid "Apport is a crash reporting system that helps us improve the stability of the system."
 msgstr ""
+"Apport — система сообщений о сбоях, помогающая нам улучшать стабильность "
+"системы."
 
 #: src/extra_settings.rs:84 src/package_manager.rs:104 src/theme.rs:83
 msgid "Next"
-msgstr ""
+msgstr "Далее"
 
 #: src/package_manager.rs:50
 msgid "Package Manager"
-msgstr ""
+msgstr "Менеджер пакетов"
 
 #: src/package_manager.rs:51
 msgid "Choose one or more package managers to install"
-msgstr ""
+msgstr "Выберите один или несколько менеджеров пакетов для установки"
 
 #: src/package_manager.rs:63
 msgid "Will also configure the Flathub repository."
-msgstr ""
+msgstr "Также будет настроен репозиторий Flathub."
 
 #: src/package_manager.rs:64
 msgid "System for application virtualization."
-msgstr ""
+msgstr "Система виртуализации приложений."
 
 #: src/package_manager.rs:76
 msgid "Uses the Snapcraft repository. Default in Ubuntu."
-msgstr ""
+msgstr "Использует репозиторий Snapcraft. По умолчанию в Ubuntu."
 
 #: src/package_manager.rs:77
 msgid "Software deployment and package management system developed by Canonical."
-msgstr ""
+msgstr "Система установки приложений, разработанная в Canonical."
 
 #: src/package_manager.rs:90
 msgid "Will install the necessary dependencies to run AppImages."
-msgstr ""
+msgstr "Установит необходимые зависимости для запуска файлов AppImage."
 
 #: src/package_manager.rs:91
 msgid "Self-contained and compressed executable format for the Linux platform."
-msgstr ""
+msgstr "Автономный и сжатый формат исполняемых файлов для платформы Linux."
 
 #: src/progress.rs:37
 msgid "The changes are being applied. Please Wait..."
-msgstr ""
+msgstr "Применение настроек..."
 
 #: src/theme.rs:77
 msgid "Color Scheme"
-msgstr ""
+msgstr "Цветовая схема"
 
 #: src/theme.rs:78
 msgid "Choose a color scheme for your system."
-msgstr ""
+msgstr "Выберите цветовую схему для системы."
 
 #: src/welcome.rs:44
 msgid "Make your choices, this wizard will take care of everything."
-msgstr ""
+msgstr "Выберите нужное, а мастер все настроит."
 
 #: src/welcome.rs:46
 msgid "Let's Start"
-msgstr ""
+msgstr "Начало"
 
 #: src/main.rs:69
 msgid "Back"
-msgstr ""
+msgstr "Назад"
 
 #: src/main.rs:149
 msgid "Rhino Setup"
-msgstr ""
+msgstr "Настройка Rhino"
