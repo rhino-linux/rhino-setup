@@ -159,9 +159,8 @@ impl Component for PackageManagerModel {
                 );
 
                 self.install_flatpak = switched_on;
-                if !widgets.flatpak.is_expanded(){
-                    widgets.flatpak.set_expanded(self.install_flatpak);
-                }
+                
+                widgets.flatpak.set_expanded(self.install_flatpak);
                 widgets.flatpak_beta.set_sensitive(self.install_flatpak);
             },
             Self::Input::FlatpakBeta(switched_on) => {
