@@ -61,29 +61,29 @@ impl Component for PackageManagerModel {
 
                     adw::PreferencesPage {
                         add = &adw::PreferencesGroup {
-                            adw::ActionRow {
+                            #[name="flatpak"]
+                            adw::ExpanderRow {
                                 set_title: "Flatpak",
                                 set_subtitle: &gettext("Will also configure the Flathub repository."),
                                 set_tooltip_text: Some(&gettext("System for application virtualization.")),
-
-                                add_suffix = &gtk::Switch {
+                                add_action = &gtk::Switch {
                                     set_valign: gtk::Align::Center,
                                     set_active: false,
                                     connect_active_notify[sender] => move |switch| {
                                         sender.input(Self::Input::Flatpak(switch.is_active()));
                                     }
-                                }
-                            },
-                            #[name="flatpak"]
-                            adw::ActionRow {
-                                set_title: "Flatpak beta channel",
-                                set_subtitle: &gettext("Allows to install from the beta Flathub repository."),
-                                set_tooltip_text: Some(&gettext("Enable Flatpak beta channel.")),
-                                add_suffix = &gtk::Switch {
-                                    set_valign: gtk::Align::Center,
-                                    set_active: false,
-                                    connect_active_notify[sender] => move |switch| {
-                                        sender.input(PackageManagerInput::FlatpakBeta(switch.is_active()));
+                                },
+                                #[name="flatpak_beta"]
+                                add_row = &adw::ActionRow {
+                                    set_title: "Flatpak Beta Channel",
+                                    set_subtitle: &gettext("Allows software to be installed from the Flatpak Beta Channel"),
+                                    set_tooltip_text: Some(&gettext("Enable Flatpak Beta Channel.")),
+                                    add_suffix = &gtk::Switch {
+                                        set_valign: gtk::Align::Center,
+                                        set_active: false,
+                                        connect_active_notify[sender] => move |switch| {
+                                            sender.input(PackageManagerInput::FlatpakBeta(switch.is_active()));
+                                        }
                                     }
                                 }
                             },
@@ -159,7 +159,10 @@ impl Component for PackageManagerModel {
                 );
 
                 self.install_flatpak = switched_on;
-                widgets.flatpak.set_visible(self.install_flatpak);
+                if !widgets.flatpak.is_expanded(){
+                    widgets.flatpak.set_expanded(self.install_flatpak);
+                }
+                widgets.flatpak_beta.set_sensitive(self.install_flatpak);
             },
             Self::Input::FlatpakBeta(switched_on) => {
                 tracing::info!(
