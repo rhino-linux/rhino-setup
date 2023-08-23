@@ -1,6 +1,6 @@
 use gettextrs::gettext;
 use relm4::adw::prelude::*;
-use relm4::{adw, gtk, ComponentParts, ComponentSender, Component};
+use relm4::{adw, gtk, Component, ComponentParts, ComponentSender};
 
 use crate::COMMANDS;
 
@@ -31,11 +31,11 @@ pub(crate) enum PackageManagerOutput {
 
 #[relm4::component(pub)]
 impl Component for PackageManagerModel {
+    type CommandOutput = ();
     type Init = ();
     type Input = PackageManagerInput;
     type Output = PackageManagerOutput;
     type Widgets = PackageManagerWidgets;
-    type CommandOutput = ();
 
     view! {
         #[root]
@@ -146,7 +146,13 @@ impl Component for PackageManagerModel {
         ComponentParts { model, widgets }
     }
 
-    fn update_with_view(&mut self, widgets:  &mut Self::Widgets, message: Self::Input, _sender: ComponentSender<Self>, _root: &Self::Root) {
+    fn update_with_view(
+        &mut self,
+        widgets: &mut Self::Widgets,
+        message: Self::Input,
+        _sender: ComponentSender<Self>,
+        _root: &Self::Root,
+    ) {
         match message {
             Self::Input::Flatpak(switched_on) => {
                 tracing::info!(
@@ -159,7 +165,7 @@ impl Component for PackageManagerModel {
                 );
 
                 self.install_flatpak = switched_on;
-                
+
                 widgets.flatpak.set_expanded(self.install_flatpak);
                 widgets.flatpak_beta.set_sensitive(self.install_flatpak);
             },
@@ -172,7 +178,7 @@ impl Component for PackageManagerModel {
                         "Disabling Flatpak Beta installation"
                     }
                 );
-                
+
                 self.install_flatpak_beta = switched_on;
             },
             Self::Input::Snap(switched_on) => {
