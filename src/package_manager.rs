@@ -1,12 +1,14 @@
 use gettextrs::gettext;
 use relm4::adw::prelude::*;
-use relm4::{adw, gtk, ComponentParts, ComponentSender, SimpleComponent};
+use relm4::{adw, gtk, Component, ComponentParts, ComponentSender};
 
 use crate::COMMANDS;
 
 #[derive(Debug)]
+#[allow(clippy::struct_excessive_bools)]
 pub(crate) struct PackageManagerModel {
     install_flatpak: bool,
+    install_flatpak_beta: bool,
     install_snap: bool,
     install_appimage: bool,
 }
@@ -15,6 +17,7 @@ pub(crate) struct PackageManagerModel {
 pub(crate) enum PackageManagerInput {
     /// Represents the Flatpak switch state
     Flatpak(bool),
+    FlatpakBeta(bool),
     /// Represents the Snap switch state
     Snap(bool),
     /// Represents the AppImage switch state
@@ -28,7 +31,8 @@ pub(crate) enum PackageManagerOutput {
 }
 
 #[relm4::component(pub)]
-impl SimpleComponent for PackageManagerModel {
+impl Component for PackageManagerModel {
+    type CommandOutput = ();
     type Init = ();
     type Input = PackageManagerInput;
     type Output = PackageManagerOutput;
@@ -58,16 +62,29 @@ impl SimpleComponent for PackageManagerModel {
 
                     adw::PreferencesPage {
                         add = &adw::PreferencesGroup {
-                            adw::ActionRow {
+                            #[name="flatpak"]
+                            adw::ExpanderRow {
                                 set_title: "Flatpak",
                                 set_subtitle: &gettext("Will also configure the Flathub repository."),
                                 set_tooltip_text: Some(&gettext("System for application virtualization.")),
-
-                                add_suffix = &gtk::Switch {
+                                add_action = &gtk::Switch {
                                     set_valign: gtk::Align::Center,
-                                    set_active: true,
+                                    set_active: false,
                                     connect_active_notify[sender] => move |switch| {
                                         sender.input(Self::Input::Flatpak(switch.is_active()));
+                                    }
+                                },
+                                #[name="flatpak_beta"]
+                                add_row = &adw::ActionRow {
+                                    set_title: "Flatpak Beta Channel",
+                                    set_subtitle: &gettext("Allows software to be installed from the Flatpak Beta Channel"),
+                                    set_tooltip_text: Some(&gettext("Enable Flatpak Beta Channel.")),
+                                    add_suffix = &gtk::Switch {
+                                        set_valign: gtk::Align::Center,
+                                        set_active: false,
+                                        connect_active_notify[sender] => move |switch| {
+                                            sender.input(PackageManagerInput::FlatpakBeta(switch.is_active()));
+                                        }
                                     }
                                 }
                             },
@@ -120,6 +137,7 @@ impl SimpleComponent for PackageManagerModel {
     ) -> ComponentParts<Self> {
         let model = PackageManagerModel {
             install_flatpak: false,
+            install_flatpak_beta: false,
             install_snap: false,
             install_appimage: false,
         };
@@ -129,7 +147,13 @@ impl SimpleComponent for PackageManagerModel {
         ComponentParts { model, widgets }
     }
 
-    fn update(&mut self, message: Self::Input, _sender: ComponentSender<Self>) {
+    fn update_with_view(
+        &mut self,
+        widgets: &mut Self::Widgets,
+        message: Self::Input,
+        _sender: ComponentSender<Self>,
+        _root: &Self::Root,
+    ) {
         match message {
             Self::Input::Flatpak(switched_on) => {
                 tracing::info!(
@@ -142,6 +166,21 @@ impl SimpleComponent for PackageManagerModel {
                 );
 
                 self.install_flatpak = switched_on;
+
+                widgets.flatpak.set_expanded(self.install_flatpak);
+                widgets.flatpak_beta.set_sensitive(self.install_flatpak);
+            },
+            Self::Input::FlatpakBeta(switched_on) => {
+                tracing::info!(
+                    "{}",
+                    if switched_on {
+                        "Enabling Flatpak Beta installation"
+                    } else {
+                        "Disabling Flatpak Beta installation"
+                    }
+                );
+
+                self.install_flatpak_beta = switched_on;
             },
             Self::Input::Snap(switched_on) => {
                 tracing::info!(
@@ -173,6 +212,9 @@ impl SimpleComponent for PackageManagerModel {
         if self.install_flatpak {
             commands.push("sudo apt-get install -y flatpak");
             commands.push("flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo");
+            if self.install_flatpak_beta {
+                commands.push("flatpak remote-add --if-not-exists flathub-beta https://flathub.org/beta-repo/flathub-beta.flatpakrepo");
+            }
         }
 
         if self.install_snap {
