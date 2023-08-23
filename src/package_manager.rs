@@ -159,7 +159,7 @@ impl Component for PackageManagerModel {
                 );
 
                 self.install_flatpak = switched_on;
-                widgets.flatpak.set_sensitive(self.install_flatpak);
+                widgets.flatpak.set_visible(self.install_flatpak);
             },
             Self::Input::FlatpakBeta(switched_on) => {
                 tracing::info!(
