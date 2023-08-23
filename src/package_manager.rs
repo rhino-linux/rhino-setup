@@ -5,6 +5,7 @@ use relm4::{adw, gtk, Component, ComponentParts, ComponentSender};
 use crate::COMMANDS;
 
 #[derive(Debug)]
+#[allow(clippy::struct_excessive_bools)]
 pub(crate) struct PackageManagerModel {
     install_flatpak: bool,
     install_flatpak_beta: bool,
