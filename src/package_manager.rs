@@ -68,7 +68,7 @@ impl Component for PackageManagerModel {
 
                                 add_suffix = &gtk::Switch {
                                     set_valign: gtk::Align::Center,
-                                    set_active: true,
+                                    set_active: false,
                                     connect_active_notify[sender] => move |switch| {
                                         sender.input(Self::Input::Flatpak(switch.is_active()));
                                     }
