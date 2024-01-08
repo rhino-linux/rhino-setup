@@ -6,25 +6,28 @@ msgstr ""
 "Project-Id-Version: rhino-setup 0.1.0\n"
 "Report-Msgid-Bugs-To: https://github.com/rhino-linux/rhino-setup/issues\n"
 "POT-Creation-Date: 2022-10-29 20:26+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2024-01-09 13:06+0000\n"
+"Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
+"Language-Team: Georgian <https://hosted.weblate.org/projects/rhino-linux/"
+"rhino-setup/ka/>\n"
 "Language: ka\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.4-dev\n"
 
 #: src/done.rs:56
 msgid "Reboot Now"
-msgstr ""
+msgstr "ახლა გადატვირთვა"
 
 #: src/done.rs:67
 msgid "Close"
-msgstr ""
+msgstr "დახურვა"
 
 #: src/done.rs:90
 msgid "All done!"
-msgstr ""
+msgstr "ყველაფერი მზადაა!"
 
 #: src/done.rs:91
 msgid "Restart your device to enjoy your Rhino Linux experience."
@@ -32,7 +35,7 @@ msgstr ""
 
 #: src/done.rs:108
 msgid "Something went wrong"
-msgstr ""
+msgstr "რაღაც არასწორია"
 
 #: src/done.rs:109
 msgid "Please contact the distribution developers."
@@ -40,7 +43,7 @@ msgstr ""
 
 #: src/extra_settings.rs:47
 msgid "Extra Settings"
-msgstr ""
+msgstr "დამატებითი პარამეტრები"
 
 #: src/extra_settings.rs:48
 msgid "The following are optional settings, leave them as they are if you don't know what they do."
@@ -56,11 +59,11 @@ msgstr ""
 
 #: src/extra_settings.rs:84 src/package_manager.rs:104 src/theme.rs:83
 msgid "Next"
-msgstr ""
+msgstr "შემდეგი"
 
 #: src/package_manager.rs:50
 msgid "Package Manager"
-msgstr ""
+msgstr "პაკეტების მმართველი"
 
 #: src/package_manager.rs:51
 msgid "Choose one or more package managers to install"
@@ -72,7 +75,7 @@ msgstr ""
 
 #: src/package_manager.rs:64
 msgid "System for application virtualization."
-msgstr ""
+msgstr "სისტემა აპლიკაციის ვირტუალიზაციისთვის."
 
 #: src/package_manager.rs:76
 msgid "Uses the Snapcraft repository. Default in Ubuntu."
@@ -81,10 +84,12 @@ msgstr ""
 #: src/package_manager.rs:77
 msgid "Software deployment and package management system developed by Canonical."
 msgstr ""
+"Canonical-ის მიერ შემუშავებული პროგრამების მართვისა და პაკეტების მართვის "
+"სისტემა."
 
 #: src/package_manager.rs:90
 msgid "Will install the necessary dependencies to run AppImages."
-msgstr ""
+msgstr "დააყენებს საჭირო დამოკიდებულებებს, რომ AppImage-ები გაუშვათ."
 
 #: src/package_manager.rs:91
 msgid "Self-contained and compressed executable format for the Linux platform."
@@ -92,28 +97,28 @@ msgstr ""
 
 #: src/progress.rs:37
 msgid "The changes are being applied. Please Wait..."
-msgstr ""
+msgstr "მიმდინარეობს ცვლილებების გადატარება. მოითმინეთ..."
 
 #: src/theme.rs:77
 msgid "Color Scheme"
-msgstr ""
+msgstr "ფერების სქემა"
 
 #: src/theme.rs:78
 msgid "Choose a color scheme for your system."
-msgstr ""
+msgstr "აირჩიეთ თქვენი სისტემის ფერის სქემა."
 
 #: src/welcome.rs:44
 msgid "Make your choices, this wizard will take care of everything."
-msgstr ""
+msgstr "გააკეთეთ არჩევანი, ოსტატი ყველაფერს მიხედავს."
 
 #: src/welcome.rs:46
 msgid "Let's Start"
-msgstr ""
+msgstr "დავიწყოთ"
 
 #: src/main.rs:69
 msgid "Back"
-msgstr ""
+msgstr "უკან"
 
 #: src/main.rs:149
 msgid "Rhino Setup"
-msgstr ""
+msgstr "Rhino-ის მორგება"
