@@ -46,7 +46,9 @@ msgid "Extra Settings"
 msgstr "დამატებითი პარამეტრები"
 
 #: src/extra_settings.rs:48
-msgid "The following are optional settings, leave them as they are if you don't know what they do."
+msgid ""
+"The following are optional settings, leave them as they are if you don't "
+"know what they do."
 msgstr ""
 
 #: src/extra_settings.rs:60
@@ -54,7 +56,9 @@ msgid "Nala is an alternative front-end to APT, featuring a beautiful UI/UX."
 msgstr ""
 
 #: src/extra_settings.rs:72
-msgid "Apport is a crash reporting system that helps us improve the stability of the system."
+msgid ""
+"Apport is a crash reporting system that helps us improve the stability of "
+"the system."
 msgstr ""
 
 #: src/extra_settings.rs:84 src/package_manager.rs:104
@@ -82,7 +86,8 @@ msgid "Uses the Snapcraft repository. Default in Ubuntu."
 msgstr ""
 
 #: src/package_manager.rs:77
-msgid "Software deployment and package management system developed by Canonical."
+msgid ""
+"Software deployment and package management system developed by Canonical."
 msgstr ""
 "Canonical-ის მიერ შემუშავებული პროგრამების მართვისა და პაკეტების მართვის "
 "სისტემა."
