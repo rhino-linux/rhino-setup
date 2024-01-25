@@ -8,8 +8,8 @@ msgstr ""
 "POT-Creation-Date: 2022-10-29 20:26+0000\n"
 "PO-Revision-Date: 2024-02-08 09:01+0000\n"
 "Last-Translator: 7A9Oo <med.ahk.2018@gmail.com>\n"
-"Language-Team: French <https://hosted.weblate.org/projects/rhino-linux/"
-"rhino-setup/fr/>\n"
+"Language-Team: French <https://hosted.weblate.org/projects/rhino-linux/rhino-"
+"setup/fr/>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -46,7 +46,9 @@ msgid "Extra Settings"
 msgstr ""
 
 #: src/extra_settings.rs:48
-msgid "The following are optional settings, leave them as they are if you don't know what they do."
+msgid ""
+"The following are optional settings, leave them as they are if you don't "
+"know what they do."
 msgstr ""
 
 #: src/extra_settings.rs:60
@@ -54,7 +56,9 @@ msgid "Nala is an alternative front-end to APT, featuring a beautiful UI/UX."
 msgstr ""
 
 #: src/extra_settings.rs:72
-msgid "Apport is a crash reporting system that helps us improve the stability of the system."
+msgid ""
+"Apport is a crash reporting system that helps us improve the stability of "
+"the system."
 msgstr ""
 
 #: src/extra_settings.rs:84 src/package_manager.rs:104
@@ -82,7 +86,8 @@ msgid "Uses the Snapcraft repository. Default in Ubuntu."
 msgstr ""
 
 #: src/package_manager.rs:77
-msgid "Software deployment and package management system developed by Canonical."
+msgid ""
+"Software deployment and package management system developed by Canonical."
 msgstr ""
 
 #: src/package_manager.rs:90
