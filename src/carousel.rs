@@ -1,6 +1,7 @@
 use relm4::adw::prelude::*;
 use relm4::{adw, Component, ComponentController, ComponentParts, Controller, SimpleComponent};
 
+use crate::containers::{ContainersModel, ContainersOutput};
 use crate::done::DoneModel;
 use crate::extra_settings::{ExtraSettingsModel, ExtraSettingsOutput};
 use crate::package_manager::{PackageManagerModel, PackageManagerOutput};
@@ -14,6 +15,7 @@ pub(crate) struct CarouselModel {
     welcome_page: Controller<WelcomeModel>,
     theme_page: Controller<ThemeModel>,
     package_manager_page: Controller<PackageManagerModel>,
+    containers_page: Controller<ContainersModel>,
     extra_settings_page: Controller<ExtraSettingsModel>,
     progress_page: Controller<ProgressModel>,
     done_page: Controller<DoneModel>,
@@ -58,6 +60,7 @@ impl SimpleComponent for CarouselModel {
             append: model.welcome_page.widget(),
             append: model.theme_page.widget(),
             append: model.package_manager_page.widget(),
+            append: model.containers_page.widget(),
             append: model.extra_settings_page.widget(),
             append: model.progress_page.widget(),
             append: model.done_page.widget(),
@@ -89,6 +92,12 @@ impl SimpleComponent for CarouselModel {
                     PackageManagerOutput::NextPage => CarouselInput::NextPage,
                 },
             ),
+            containers_page: ContainersModel::builder().launch(()).forward(
+                sender.input_sender(),
+                |msg| match msg {
+                    ContainersOutput::NextPage => CarouselInput::NextPage,
+                },
+            ),
             extra_settings_page: ExtraSettingsModel::builder().launch(()).forward(
                 sender.input_sender(),
                 |msg| match msg {
@@ -116,12 +125,12 @@ impl SimpleComponent for CarouselModel {
                 self.current_page += 1;
 
                 // If the user hasn't reached the progress page yet.
-                if self.current_page < 4 {
+                if self.current_page < 5 {
                     sender.output(CarouselOutput::ShowBackButton).unwrap();
                 }
 
                 // When the user is at the progress page.
-                if self.current_page == 4 {
+                if self.current_page == 5 {
                     // Hide the back button, as the user is not supposed to return to previous pages
                     // after this point.
                     sender.output(CarouselOutput::HideBackButton).unwrap();
@@ -141,7 +150,7 @@ impl SimpleComponent for CarouselModel {
                 }
             },
             CarouselInput::SkipToErrorPage => {
-                self.current_page = 5;
+                self.current_page = 6;
                 self.done_page
                     .sender()
                     .send(crate::done::DoneInput::SwitchToErrorState)

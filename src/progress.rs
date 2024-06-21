@@ -8,6 +8,7 @@ use relm4::{
     SimpleComponent,
 };
 
+use crate::config::PROFILE;
 use crate::COMMANDS;
 
 #[derive(Debug)]
@@ -132,7 +133,7 @@ impl SimpleComponent for ProgressModel {
 
                 COMMANDS
                     .write_inner()
-                    .insert("pre_run", vec!["sudo apt-get update"]);
+                    .insert("pre_run", vec!["sudo apt-get update && sudo pacstall -U pacstall:master"]);
 
                 let commands = COMMANDS.read_inner();
                 let commands = commands.values().flatten();
@@ -146,6 +147,10 @@ impl SimpleComponent for ProgressModel {
                 }
 
                 tracing::debug!("{commands_with_results}");
+
+                if PROFILE == "Devel" {
+                    return;
+                }
 
                 // Spawn a process to execute the commands
                 let mut processor = Command::new("sh")

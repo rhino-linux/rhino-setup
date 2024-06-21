@@ -5,7 +5,7 @@ use std::env;
 use std::path::Path;
 
 use carousel::{CarouselInput, CarouselModel, CarouselOutput};
-use config::{APP_ID, GETTEXT_PACKAGE, LOCALEDIR, RESOURCES_FILE};
+use config::{APP_ID, GETTEXT_PACKAGE, LOCALEDIR, PROFILE, RESOURCES_FILE};
 use gettextrs::{gettext, LocaleCategory};
 use relm4::adw::prelude::*;
 use relm4::gtk::{gdk, gio, glib};
@@ -18,6 +18,7 @@ use tracing_subscriber::fmt::writer::MakeWriterExt;
 
 mod carousel;
 mod config;
+mod containers;
 mod done;
 mod extra_settings;
 mod package_manager;
@@ -50,8 +51,8 @@ impl SimpleComponent for AppModel {
 
     view! {
         adw::ApplicationWindow {
-            set_default_width: 750,
-            set_default_height: 750,
+            set_default_width: 800,
+            set_default_height: 900,
 
             gtk::Box {
                 set_orientation: gtk::Orientation::Vertical,
@@ -176,7 +177,7 @@ fn main() {
 
     // HACK: The app doesn't start up with the "correct" theme, this "hack" "fixes"
     // it.
-    if config::PROFILE != "Devel" {
+    if PROFILE != "Devel" {
         if let Err(error) = gio::Settings::new("org.gnome.desktop.interface")
             .set_string("gtk-theme", "Yaru-purple-dark")
         {

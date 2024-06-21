@@ -9,19 +9,24 @@ use crate::COMMANDS;
 pub(crate) struct PackageManagerModel {
     install_flatpak: bool,
     install_flatpak_beta: bool,
+    install_nix: bool,
     install_snap: bool,
     install_appimage: bool,
+    install_appimage_zap: bool,
 }
 
 #[derive(Debug)]
 pub(crate) enum PackageManagerInput {
-    /// Represents the Flatpak switch state
+    /// Represents the Flatpak switch states
     Flatpak(bool),
     FlatpakBeta(bool),
+    /// Represents the Nix switch state
+    Nix(bool),
     /// Represents the Snap switch state
     Snap(bool),
-    /// Represents the AppImage switch state
+    /// Represents the AppImage switch states
     AppImage(bool),
+    AppImageZap(bool),
 }
 
 #[derive(Debug)]
@@ -79,12 +84,27 @@ impl Component for PackageManagerModel {
                                     set_title: "Flatpak Beta Channel",
                                     set_subtitle: &gettext("Allows software to be installed from the Flatpak Beta Channel"),
                                     set_tooltip_text: Some(&gettext("Enable Flatpak Beta Channel.")),
+                                    set_sensitive: false,
+                                    #[name="flatpak_beta_switch"]
                                     add_suffix = &gtk::Switch {
                                         set_valign: gtk::Align::Center,
                                         set_active: false,
                                         connect_active_notify[sender] => move |switch| {
                                             sender.input(PackageManagerInput::FlatpakBeta(switch.is_active()));
                                         }
+                                    }
+                                }
+                            },
+                            adw::ActionRow {
+                                set_title: "Nix",
+                                set_subtitle: &gettext("Will also configure the nixpkgs-unstable channel."),
+                                set_tooltip_text: Some(&gettext("Purely functional package manager.")),
+
+                                add_suffix = &gtk::Switch {
+                                    set_valign: gtk::Align::Center,
+                                    set_active: false,
+                                    connect_active_notify[sender] => move |switch| {
+                                        sender.input(Self::Input::Nix(switch.is_active()));
                                     }
                                 }
                             },
@@ -101,16 +121,32 @@ impl Component for PackageManagerModel {
                                     }
                                 }
                             },
-                            adw::ActionRow {
+                            #[name="appimage"]
+                            adw::ExpanderRow {
                                 set_title: "AppImage",
                                 set_subtitle: &gettext("Will install the necessary dependencies to run AppImages."),
                                 set_tooltip_text: Some(&gettext("Self-contained and compressed executable format for the Linux platform.")),
 
-                                add_suffix = &gtk::Switch {
+                                add_action = &gtk::Switch {
                                     set_valign: gtk::Align::Center,
                                     set_active: false,
                                     connect_active_notify[sender] => move |switch| {
                                         sender.input(Self::Input::AppImage(switch.is_active()));
+                                    }
+                                },
+                                #[name="appimage_zap"]
+                                add_row = &adw::ActionRow {
+                                    set_title: "Zap",
+                                    set_subtitle: &gettext("A command line interface to install AppImages."),
+                                    set_tooltip_text: Some(&gettext("Enable the Zap package manager.")),
+                                    set_sensitive: false,
+                                    #[name="appimage_zap_switch"]
+                                    add_suffix = &gtk::Switch {
+                                        set_valign: gtk::Align::Center,
+                                        set_active: false,
+                                        connect_active_notify[sender] => move |switch| {
+                                            sender.input(PackageManagerInput::AppImageZap(switch.is_active()));
+                                        }
                                     }
                                 }
                             }
@@ -138,8 +174,10 @@ impl Component for PackageManagerModel {
         let model = PackageManagerModel {
             install_flatpak: false,
             install_flatpak_beta: false,
+            install_nix: false,
             install_snap: false,
             install_appimage: false,
+            install_appimage_zap: false,
         };
 
         let widgets = view_output!();
@@ -169,6 +207,9 @@ impl Component for PackageManagerModel {
 
                 widgets.flatpak.set_expanded(self.install_flatpak);
                 widgets.flatpak_beta.set_sensitive(self.install_flatpak);
+                if !self.install_flatpak {
+                    widgets.flatpak_beta_switch.set_active(false);
+                }
             },
             Self::Input::FlatpakBeta(switched_on) => {
                 tracing::info!(
@@ -181,6 +222,18 @@ impl Component for PackageManagerModel {
                 );
 
                 self.install_flatpak_beta = switched_on;
+            },
+            Self::Input::Nix(switched_on) => {
+                tracing::info!(
+                    "{}",
+                    if switched_on {
+                        "Enabling Nix installation"
+                    } else {
+                        "Disabling Nix installation"
+                    }
+                );
+
+                self.install_nix = switched_on;
             },
             Self::Input::Snap(switched_on) => {
                 tracing::info!(
@@ -204,6 +257,23 @@ impl Component for PackageManagerModel {
                     }
                 );
                 self.install_appimage = switched_on;
+
+                widgets.appimage.set_expanded(self.install_appimage);
+                widgets.appimage_zap.set_sensitive(self.install_appimage);
+                if !self.install_appimage {
+                    widgets.appimage_zap_switch.set_active(false);
+                }
+            },
+            Self::Input::AppImageZap(switched_on) => {
+                tracing::info!(
+                    "{}",
+                    if switched_on {
+                        "Enabling Zap installation"
+                    } else {
+                        "Disabling Zap installation"
+                    }
+                );
+                self.install_appimage_zap = switched_on;
             },
         }
 
@@ -217,12 +287,24 @@ impl Component for PackageManagerModel {
             }
         }
 
+        if self.install_nix {
+            commands.push("sudo apt-get install -y nix-bin nix-setup-systemd");
+            commands.push("sudo groupadd nix-users");
+            commands.push("sudo usermod -a -G nix-users $USER");
+            commands.push("sudo systemctl enable nix-daemon.service || true");
+            commands.push("nix-channel --add https://nixos.org/channels/nixpkgs-unstable nixpkgs");
+            commands.push("nix-channel --update")
+        }
+
         if self.install_snap {
             commands.push("sudo apt-get install -y snapd");
         }
 
         if self.install_appimage {
             commands.push("sudo apt-get install -y libfuse2");
+            if self.install_appimage_zap {
+                commands.push("sudo PACSTALL_DOWNLOADER=quiet-wget pacstall -PI zap");
+            }
         }
 
         COMMANDS.write_inner().insert("package_manager", commands);

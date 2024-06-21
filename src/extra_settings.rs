@@ -9,6 +9,7 @@ pub(crate) struct ExtraSettingsModel {
     remove_nala: bool,
     enable_apport: bool,
     enable_github: bool,
+    enable_redshift: bool,
 }
 
 #[derive(Debug)]
@@ -17,8 +18,10 @@ pub(crate) enum ExtraSettingsInput {
     Nala(bool),
     /// Represents the Apport switch state
     Apport(bool),
-    // Represents the GitHub switch state
+    /// Represents the GitHub switch state
     Github(bool),
+    /// Represents the Redshift switch state
+    Redshift(bool),
 }
 
 #[derive(Debug)]
@@ -95,6 +98,18 @@ impl SimpleComponent for ExtraSettingsModel {
                                     }
                                 }
                             },
+                            adw::ActionRow {
+                                set_title: "Redshift",
+                                set_subtitle: &gettext("Adjusts the color temperature of your screen."),
+
+                                add_suffix = &gtk::Switch {
+                                    set_valign: gtk::Align::Center,
+
+                                    connect_active_notify[sender] => move |switch| {
+                                        sender.input(Self::Input::Redshift(switch.is_active()));
+                                    }
+                                }
+                            },
                         }
                     },
                     gtk::Button::with_label(&gettext("Next")) {
@@ -119,6 +134,7 @@ impl SimpleComponent for ExtraSettingsModel {
             remove_nala: false,
             enable_apport: false,
             enable_github: false,
+            enable_redshift: false,
         };
 
         let widgets = view_output!();
@@ -164,6 +180,18 @@ impl SimpleComponent for ExtraSettingsModel {
 
                 self.enable_apport = switched_on;
             },
+            Self::Input::Redshift(switched_on) => {
+                tracing::info!(
+                    "{}",
+                    if switched_on {
+                        "Enabling redshift"
+                    } else {
+                        "Disabling redshift"
+                    }
+                );
+
+                self.enable_redshift = switched_on;
+            },
         }
 
         let mut commands: Vec<&str> = Vec::new();
@@ -178,12 +206,11 @@ impl SimpleComponent for ExtraSettingsModel {
         }
 
         if self.enable_github {
-            commands.push("echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers");
-            commands.push(
-                "HOME=/home/$USER runuser -l $USER -c 'SUDO_USER=$USER \
-                 PACSTALL_DOWNLOADER=quiet-wget pacstall -PI github-cli-deb'",
-            );
-            commands.push("sudo sed -i 's/%sudo ALL=(ALL) NOPASSWD:ALL//' /etc/sudoers");
+            commands.push("sudo PACSTALL_DOWNLOADER=quiet-wget pacstall -PI github-cli-deb");
+        }
+
+        if self.enable_redshift {
+            commands.push("sudo apt-get install -y redshift");
         }
 
         COMMANDS.write_inner().insert("extra_settings", commands);
