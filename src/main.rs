@@ -94,7 +94,7 @@ impl SimpleComponent for AppModel {
     // Initialize the UI.
     fn init(
         _counter: Self::Init,
-        root: &Self::Root,
+        root: Self::Root,
         sender: ComponentSender<Self>,
     ) -> ComponentParts<Self> {
         let model = AppModel {
@@ -156,7 +156,7 @@ fn main() {
     provider.load_from_resource("/org/rhinolinux/RhinoSetup/style.css");
 
     if let Some(display) = gdk::Display::default() {
-        gtk::StyleContext::add_provider_for_display(
+        gtk::style_context_add_provider_for_display(
             &display,
             &provider,
             gtk::STYLE_PROVIDER_PRIORITY_APPLICATION,
@@ -185,6 +185,6 @@ fn main() {
         }
     }
 
-    let app = RelmApp::with_app(app);
+    let app = RelmApp::from_app(app);
     app.run::<AppModel>(());
 }

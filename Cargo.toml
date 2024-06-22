@@ -1,6 +1,6 @@
 [package]
 name = "rhino-setup"
-version = "0.1.0"
+version = "0.2.0"
 edition = "2021"
 
 [profile.release]
@@ -10,8 +10,8 @@ lto = true
 
 [dependencies]
 gettext-rs = { version = "0.7.0", features = ["gettext-system"] }
-relm4 = { version = "0.5.1", features = ["libadwaita"]  }
-relm4-components = "0.5.1"
+relm4 = { version = "0.8.1", features = ["libadwaita"]  }
+relm4-components = "0.8.1"
 tracing = "0.1.37"
 tracing-appender = "0.2.2"
 tracing-subscriber = "0.3.17"

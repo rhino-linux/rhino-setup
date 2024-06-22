@@ -95,7 +95,7 @@ impl Component for ContainersModel {
                                 set_title: "Distrobox",
                                 set_subtitle: &gettext("Use any linux distribution inside your terminal.\nRequires Docker or Podman. "),
                                 set_sensitive: false,
-                                set_visible: false,
+                                set_visible: true,
 
                                 #[name="distrobox_switch"]
                                 add_suffix = &gtk::Switch {
@@ -160,7 +160,7 @@ impl Component for ContainersModel {
 
     fn init(
         _init: Self::Init,
-        root: &Self::Root,
+        root: Self::Root,
         sender: ComponentSender<Self>,
     ) -> ComponentParts<Self> {
         let model = ContainersModel {

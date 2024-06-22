@@ -168,7 +168,7 @@ impl Component for PackageManagerModel {
 
     fn init(
         _init: Self::Init,
-        root: &Self::Root,
+        root: Self::Root,
         sender: ComponentSender<Self>,
     ) -> ComponentParts<Self> {
         let model = PackageManagerModel {

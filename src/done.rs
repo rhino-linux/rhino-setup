@@ -82,7 +82,7 @@ impl SimpleComponent for DoneModel {
 
     fn init(
         _init: Self::Init,
-        root: &Self::Root,
+        root: Self::Root,
         sender: ComponentSender<Self>,
     ) -> ComponentParts<Self> {
         let model = DoneModel {

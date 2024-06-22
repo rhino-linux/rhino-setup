@@ -127,7 +127,7 @@ impl SimpleComponent for ExtraSettingsModel {
 
     fn init(
         _init: Self::Init,
-        root: &Self::Root,
+        root: Self::Root,
         sender: ComponentSender<Self>,
     ) -> ComponentParts<Self> {
         let model = ExtraSettingsModel {
