@@ -74,18 +74,18 @@ impl SimpleComponent for CarouselPagesModel {
     ) -> relm4::ComponentParts<Self> {
         let model = CarouselPagesModel {
             current: 0,
-            welcome: WelcomeModel::builder().launch(()).forward(
-                sender.input_sender(),
-                |msg| match msg {
-                    WelcomeOutput::NextPage => CarouselInput::NextPage,
-                },
-            ),
-            theme: ThemeModel::builder()
+            welcome: WelcomeModel::builder()
                 .launch(())
                 .forward(sender.input_sender(), |msg| match msg {
+                    WelcomeOutput::NextPage => CarouselInput::NextPage,
+                }),
+            theme: ThemeModel::builder().launch(()).forward(
+                sender.input_sender(),
+                |msg| match msg {
                     ThemeOutput::NextPage => CarouselInput::NextPage,
                     ThemeOutput::ErrorOccured => CarouselInput::SkipToErrorPage,
-                }),
+                },
+            ),
             package_manager: PackageManagerModel::builder().launch(()).forward(
                 sender.input_sender(),
                 |msg| match msg {
@@ -104,13 +104,12 @@ impl SimpleComponent for CarouselPagesModel {
                     ExtraSettingsOutput::NextPage => CarouselInput::NextPage,
                 },
             ),
-            progress: ProgressModel::builder().launch(()).forward(
-                sender.input_sender(),
-                |msg| match msg {
+            progress: ProgressModel::builder()
+                .launch(())
+                .forward(sender.input_sender(), |msg| match msg {
                     ProgressOutput::InstallationComplete => CarouselInput::NextPage,
                     ProgressOutput::InstallationError => CarouselInput::SkipToErrorPage,
-                },
-            ),
+                }),
             done: DoneModel::builder().launch(()).detach(),
         };
 
@@ -122,15 +121,15 @@ impl SimpleComponent for CarouselPagesModel {
     fn update(&mut self, message: Self::Input, sender: relm4::ComponentSender<Self>) {
         match message {
             CarouselInput::NextPage => {
-                self.current  += 1;
+                self.current += 1;
 
                 // If the user hasn't reached the progress page yet.
-                if self.current  < 5 {
+                if self.current < 5 {
                     sender.output(CarouselOutput::ShowBackButton).unwrap();
                 }
 
                 // When the user is at the progress page.
-                if self.current  == 5 {
+                if self.current == 5 {
                     // Hide the back button, as the user is not supposed to return to previous pages
                     // after this point.
                     sender.output(CarouselOutput::HideBackButton).unwrap();
@@ -142,15 +141,15 @@ impl SimpleComponent for CarouselPagesModel {
                 }
             },
             CarouselInput::PreviousPage => {
-                self.current  -= 1;
+                self.current -= 1;
 
                 // When on the first page (pages starts from 0), disable the back button.
-                if self.current  == 0 {
+                if self.current == 0 {
                     sender.output(CarouselOutput::HideBackButton).unwrap();
                 }
             },
             CarouselInput::SkipToErrorPage => {
-                self.current  = 6;
+                self.current = 6;
                 self.done
                     .sender()
                     .send(crate::done::DoneInput::SwitchToErrorState)

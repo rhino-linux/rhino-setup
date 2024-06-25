@@ -4,7 +4,7 @@ use std::collections::HashMap;
 use std::env;
 use std::path::Path;
 
-use carousel::{CarouselInput, CarouselPagesModel, CarouselOutput};
+use carousel::{CarouselInput, CarouselOutput, CarouselPagesModel};
 use config::{APP_ID, GETTEXT_PACKAGE, LOCALEDIR, PROFILE, RESOURCES_FILE};
 use gettextrs::{gettext, LocaleCategory};
 use relm4::adw::prelude::*;

@@ -77,8 +77,8 @@ pub(crate) struct ProgressModel {
 
 #[derive(Debug)]
 pub(crate) enum ProgressInput {
-    /// Sent by [`crate::CarouselPagesModel`] when the user has finished browsing
-    /// through all the other pages.
+    /// Sent by [`crate::CarouselPagesModel`] when the user has finished
+    /// browsing through all the other pages.
     StartInstallation,
 }
 
