@@ -24,6 +24,7 @@ pub(crate) enum PackageManagerInput {
     Nix(bool),
     /// Represents the Snap switch state
     Snap(bool),
+    #[allow(clippy::doc_markdown)]
     /// Represents the AppImage switch states
     AppImage(bool),
     AppImageZap(bool),
@@ -185,6 +186,7 @@ impl Component for PackageManagerModel {
         ComponentParts { model, widgets }
     }
 
+    #[allow(clippy::too_many_lines)]
     fn update_with_view(
         &mut self,
         widgets: &mut Self::Widgets,

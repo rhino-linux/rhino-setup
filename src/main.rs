@@ -4,7 +4,7 @@ use std::collections::HashMap;
 use std::env;
 use std::path::Path;
 
-use carousel::{CarouselInput, CarouselModel, CarouselOutput};
+use carousel::{CarouselInput, CarouselPagesModel, CarouselOutput};
 use config::{APP_ID, GETTEXT_PACKAGE, LOCALEDIR, PROFILE, RESOURCES_FILE};
 use gettextrs::{gettext, LocaleCategory};
 use relm4::adw::prelude::*;
@@ -31,7 +31,7 @@ pub(crate) static COMMANDS: SharedState<HashMap<&'static str, Vec<&'static str>>
     SharedState::new();
 
 struct AppModel {
-    carousel: Controller<CarouselModel>,
+    carousel: Controller<CarouselPagesModel>,
     back_button_visible: bool,
 }
 
@@ -98,7 +98,7 @@ impl SimpleComponent for AppModel {
         sender: ComponentSender<Self>,
     ) -> ComponentParts<Self> {
         let model = AppModel {
-            carousel: CarouselModel::builder().launch(()).forward(
+            carousel: CarouselPagesModel::builder().launch(()).forward(
                 sender.input_sender(),
                 |message| match message {
                     CarouselOutput::ShowBackButton => AppInput::ShowBackButton,

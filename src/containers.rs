@@ -5,6 +5,7 @@ use relm4::{adw, gtk, Component, ComponentParts, ComponentSender};
 use crate::COMMANDS;
 
 #[derive(Debug)]
+#[allow(clippy::struct_excessive_bools)]
 pub(crate) struct ContainersModel {
     enable_docker: bool,
     enable_podman: bool,

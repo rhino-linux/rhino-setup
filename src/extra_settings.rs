@@ -5,6 +5,7 @@ use relm4::{adw, gtk, ComponentParts, ComponentSender, SimpleComponent};
 use crate::COMMANDS;
 
 #[derive(Debug)]
+#[allow(clippy::struct_excessive_bools)]
 pub(crate) struct ExtraSettingsModel {
     remove_nala: bool,
     enable_apport: bool,
