@@ -131,9 +131,10 @@ impl SimpleComponent for ProgressModel {
             Self::Input::StartInstallation => {
                 tracing::info!("Starting installation");
 
-                COMMANDS
-                    .write_inner()
-                    .insert("pre_run", vec!["sudo apt-get update && sudo pacstall -U pacstall:master"]);
+                COMMANDS.write_inner().insert(
+                    "pre_run",
+                    vec!["sudo apt-get update && sudo pacstall -U pacstall:master"],
+                );
 
                 let commands = COMMANDS.read_inner();
                 let commands = commands.values().flatten();
