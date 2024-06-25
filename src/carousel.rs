@@ -29,7 +29,7 @@ pub(crate) enum CarouselInput {
     /// Move to the previous page.
     PreviousPage,
     /// An error has occurred in one of the pages.
-    /// Move to the [crate::done] page, with the error state.
+    /// Move to the [`crate::done`] page, with the error state.
     SkipToErrorPage,
 }
 

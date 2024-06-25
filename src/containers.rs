@@ -284,7 +284,7 @@ impl Component for ContainersModel {
         }
 
         if self.enable_distrobox && (self.enable_docker || self.enable_podman) {
-            commands.push("sudo PACSTALL_DOWNLOADER=quiet-wget pacstall -PI distrobox")
+            commands.push("sudo PACSTALL_DOWNLOADER=quiet-wget pacstall -PI distrobox");
         }
 
         if self.enable_apptainer {

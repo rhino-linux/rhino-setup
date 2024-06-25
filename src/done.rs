@@ -16,7 +16,7 @@ pub(crate) struct DoneModel {
 pub(crate) enum DoneInput {
     /// Restarts the OS.
     Reboot,
-    /// Sent by the [crate::carousel] whenever an error occurs.
+    /// Sent by the [`crate::carousel`] whenever an error occurs.
     /// This signals the done page to switch to a "error" page state.
     SwitchToErrorState,
     /// Sent when an error has occurred, and the user has clicked the "close"
