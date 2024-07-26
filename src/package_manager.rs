@@ -12,7 +12,7 @@ pub(crate) struct PackageManagerModel {
     install_nix: bool,
     install_snap: bool,
     install_appimage: bool,
-    install_appimage_zap: bool,
+    install_appimage_am: bool,
 }
 
 #[derive(Debug)]
@@ -27,7 +27,7 @@ pub(crate) enum PackageManagerInput {
     #[allow(clippy::doc_markdown)]
     /// Represents the AppImage switch states
     AppImage(bool),
-    AppImageZap(bool),
+    AppImageAM(bool),
 }
 
 #[derive(Debug)]
@@ -135,18 +135,18 @@ impl Component for PackageManagerModel {
                                         sender.input(Self::Input::AppImage(switch.is_active()));
                                     }
                                 },
-                                #[name="appimage_zap"]
+                                #[name="appimage_am"]
                                 add_row = &adw::ActionRow {
-                                    set_title: "Zap",
+                                    set_title: "AM",
                                     set_subtitle: &gettext("A command line interface to install AppImages."),
-                                    set_tooltip_text: Some(&gettext("Enable the Zap package manager.")),
+                                    set_tooltip_text: Some(&gettext("Enable the AM package manager.")),
                                     set_sensitive: false,
-                                    #[name="appimage_zap_switch"]
+                                    #[name="appimage_am_switch"]
                                     add_suffix = &gtk::Switch {
                                         set_valign: gtk::Align::Center,
                                         set_active: false,
                                         connect_active_notify[sender] => move |switch| {
-                                            sender.input(PackageManagerInput::AppImageZap(switch.is_active()));
+                                            sender.input(PackageManagerInput::AppImageAM(switch.is_active()));
                                         }
                                     }
                                 }
@@ -178,7 +178,7 @@ impl Component for PackageManagerModel {
             install_nix: false,
             install_snap: false,
             install_appimage: false,
-            install_appimage_zap: false,
+            install_appimage_am: false,
         };
 
         let widgets = view_output!();
@@ -261,21 +261,21 @@ impl Component for PackageManagerModel {
                 self.install_appimage = switched_on;
 
                 widgets.appimage.set_expanded(self.install_appimage);
-                widgets.appimage_zap.set_sensitive(self.install_appimage);
+                widgets.appimage_am.set_sensitive(self.install_appimage);
                 if !self.install_appimage {
-                    widgets.appimage_zap_switch.set_active(false);
+                    widgets.appimage_am_switch.set_active(false);
                 }
             },
-            Self::Input::AppImageZap(switched_on) => {
+            Self::Input::AppImageAM(switched_on) => {
                 tracing::info!(
                     "{}",
                     if switched_on {
-                        "Enabling Zap installation"
+                        "Enabling AM installation"
                     } else {
-                        "Disabling Zap installation"
+                        "Disabling AM installation"
                     }
                 );
-                self.install_appimage_zap = switched_on;
+                self.install_appimage_am = switched_on;
             },
         }
 
@@ -304,8 +304,10 @@ impl Component for PackageManagerModel {
 
         if self.install_appimage {
             commands.push("sudo apt-get install -y libfuse2");
-            if self.install_appimage_zap {
-                commands.push("sudo PACSTALL_DOWNLOADER=quiet-wget pacstall -PI zap");
+            if self.install_appimage_am {
+                commands.push(
+                    "git clone https://github.com/ivan-hc/AM && cd AM && sudo sh ./INSTALL && cd -",
+                );
             }
         }
 
