@@ -341,7 +341,8 @@ impl Component for PackageManagerModel {
             commands.push("sudo apt-get install -y libfuse2");
             if self.install_appimage_am {
                 commands.push(
-                    "wget https://raw.githubusercontent.com/ivan-hc/AM/main/INSTALL && sudo sh ./INSTALL && rm ./INSTALL",
+                    "wget https://github.com/ivan-hc/AM/raw/main/INSTALL && sudo sh ./INSTALL && \
+                     rm ./INSTALL",
                 );
             }
         }
