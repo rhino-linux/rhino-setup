@@ -111,7 +111,7 @@ impl Component for ContainersModel {
                                 set_title: "Apptainer",
                                 set_subtitle: &gettext("Container platform focused on supporting \"Mobility of Compute\""),
                                 set_tooltip_text: Some(&gettext("Enable the Apptainer container engine.")),
-
+                                set_visible: if cfg!(target_arch = "x86_64") {true} else {false},
                                 add_suffix = &gtk::Switch {
                                     set_valign: gtk::Align::Center,
 
@@ -135,7 +135,7 @@ impl Component for ContainersModel {
                             adw::ActionRow {
                                 set_title: "VirtualBox",
                                 set_subtitle: &gettext("x86 virtualization solution"),
-
+                                set_visible: if cfg!(target_arch = "x86_64") {true} else {false},
                                 add_suffix = &gtk::Switch {
                                     set_valign: gtk::Align::Center,
 
@@ -276,8 +276,15 @@ impl Component for ContainersModel {
 
         let mut commands: Vec<&str> = Vec::new();
 
-        if self.enable_podman {
-            commands.push("sudo apt-get -y docker.io");
+        if self.enable_docker {
+            commands.push(
+                "sudo pacstall -PIQ docker-bin docker-buildx-plugin-bin docker-compose-plugin-bin",
+            );
+            if cfg!(target_arch = "x86_64") {
+                commands.push(
+                    "sudo pacstall -PIQ docker-desktop-deb",
+                );  
+            }
         }
 
         if self.enable_podman {
@@ -285,11 +292,11 @@ impl Component for ContainersModel {
         }
 
         if self.enable_distrobox && (self.enable_docker || self.enable_podman) {
-            commands.push("sudo PACSTALL_DOWNLOADER=quiet-wget pacstall -PI distrobox");
+            commands.push("sudo pacstall -PIQ distrobox");
         }
 
         if self.enable_apptainer {
-            commands.push("sudo apt-get install apptainer");
+            commands.push("sudo pacstall -PIQ apptainer");
         }
 
         if self.enable_qemu {
