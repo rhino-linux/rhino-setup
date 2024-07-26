@@ -207,7 +207,7 @@ impl SimpleComponent for ExtraSettingsModel {
         }
 
         if self.enable_github {
-            commands.push("sudo PACSTALL_DOWNLOADER=quiet-wget pacstall -PI github-cli-deb");
+            commands.push("sudo pacstall -PIQ github-cli-deb");
         }
 
         if self.enable_redshift {
