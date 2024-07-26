@@ -9,6 +9,7 @@ use crate::COMMANDS;
 pub(crate) struct PackageManagerModel {
     install_flatpak: bool,
     install_flatpak_beta: bool,
+    install_flatpak_flatseal: bool,
     install_nix: bool,
     install_snap: bool,
     install_appimage: bool,
@@ -20,6 +21,7 @@ pub(crate) enum PackageManagerInput {
     /// Represents the Flatpak switch states
     Flatpak(bool),
     FlatpakBeta(bool),
+    FlatpakFlatSeal(bool),
     /// Represents the Nix switch state
     Nix(bool),
     /// Represents the Snap switch state
@@ -92,6 +94,21 @@ impl Component for PackageManagerModel {
                                         set_active: false,
                                         connect_active_notify[sender] => move |switch| {
                                             sender.input(PackageManagerInput::FlatpakBeta(switch.is_active()));
+                                        }
+                                    }
+                                },
+                                #[name="flatpak_flatseal"]
+                                add_row = &adw::ActionRow {
+                                    set_title: "Flatseal",
+                                    set_subtitle: &gettext("Manage Flatpak permissions"),
+                                    set_tooltip_text: Some(&gettext("Enable Flatseal permission manager.")),
+                                    set_sensitive: false,
+                                    #[name="flatpak_flatseal_switch"]
+                                    add_suffix = &gtk::Switch {
+                                        set_valign: gtk::Align::Center,
+                                        set_active: false,
+                                        connect_active_notify[sender] => move |switch| {
+                                            sender.input(PackageManagerInput::FlatpakFlatSeal(switch.is_active()));
                                         }
                                     }
                                 }
@@ -175,6 +192,7 @@ impl Component for PackageManagerModel {
         let model = PackageManagerModel {
             install_flatpak: false,
             install_flatpak_beta: false,
+            install_flatpak_flatseal: false,
             install_nix: false,
             install_snap: false,
             install_appimage: false,
@@ -209,8 +227,10 @@ impl Component for PackageManagerModel {
 
                 widgets.flatpak.set_expanded(self.install_flatpak);
                 widgets.flatpak_beta.set_sensitive(self.install_flatpak);
+                widgets.flatpak_flatseal.set_sensitive(self.install_flatpak);
                 if !self.install_flatpak {
                     widgets.flatpak_beta_switch.set_active(false);
+                    widgets.flatpak_flatseal_switch.set_active(false);
                 }
             },
             Self::Input::FlatpakBeta(switched_on) => {
@@ -224,6 +244,18 @@ impl Component for PackageManagerModel {
                 );
 
                 self.install_flatpak_beta = switched_on;
+            },
+            Self::Input::FlatpakFlatSeal(switched_on) => {
+                tracing::info!(
+                    "{}",
+                    if switched_on {
+                        "Enabling Flatseal installation"
+                    } else {
+                        "Disabling Flatseal installation"
+                    }
+                );
+
+                self.install_flatpak_flatseal = switched_on;
             },
             Self::Input::Nix(switched_on) => {
                 tracing::info!(
@@ -286,6 +318,9 @@ impl Component for PackageManagerModel {
             commands.push("flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo");
             if self.install_flatpak_beta {
                 commands.push("flatpak remote-add --if-not-exists flathub-beta https://flathub.org/beta-repo/flathub-beta.flatpakrepo");
+            }
+            if self.install_flatpak_flatseal {
+                commands.push("flatpak install --user flathub flatseal -y");
             }
         }
 

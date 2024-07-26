@@ -150,6 +150,8 @@ impl SimpleComponent for ProgressModel {
                 tracing::debug!("{commands_with_results}");
 
                 if PROFILE == "Devel" {
+                    sender.output(Self::Output::InstallationComplete).unwrap();
+                    tracing::info!("Installation skipped");
                     return;
                 }
 

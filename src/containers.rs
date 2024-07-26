@@ -111,7 +111,7 @@ impl Component for ContainersModel {
                                 set_title: "Apptainer",
                                 set_subtitle: &gettext("Container platform focused on supporting \"Mobility of Compute\""),
                                 set_tooltip_text: Some(&gettext("Enable the Apptainer container engine.")),
-                                set_visible: if cfg!(target_arch = "x86_64") {true} else {false},
+                                set_visible: cfg!(target_arch = "x86_64"),
                                 add_suffix = &gtk::Switch {
                                     set_valign: gtk::Align::Center,
 
@@ -135,7 +135,7 @@ impl Component for ContainersModel {
                             adw::ActionRow {
                                 set_title: "VirtualBox",
                                 set_subtitle: &gettext("x86 virtualization solution"),
-                                set_visible: if cfg!(target_arch = "x86_64") {true} else {false},
+                                set_visible: cfg!(target_arch = "x86_64"),
                                 add_suffix = &gtk::Switch {
                                     set_valign: gtk::Align::Center,
 
@@ -178,6 +178,7 @@ impl Component for ContainersModel {
         ComponentParts { model, widgets }
     }
 
+    #[allow(clippy::too_many_lines)]
     fn update_with_view(
         &mut self,
         widgets: &mut Self::Widgets,
@@ -281,9 +282,7 @@ impl Component for ContainersModel {
                 "sudo pacstall -PIQ docker-bin docker-buildx-plugin-bin docker-compose-plugin-bin",
             );
             if cfg!(target_arch = "x86_64") {
-                commands.push(
-                    "sudo pacstall -PIQ docker-desktop-deb",
-                );  
+                commands.push("sudo pacstall -PIQ docker-desktop-deb");
             }
         }
 

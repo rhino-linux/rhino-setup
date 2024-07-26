@@ -4,6 +4,8 @@ use gettextrs::gettext;
 use relm4::adw::prelude::*;
 use relm4::{adw, gtk, main_application, ComponentParts, ComponentSender, SimpleComponent};
 
+use crate::config::PROFILE;
+
 #[derive(Debug)]
 pub(crate) struct DoneModel {
     icon: &'static str,
@@ -100,6 +102,10 @@ impl SimpleComponent for DoneModel {
     fn update(&mut self, message: Self::Input, _sender: ComponentSender<Self>) {
         match message {
             Self::Input::Reboot => {
+                if PROFILE == "Devel" {
+                    tracing::info!("Not rebooting, closing the application instead");
+                    main_application().quit();
+                }
                 Command::new("/sbin/reboot").status().unwrap();
             },
             Self::Input::SwitchToErrorState => {
