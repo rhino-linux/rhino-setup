@@ -279,11 +279,8 @@ impl Component for ContainersModel {
 
         if self.enable_docker {
             commands.push(
-                "sudo pacstall -PIQ docker-bin docker-buildx-plugin-bin docker-compose-plugin-bin",
+                "pacstall -PIQ docker-bin docker-buildx-plugin-bin docker-compose-plugin-bin",
             );
-            if cfg!(target_arch = "x86_64") {
-                commands.push("sudo pacstall -PIQ docker-desktop-deb");
-            }
         }
 
         if self.enable_podman {
