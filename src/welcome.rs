@@ -7,7 +7,7 @@ use relm4::{adw, gtk, ComponentParts, ComponentSender, SimpleComponent};
 
 pub(crate) struct WelcomeModel {
     title: &'static str,
-    titles: Cycle<std::array::IntoIter<&'static str, 34>>,
+    titles: Cycle<std::array::IntoIter<&'static str, 35>>,
 }
 
 #[derive(Debug)]
@@ -98,6 +98,7 @@ impl SimpleComponent for WelcomeModel {
                 "સુસ્વાગત છે",
                 "ಸುಸ್ವಾಗತ",
                 "സ്വാഗതം",
+                "ᚹᛁᛚᚳᚢᛗᛖ",
             ]
             .into_iter()
             .cycle(),
