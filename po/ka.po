@@ -6,125 +6,119 @@ msgstr ""
 "Project-Id-Version: rhino-setup 0.1.0\n"
 "Report-Msgid-Bugs-To: https://github.com/rhino-linux/rhino-setup/issues\n"
 "POT-Creation-Date: 2022-10-29 20:26+0000\n"
-"PO-Revision-Date: 2023-10-06 01:11+0000\n"
-"Last-Translator: Reza Almanda <rezaalmanda27@gmail.com>\n"
-"Language-Team: Indonesian <https://hosted.weblate.org/projects/rhino-linux/"
-"rhino-setup/id/>\n"
-"Language: id\n"
+"PO-Revision-Date: 2024-01-09 13:06+0000\n"
+"Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
+"Language-Team: Georgian <https://hosted.weblate.org/projects/rhino-linux/"
+"rhino-setup/ka/>\n"
+"Language: ka\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.1-dev\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.4-dev\n"
 
 #: src/done.rs:56
 msgid "Reboot Now"
-msgstr "Mulai Ulang Sekarang"
+msgstr "ახლა გადატვირთვა"
 
 #: src/done.rs:67
 msgid "Close"
-msgstr "Tutup"
+msgstr "დახურვა"
 
 #: src/done.rs:90
 msgid "All done!"
-msgstr "Semua beres!"
+msgstr "ყველაფერი მზადაა!"
 
 #: src/done.rs:91
 msgid "Restart your device to enjoy your Rhino Linux experience."
-msgstr "Hidupkan ulang perangkat Anda untuk menikmati pengalaman Rhino Linux."
+msgstr ""
 
 #: src/done.rs:108
 msgid "Something went wrong"
-msgstr "Ada yang tidak beres"
+msgstr "რაღაც არასწორია"
 
 #: src/done.rs:109
 msgid "Please contact the distribution developers."
-msgstr "Silahkan hubungi pengembang distribusi."
+msgstr ""
 
 #: src/extra_settings.rs:47
 msgid "Extra Settings"
-msgstr "Pengaturan Ekstra"
+msgstr "დამატებითი პარამეტრები"
 
 #: src/extra_settings.rs:48
 msgid "The following are optional settings, leave them as they are if you don't know what they do."
 msgstr ""
-"Berikut ini adalah pengaturan opsional, biarkan apa adanya jika Anda tidak "
-"tahu apa fungsinya."
 
 #: src/extra_settings.rs:60
 msgid "Nala is an alternative front-end to APT, featuring a beautiful UI/UX."
 msgstr ""
-"Nala adalah front-end alternatif untuk APT, menampilkan UI/UX yang indah."
 
 #: src/extra_settings.rs:72
 msgid "Apport is a crash reporting system that helps us improve the stability of the system."
 msgstr ""
-"Apport adalah sistem pelaporan kerusakan yang membantu kami meningkatkan "
-"stabilitas sistem."
 
 #: src/extra_settings.rs:84 src/package_manager.rs:104 src/theme.rs:83
 msgid "Next"
-msgstr "Berikutnya"
+msgstr "შემდეგი"
 
 #: src/package_manager.rs:50
 msgid "Package Manager"
-msgstr "Manajer Paket"
+msgstr "პაკეტების მმართველი"
 
 #: src/package_manager.rs:51
 msgid "Choose one or more package managers to install"
-msgstr "Pilih satu atau lebih manajer paket untuk menginstal"
+msgstr ""
 
 #: src/package_manager.rs:63
 msgid "Will also configure the Flathub repository."
-msgstr "Juga akan mengonfigurasi repositori Flathub."
+msgstr ""
 
 #: src/package_manager.rs:64
 msgid "System for application virtualization."
-msgstr "Sistem untuk virtualisasi aplikasi."
+msgstr "სისტემა აპლიკაციის ვირტუალიზაციისთვის."
 
 #: src/package_manager.rs:76
 msgid "Uses the Snapcraft repository. Default in Ubuntu."
-msgstr "Menggunakan repositori Snapcraft. Default di Ubuntu."
+msgstr ""
 
 #: src/package_manager.rs:77
 msgid "Software deployment and package management system developed by Canonical."
 msgstr ""
-"Penyebaran perangkat lunak dan sistem manajemen paket yang dikembangkan oleh "
-"Canonical."
+"Canonical-ის მიერ შემუშავებული პროგრამების მართვისა და პაკეტების მართვის "
+"სისტემა."
 
 #: src/package_manager.rs:90
 msgid "Will install the necessary dependencies to run AppImages."
-msgstr "Akan memasang dependensi yang diperlukan untuk menjalankan AppImages."
+msgstr "დააყენებს საჭირო დამოკიდებულებებს, რომ AppImage-ები გაუშვათ."
 
 #: src/package_manager.rs:91
 msgid "Self-contained and compressed executable format for the Linux platform."
 msgstr ""
-"Format yang dapat dieksekusi mandiri dan terkompresi untuk platform Linux."
 
 #: src/progress.rs:37
 msgid "The changes are being applied. Please Wait..."
-msgstr "Perubahan sedang diterapkan. Mohon Tunggu..."
+msgstr "მიმდინარეობს ცვლილებების გადატარება. მოითმინეთ..."
 
 #: src/theme.rs:77
 msgid "Color Scheme"
-msgstr "Skema Warna"
+msgstr "ფერების სქემა"
 
 #: src/theme.rs:78
 msgid "Choose a color scheme for your system."
-msgstr "Pilih skema warna untuk sistem Anda."
+msgstr "აირჩიეთ თქვენი სისტემის ფერის სქემა."
 
 #: src/welcome.rs:44
 msgid "Make your choices, this wizard will take care of everything."
-msgstr "Tentukan pilihan Anda, wizard ini akan mengurus semuanya."
+msgstr "გააკეთეთ არჩევანი, ოსტატი ყველაფერს მიხედავს."
 
 #: src/welcome.rs:46
 msgid "Let's Start"
-msgstr "Mari Mulai"
+msgstr "დავიწყოთ"
 
 #: src/main.rs:69
 msgid "Back"
-msgstr "Kembali"
+msgstr "უკან"
 
 #: src/main.rs:149
 msgid "Rhino Setup"
-msgstr "Setup Rhino"
+msgstr "Rhino-ის მორგება"

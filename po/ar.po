@@ -6,125 +6,118 @@ msgstr ""
 "Project-Id-Version: rhino-setup 0.1.0\n"
 "Report-Msgid-Bugs-To: https://github.com/rhino-linux/rhino-setup/issues\n"
 "POT-Creation-Date: 2022-10-29 20:26+0000\n"
-"PO-Revision-Date: 2023-10-06 01:11+0000\n"
-"Last-Translator: Reza Almanda <rezaalmanda27@gmail.com>\n"
-"Language-Team: Indonesian <https://hosted.weblate.org/projects/rhino-linux/"
-"rhino-setup/id/>\n"
-"Language: id\n"
+"PO-Revision-Date: 2024-02-08 09:01+0000\n"
+"Last-Translator: 7A9Oo <med.ahk.2018@gmail.com>\n"
+"Language-Team: Arabic <https://hosted.weblate.org/projects/rhino-linux/"
+"rhino-setup/ar/>\n"
+"Language: ar\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.1-dev\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
+"&& n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
+"X-Generator: Weblate 5.4-dev\n"
 
 #: src/done.rs:56
 msgid "Reboot Now"
-msgstr "Mulai Ulang Sekarang"
+msgstr "إعادة التشغيل الآن"
 
 #: src/done.rs:67
 msgid "Close"
-msgstr "Tutup"
+msgstr "غلق"
 
 #: src/done.rs:90
 msgid "All done!"
-msgstr "Semua beres!"
+msgstr "تمت!"
 
 #: src/done.rs:91
 msgid "Restart your device to enjoy your Rhino Linux experience."
-msgstr "Hidupkan ulang perangkat Anda untuk menikmati pengalaman Rhino Linux."
+msgstr "أعد تشغيل الجهاز و استمتع بتجربة Rhino Linux."
 
 #: src/done.rs:108
 msgid "Something went wrong"
-msgstr "Ada yang tidak beres"
+msgstr "يوجد خطأ ما"
 
 #: src/done.rs:109
 msgid "Please contact the distribution developers."
-msgstr "Silahkan hubungi pengembang distribusi."
+msgstr "من فضلك اتصل بمطوري التوزيعة."
 
 #: src/extra_settings.rs:47
 msgid "Extra Settings"
-msgstr "Pengaturan Ekstra"
+msgstr "إعدادات أخرى"
 
 #: src/extra_settings.rs:48
 msgid "The following are optional settings, leave them as they are if you don't know what they do."
-msgstr ""
-"Berikut ini adalah pengaturan opsional, biarkan apa adanya jika Anda tidak "
-"tahu apa fungsinya."
+msgstr "هذه إعدادات إختيارية, اتركها كماهي إذا لم تكن تعرف ماذا تفعل."
 
 #: src/extra_settings.rs:60
 msgid "Nala is an alternative front-end to APT, featuring a beautiful UI/UX."
-msgstr ""
-"Nala adalah front-end alternatif untuk APT, menampilkan UI/UX yang indah."
+msgstr "Nala هي واجهة بديلة لـ APT, مع جمالية واجهة المستخدم/تجربة المستخدم."
 
 #: src/extra_settings.rs:72
 msgid "Apport is a crash reporting system that helps us improve the stability of the system."
-msgstr ""
-"Apport adalah sistem pelaporan kerusakan yang membantu kami meningkatkan "
-"stabilitas sistem."
+msgstr "Apport هو نظام تقارير الأعطال يساعدك على الحفاظ على استقرار الجهاز."
 
 #: src/extra_settings.rs:84 src/package_manager.rs:104 src/theme.rs:83
 msgid "Next"
-msgstr "Berikutnya"
+msgstr "التالي"
 
 #: src/package_manager.rs:50
 msgid "Package Manager"
-msgstr "Manajer Paket"
+msgstr "مدير الحزم"
 
 #: src/package_manager.rs:51
 msgid "Choose one or more package managers to install"
-msgstr "Pilih satu atau lebih manajer paket untuk menginstal"
+msgstr "اختر مدير حزم واحد أو أكثر لتثبيته"
 
 #: src/package_manager.rs:63
 msgid "Will also configure the Flathub repository."
-msgstr "Juga akan mengonfigurasi repositori Flathub."
+msgstr "سوف يقوم بتعديل مستودع Flathub."
 
 #: src/package_manager.rs:64
 msgid "System for application virtualization."
-msgstr "Sistem untuk virtualisasi aplikasi."
+msgstr "نظام للتطبيقات الإفتراضية."
 
 #: src/package_manager.rs:76
 msgid "Uses the Snapcraft repository. Default in Ubuntu."
-msgstr "Menggunakan repositori Snapcraft. Default di Ubuntu."
+msgstr "استعمل مستودع Snapcraft. الإفتراضي على أوبنتو."
 
 #: src/package_manager.rs:77
 msgid "Software deployment and package management system developed by Canonical."
-msgstr ""
-"Penyebaran perangkat lunak dan sistem manajemen paket yang dikembangkan oleh "
-"Canonical."
+msgstr "تصدير البرامج و مدير الحزم مطورة من طرف Canonical."
 
 #: src/package_manager.rs:90
 msgid "Will install the necessary dependencies to run AppImages."
-msgstr "Akan memasang dependensi yang diperlukan untuk menjalankan AppImages."
+msgstr "سوف يتم تثبيت المتطلبات لتشغيل AppImages."
 
 #: src/package_manager.rs:91
 msgid "Self-contained and compressed executable format for the Linux platform."
-msgstr ""
-"Format yang dapat dieksekusi mandiri dan terkompresi untuk platform Linux."
+msgstr "تنسيق قابل للتنفيذ ومضغوط ذاتيًا لمنصة Linux."
 
 #: src/progress.rs:37
 msgid "The changes are being applied. Please Wait..."
-msgstr "Perubahan sedang diterapkan. Mohon Tunggu..."
+msgstr "يتم تطبيق التغييرات. من فضلك انتظر..."
 
 #: src/theme.rs:77
 msgid "Color Scheme"
-msgstr "Skema Warna"
+msgstr "نظام الألوان"
 
 #: src/theme.rs:78
 msgid "Choose a color scheme for your system."
-msgstr "Pilih skema warna untuk sistem Anda."
+msgstr "إختر نظام الألوان الخاص بنظامك."
 
 #: src/welcome.rs:44
 msgid "Make your choices, this wizard will take care of everything."
-msgstr "Tentukan pilihan Anda, wizard ini akan mengurus semuanya."
+msgstr "إتخذ قرارك, هذا الويزارد سيهتم بكل شيء."
 
 #: src/welcome.rs:46
 msgid "Let's Start"
-msgstr "Mari Mulai"
+msgstr "فلنبدأ"
 
 #: src/main.rs:69
 msgid "Back"
-msgstr "Kembali"
+msgstr "السابق"
 
 #: src/main.rs:149
 msgid "Rhino Setup"
-msgstr "Setup Rhino"
+msgstr "تثبيت رينو"
