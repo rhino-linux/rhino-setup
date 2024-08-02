@@ -133,7 +133,7 @@ impl SimpleComponent for ProgressModel {
 
                 COMMANDS.write_inner().insert(
                     "pre_run",
-                    vec!["sudo apt-get update && sudo pacstall -U pacstall:master"],
+                    vec!["sudo apt-get update", "sudo pacstall -U pacstall master"],
                 );
 
                 let commands = COMMANDS.read_inner();

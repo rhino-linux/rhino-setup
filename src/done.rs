@@ -102,11 +102,11 @@ impl SimpleComponent for DoneModel {
     fn update(&mut self, message: Self::Input, _sender: ComponentSender<Self>) {
         match message {
             Self::Input::Reboot => {
-                if PROFILE == "Devel" {
-                    tracing::info!("Not rebooting, closing the application instead");
-                    main_application().quit();
+                if PROFILE != "Devel" {
+                    Command::new("/sbin/reboot").status().unwrap();
                 }
-                Command::new("/sbin/reboot").status().unwrap();
+                tracing::info!("Not rebooting, closing the application instead");
+                main_application().quit();
             },
             Self::Input::SwitchToErrorState => {
                 self.error_state = true;

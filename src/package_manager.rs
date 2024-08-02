@@ -315,9 +315,9 @@ impl Component for PackageManagerModel {
 
         if self.install_flatpak {
             commands.push("sudo apt-get install -y flatpak");
-            commands.push("flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo");
+            commands.push("flatpak remote-add --user --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo");
             if self.install_flatpak_beta {
-                commands.push("flatpak remote-add --if-not-exists flathub-beta https://flathub.org/beta-repo/flathub-beta.flatpakrepo");
+                commands.push("flatpak remote-add --user --if-not-exists flathub-beta https://flathub.org/beta-repo/flathub-beta.flatpakrepo");
             }
             if self.install_flatpak_flatseal {
                 commands.push("flatpak install --user flathub flatseal -y");
@@ -326,7 +326,7 @@ impl Component for PackageManagerModel {
 
         if self.install_nix {
             commands.push("sudo apt-get install -y nix-bin nix-setup-systemd");
-            commands.push("sudo groupadd nix-users");
+            commands.push("sudo groupadd -f nix-users");
             commands.push("sudo usermod -a -G nix-users $USER");
             commands.push("sudo systemctl enable nix-daemon.service || true");
             commands.push("nix-channel --add https://nixos.org/channels/nixpkgs-unstable nixpkgs");
