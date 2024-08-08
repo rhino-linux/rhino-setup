@@ -135,7 +135,7 @@ impl SimpleComponent for ProgressModel {
                     "pre_run",
                     vec![
                         "sudo apt-get update",
-                        "TERM=linux pacstall -PU pacstall master",
+                        "sudo sed -i 's/ignore_stack=false/ignore_stack=true/g' /usr/bin/pacstall && TERM=linux pacstall -U pacstall master",
                     ],
                 );
 
