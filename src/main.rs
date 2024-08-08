@@ -5,7 +5,7 @@ use std::env;
 use std::path::Path;
 
 use carousel::{CarouselInput, CarouselOutput, CarouselPagesModel};
-use config::{APP_ID, GETTEXT_PACKAGE, LOCALEDIR, PROFILE, RESOURCES_FILE};
+use config::{APP_ID, GETTEXT_PACKAGE, LOCALEDIR, RESOURCES_FILE};
 use gettextrs::{gettext, LocaleCategory};
 use relm4::adw::prelude::*;
 use relm4::gtk::{gdk, gio, glib};
