@@ -175,16 +175,6 @@ fn main() {
         .style_manager()
         .set_color_scheme(adw::ColorScheme::PreferDark);
 
-    // HACK: The app doesn't start up with the "correct" theme, this "hack" "fixes"
-    // it.
-    if PROFILE != "Devel" {
-        if let Err(error) = gio::Settings::new("org.gnome.desktop.interface")
-            .set_string("gtk-theme", "Yaru-purple-dark")
-        {
-            tracing::error!("Error FORCING GTK theme: {error}");
-        }
-    }
-
     let app = RelmApp::from_app(app);
     app.run::<AppModel>(());
 }
