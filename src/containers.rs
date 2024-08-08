@@ -284,23 +284,23 @@ impl Component for ContainersModel {
         }
 
         if self.enable_podman {
-            commands.push("sudo apt-get -y podman");
+            commands.push("sudo apt-get install -y podman");
         }
 
         if self.enable_distrobox && (self.enable_docker || self.enable_podman) {
-            commands.push("sudo pacstall -PIQ distrobox");
+            commands.push("pacstall -PIQ distrobox");
         }
 
         if self.enable_apptainer {
-            commands.push("sudo pacstall -PIQ apptainer");
+            commands.push("pacstall -PIQ apptainer");
         }
 
         if self.enable_qemu {
-            commands.push("sudo apt-get install qemu-system qemu-user-static qemu-utils");
+            commands.push("sudo apt-get install -y qemu-system qemu-user-static qemu-utils");
         }
 
         if self.enable_virtualbox {
-            commands.push("sudo apt-get install virtualbox");
+            commands.push("sudo apt-get install -y virtualbox");
         }
 
         COMMANDS.write_inner().insert("containers", commands);
