@@ -126,7 +126,7 @@ impl SimpleComponent for ThemeModel {
                         "--property",
                         "/Net/ThemeName",
                         "--set",
-                        "Yaru-purple",
+                        "Adw",
                     ])
                     .status()
                 {
@@ -172,7 +172,7 @@ impl SimpleComponent for ThemeModel {
                         "--property",
                         "/Net/ThemeName",
                         "--set",
-                        "Yaru-purple-dark",
+                        "Adw-dark",
                     ])
                     .status()
                 {
