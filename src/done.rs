@@ -4,6 +4,8 @@ use gettextrs::gettext;
 use relm4::adw::prelude::*;
 use relm4::{adw, gtk, main_application, ComponentParts, ComponentSender, SimpleComponent};
 
+use crate::config::PROFILE;
+
 #[derive(Debug)]
 pub(crate) struct DoneModel {
     icon: &'static str,
@@ -16,7 +18,7 @@ pub(crate) struct DoneModel {
 pub(crate) enum DoneInput {
     /// Restarts the OS.
     Reboot,
-    /// Sent by the [crate::carousel] whenever an error occurs.
+    /// Sent by the [`crate::carousel`] whenever an error occurs.
     /// This signals the done page to switch to a "error" page state.
     SwitchToErrorState,
     /// Sent when an error has occurred, and the user has clicked the "close"
@@ -82,7 +84,7 @@ impl SimpleComponent for DoneModel {
 
     fn init(
         _init: Self::Init,
-        root: &Self::Root,
+        root: Self::Root,
         sender: ComponentSender<Self>,
     ) -> ComponentParts<Self> {
         let model = DoneModel {
@@ -100,7 +102,11 @@ impl SimpleComponent for DoneModel {
     fn update(&mut self, message: Self::Input, _sender: ComponentSender<Self>) {
         match message {
             Self::Input::Reboot => {
-                Command::new("/sbin/reboot").status().unwrap();
+                if PROFILE != "Devel" {
+                    Command::new("/sbin/reboot").status().unwrap();
+                }
+                tracing::info!("Not rebooting, closing the application instead");
+                main_application().quit();
             },
             Self::Input::SwitchToErrorState => {
                 self.error_state = true;

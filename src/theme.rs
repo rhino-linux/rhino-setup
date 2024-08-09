@@ -99,7 +99,7 @@ impl SimpleComponent for ThemeModel {
 
     fn init(
         _init: Self::Init,
-        root: &Self::Root,
+        root: Self::Root,
         sender: ComponentSender<Self>,
     ) -> ComponentParts<Self> {
         let model = ThemeModel {
@@ -126,7 +126,7 @@ impl SimpleComponent for ThemeModel {
                         "--property",
                         "/Net/ThemeName",
                         "--set",
-                        "Yaru-purple",
+                        "Adw",
                     ])
                     .status()
                 {
@@ -141,7 +141,7 @@ impl SimpleComponent for ThemeModel {
                         "--property",
                         "/general/theme",
                         "--set",
-                        "Yaru",
+                        "Adw",
                     ])
                     .status()
                 {
@@ -172,7 +172,7 @@ impl SimpleComponent for ThemeModel {
                         "--property",
                         "/Net/ThemeName",
                         "--set",
-                        "Yaru-purple-dark",
+                        "Adw-dark",
                     ])
                     .status()
                 {
@@ -189,7 +189,7 @@ impl SimpleComponent for ThemeModel {
                         "--property",
                         "/general/theme",
                         "--set",
-                        "Yaru-dark",
+                        "Adw-dark",
                     ])
                     .status()
                 {

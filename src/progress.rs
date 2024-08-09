@@ -8,6 +8,7 @@ use relm4::{
     SimpleComponent,
 };
 
+use crate::config::PROFILE;
 use crate::COMMANDS;
 
 #[derive(Debug)]
@@ -48,7 +49,7 @@ impl SimpleComponent for ProgressBarModel {
 
     fn init(
         init: Self::Init,
-        root: &Self::Root,
+        root: Self::Root,
         _sender: ComponentSender<Self>,
     ) -> ComponentParts<Self> {
         let model = ProgressBarModel {
@@ -76,8 +77,8 @@ pub(crate) struct ProgressModel {
 
 #[derive(Debug)]
 pub(crate) enum ProgressInput {
-    /// Sent by [crate::CarouselModel] when the user has finished browsing
-    /// through all the other pages.
+    /// Sent by [`crate::CarouselPagesModel`] when the user has finished
+    /// browsing through all the other pages.
     StartInstallation,
 }
 
@@ -114,7 +115,7 @@ impl SimpleComponent for ProgressModel {
 
     fn init(
         _init: Self::Init,
-        root: &Self::Root,
+        root: Self::Root,
         _sender: ComponentSender<Self>,
     ) -> ComponentParts<Self> {
         let model = ProgressModel { progress_bar: None };
@@ -130,9 +131,14 @@ impl SimpleComponent for ProgressModel {
             Self::Input::StartInstallation => {
                 tracing::info!("Starting installation");
 
-                COMMANDS
-                    .write_inner()
-                    .insert("pre_run", vec!["sudo apt-get update"]);
+                COMMANDS.write_inner().insert(
+                    "pre_run",
+                    vec![
+                        "sudo apt-get update",
+                        "sudo sed -i 's/ignore_stack=false/ignore_stack=true/g' /usr/bin/pacstall \
+                         && TERM=linux pacstall -U pacstall master",
+                    ],
+                );
 
                 let commands = COMMANDS.read_inner();
                 let commands = commands.values().flatten();
@@ -146,6 +152,12 @@ impl SimpleComponent for ProgressModel {
                 }
 
                 tracing::debug!("{commands_with_results}");
+
+                if PROFILE == "Devel" {
+                    sender.output(Self::Output::InstallationComplete).unwrap();
+                    tracing::info!("Installation skipped");
+                    return;
+                }
 
                 // Spawn a process to execute the commands
                 let mut processor = Command::new("sh")
