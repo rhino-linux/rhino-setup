@@ -203,15 +203,15 @@ impl SimpleComponent for ExtraSettingsModel {
 
         if self.enable_apport {
             commands.push("sudo apt-get install -y apport");
-            commands.push("systemctl enable apport.service || true");
+            commands.push("{ sudo systemctl enable apport.service || :; }");
         }
 
         if self.enable_github {
-            commands.push("sudo pacstall -PIQ github-cli-deb");
+            commands.push("pacstall -PIQ github-cli-deb");
         }
 
         if self.enable_redshift {
-            commands.push("sudo apt-get install -y redshift");
+            commands.push("sudo apt-get install -y redshift redshift-gtk");
         }
 
         COMMANDS.write_inner().insert("extra_settings", commands);
