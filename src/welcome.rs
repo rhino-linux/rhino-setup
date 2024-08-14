@@ -58,7 +58,7 @@ impl SimpleComponent for WelcomeModel {
     // Initialize the UI.
     fn init(
         _counter: Self::Init,
-        root: &Self::Root,
+        root: Self::Root,
         sender: ComponentSender<Self>,
     ) -> ComponentParts<Self> {
         let model = WelcomeModel {
