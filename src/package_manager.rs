@@ -318,7 +318,7 @@ impl Component for PackageManagerModel {
             commands.push("flatpak remote-add --system --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo");
             commands.push(
                 "flatpak install --system flathub org.gtk.Gtk3theme.adw-gtk3 \
-                 org.gtk.Gtk3theme.adw-gtk3-dark",
+                 org.gtk.Gtk3theme.adw-gtk3-dark -y",
             );
             commands.push(
                 "sudo flatpak override --filesystem='xdg-config/gtk-3.0:ro' \
