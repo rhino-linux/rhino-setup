@@ -114,12 +114,12 @@ impl SimpleComponent for CarouselPagesModel {
                 self.current += 1;
 
                 // If the user hasn't reached the progress page yet.
-                if self.current < 5 {
+                if self.current < 4 {
                     sender.output(CarouselOutput::ShowBackButton).unwrap();
                 }
 
                 // When the user is at the progress page.
-                if self.current == 5 {
+                if self.current == 4 {
                     // Hide the back button, as the user is not supposed to return to previous pages
                     // after this point.
                     sender.output(CarouselOutput::HideBackButton).unwrap();
@@ -139,7 +139,7 @@ impl SimpleComponent for CarouselPagesModel {
                 }
             },
             CarouselInput::SkipToErrorPage => {
-                self.current = 6;
+                self.current = 5;
                 self.done
                     .sender()
                     .send(crate::done::DoneInput::SwitchToErrorState)
