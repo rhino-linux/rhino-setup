@@ -62,7 +62,7 @@ msgstr ""
 "Apport adalah sistem pelaporan kerusakan yang membantu kami meningkatkan "
 "stabilitas sistem."
 
-#: src/extra_settings.rs:84 src/package_manager.rs:104 src/theme.rs:83
+#: src/extra_settings.rs:84 src/package_manager.rs:104
 msgid "Next"
 msgstr "Berikutnya"
 
@@ -104,14 +104,6 @@ msgstr ""
 #: src/progress.rs:37
 msgid "The changes are being applied. Please Wait..."
 msgstr "Perubahan sedang diterapkan. Mohon Tunggu..."
-
-#: src/theme.rs:77
-msgid "Color Scheme"
-msgstr "Skema Warna"
-
-#: src/theme.rs:78
-msgid "Choose a color scheme for your system."
-msgstr "Pilih skema warna untuk sistem Anda."
 
 #: src/welcome.rs:44
 msgid "Make your choices, this wizard will take care of everything."

@@ -63,7 +63,7 @@ msgstr ""
 msgid "Apport is a crash reporting system that helps us improve the stability of the system."
 msgstr "Apport ist ein Absturzberichtsprogramm, welches uns hilft die Stabilität des Systems zu verbessern."
 
-#: src/extra_settings.rs:84 src/package_manager.rs:104 src/theme.rs:83
+#: src/extra_settings.rs:84 src/package_manager.rs:104
 msgid "Next"
 msgstr "Weiter"
 
@@ -104,14 +104,6 @@ msgstr "Komprimiertes Format für Ausführbare Dateien für Linux-Plattformen, u
 #: src/progress.rs:37
 msgid "The changes are being applied. Please Wait..."
 msgstr "Die Änderungen werden angewandt. Bitte warten Sie..."
-
-#: src/theme.rs:77
-msgid "Color Scheme"
-msgstr "Farbschema"
-
-#: src/theme.rs:78
-msgid "Choose a color scheme for your system."
-msgstr "Wählen Sie ein Farbschema für Ihr System"
 
 #: src/welcome.rs:44
 msgid "Make your choices, this wizard will take care of everything."

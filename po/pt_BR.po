@@ -62,7 +62,7 @@ msgstr ""
 "Apport é um sistema de relatório de falhas que nos ajuda a melhorar a "
 "estabilidade do sistema."
 
-#: src/extra_settings.rs:84 src/package_manager.rs:104 src/theme.rs:83
+#: src/extra_settings.rs:84 src/package_manager.rs:104
 msgid "Next"
 msgstr "Próximo"
 
@@ -103,14 +103,6 @@ msgstr "Formato executável independente e compactado para a plataforma Linux."
 #: src/progress.rs:37
 msgid "The changes are being applied. Please Wait..."
 msgstr "As alterações estão sendo aplicadas. Por favor, aguarde..."
-
-#: src/theme.rs:77
-msgid "Color Scheme"
-msgstr "Esquema de cores"
-
-#: src/theme.rs:78
-msgid "Choose a color scheme for your system."
-msgstr "Escolha um esquema de cores para o seu sistema."
 
 #: src/welcome.rs:44
 msgid "Make your choices, this wizard will take care of everything."

@@ -4,7 +4,7 @@ use std::collections::HashMap;
 use std::env;
 use std::path::Path;
 
-use carousel::{CarouselInput, CarouselModel, CarouselOutput};
+use carousel::{CarouselInput, CarouselOutput, CarouselPagesModel};
 use config::{APP_ID, GETTEXT_PACKAGE, LOCALEDIR, RESOURCES_FILE};
 use gettextrs::{gettext, LocaleCategory};
 use relm4::adw::prelude::*;
@@ -18,11 +18,11 @@ use tracing_subscriber::fmt::writer::MakeWriterExt;
 
 mod carousel;
 mod config;
+mod containers;
 mod done;
 mod extra_settings;
 mod package_manager;
 mod progress;
-mod theme;
 mod welcome;
 
 /// Gathers all the commands to be executed from different pages.
@@ -30,7 +30,7 @@ pub(crate) static COMMANDS: SharedState<HashMap<&'static str, Vec<&'static str>>
     SharedState::new();
 
 struct AppModel {
-    carousel: Controller<CarouselModel>,
+    carousel: Controller<CarouselPagesModel>,
     back_button_visible: bool,
 }
 
@@ -50,8 +50,8 @@ impl SimpleComponent for AppModel {
 
     view! {
         adw::ApplicationWindow {
-            set_default_width: 750,
-            set_default_height: 750,
+            set_default_width: 800,
+            set_default_height: 900,
 
             gtk::Box {
                 set_orientation: gtk::Orientation::Vertical,
@@ -93,11 +93,11 @@ impl SimpleComponent for AppModel {
     // Initialize the UI.
     fn init(
         _counter: Self::Init,
-        root: &Self::Root,
+        root: Self::Root,
         sender: ComponentSender<Self>,
     ) -> ComponentParts<Self> {
         let model = AppModel {
-            carousel: CarouselModel::builder().launch(()).forward(
+            carousel: CarouselPagesModel::builder().launch(()).forward(
                 sender.input_sender(),
                 |message| match message {
                     CarouselOutput::ShowBackButton => AppInput::ShowBackButton,
@@ -155,7 +155,7 @@ fn main() {
     provider.load_from_resource("/org/rhinolinux/RhinoSetup/style.css");
 
     if let Some(display) = gdk::Display::default() {
-        gtk::StyleContext::add_provider_for_display(
+        gtk::style_context_add_provider_for_display(
             &display,
             &provider,
             gtk::STYLE_PROVIDER_PRIORITY_APPLICATION,
@@ -174,16 +174,6 @@ fn main() {
         .style_manager()
         .set_color_scheme(adw::ColorScheme::PreferDark);
 
-    // HACK: The app doesn't start up with the "correct" theme, this "hack" "fixes"
-    // it.
-    if config::PROFILE != "Devel" {
-        if let Err(error) = gio::Settings::new("org.gnome.desktop.interface")
-            .set_string("gtk-theme", "Yaru-purple-dark")
-        {
-            tracing::error!("Error FORCING GTK theme: {error}");
-        }
-    }
-
-    let app = RelmApp::with_app(app);
+    let app = RelmApp::from_app(app);
     app.run::<AppModel>(());
 }

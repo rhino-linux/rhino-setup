@@ -60,7 +60,7 @@ msgstr "Nala는 아름다운 UI/UX를 특징으로 하는 APT의 대체 프론�
 msgid "Apport is a crash reporting system that helps us improve the stability of the system."
 msgstr "Apport는 시스템의 안정성을 개선하는 데 도움이 되는 충돌 보고 시스템입니다."
 
-#: src/extra_settings.rs:84 src/package_manager.rs:104 src/theme.rs:83
+#: src/extra_settings.rs:84 src/package_manager.rs:104
 msgid "Next"
 msgstr "다음"
 
@@ -99,14 +99,6 @@ msgstr "Linux 플랫폼을 위한 독립적이고 압축된 실행 가능한 형
 #: src/progress.rs:37
 msgid "The changes are being applied. Please Wait..."
 msgstr "변경 사항이 적용되고 있습니다. 잠시 기다려주세요..."
-
-#: src/theme.rs:77
-msgid "Color Scheme"
-msgstr "색 구성표"
-
-#: src/theme.rs:78
-msgid "Choose a color scheme for your system."
-msgstr "시스템의 색 구성표를 선택하세요."
 
 #: src/welcome.rs:44
 msgid "Make your choices, this wizard will take care of everything."
