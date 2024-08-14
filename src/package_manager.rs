@@ -316,11 +316,14 @@ impl Component for PackageManagerModel {
         if self.install_flatpak {
             commands.push("sudo apt-get install -y flatpak");
             commands.push("flatpak remote-add --system --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo");
+            commands.push("flatpak install --system flathub org.gtk.Gtk3theme.adw-gtk3 org.gtk.Gtk3theme.adw-gtk3-dark");
+            commands.push("sudo flatpak override --filesystem='xdg-config/gtk-3.0:ro' --filesystem='xdg-config/gtk-4.0:ro' \
+                           --filesystem='xdg-data/icons:ro' --filesystem='xdg-data/themes:ro'");
             if self.install_flatpak_beta {
                 commands.push("flatpak remote-add --system --if-not-exists flathub-beta https://flathub.org/beta-repo/flathub-beta.flatpakrepo");
             }
             if self.install_flatpak_flatseal {
-                commands.push("flatpak --system install flathub com.github.tchx84.Flatseal -y");
+                commands.push("flatpak install --system flathub com.github.tchx84.Flatseal -y");
             }
         }
 
