@@ -315,12 +315,12 @@ impl Component for PackageManagerModel {
 
         if self.install_flatpak {
             commands.push("sudo apt-get install -y flatpak");
-            commands.push("flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo");
+            commands.push("flatpak remote-add --user --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo");
             if self.install_flatpak_beta {
-                commands.push("flatpak remote-add --if-not-exists flathub-beta https://flathub.org/beta-repo/flathub-beta.flatpakrepo");
+                commands.push("flatpak remote-add --user --if-not-exists flathub-beta https://flathub.org/beta-repo/flathub-beta.flatpakrepo");
             }
             if self.install_flatpak_flatseal {
-                commands.push("flatpak install flathub flatseal -y");
+                commands.push("flatpak --user install flathub com.github.tchx84.Flatseal -y");
             }
         }
 
