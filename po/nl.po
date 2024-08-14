@@ -66,7 +66,7 @@ msgstr ""
 "Apport is een crashmeldingssysteem die ons helpt om de stabiliteit van het "
 "systeem te verbeteren."
 
-#: src/extra_settings.rs:84 src/package_manager.rs:104 src/theme.rs:83
+#: src/extra_settings.rs:84 src/package_manager.rs:104
 msgid "Next"
 msgstr "Volgende"
 
@@ -109,14 +109,6 @@ msgstr ""
 #: src/progress.rs:37
 msgid "The changes are being applied. Please Wait..."
 msgstr "De wijzigingen worden toegepast - even geduld…"
-
-#: src/theme.rs:77
-msgid "Color Scheme"
-msgstr "Thema"
-
-#: src/theme.rs:78
-msgid "Choose a color scheme for your system."
-msgstr "Kies het systeemthema dat u wilt gebruiken."
 
 #: src/welcome.rs:44
 msgid "Make your choices, this wizard will take care of everything."

@@ -64,7 +64,7 @@ msgstr ""
 "Apport एक क्रैश रिपोर्टिंग सिस्टम है जो सिस्टम की स्थिरता को बेहतर बनाने में हमारी मदद "
 "करता है।"
 
-#: src/extra_settings.rs:84 src/package_manager.rs:104 src/theme.rs:83
+#: src/extra_settings.rs:84 src/package_manager.rs:104
 msgid "Next"
 msgstr "अगला"
 
@@ -104,14 +104,6 @@ msgstr "Linux प्लेटफॉर्म के लिए स्व-नि�
 #: src/progress.rs:37
 msgid "The changes are being applied. Please Wait..."
 msgstr "परिवर्तन लागू किए जा रहे हैं। कृपया प्रतीक्षा करें..."
-
-#: src/theme.rs:77
-msgid "Color Scheme"
-msgstr "रंग योजना"
-
-#: src/theme.rs:78
-msgid "Choose a color scheme for your system."
-msgstr "अपने सिस्टम के लिए एक रंग योजना चुनें।"
 
 #: src/welcome.rs:44
 msgid "Make your choices, this wizard will take care of everything."

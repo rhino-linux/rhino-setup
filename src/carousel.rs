@@ -6,14 +6,12 @@ use crate::done::DoneModel;
 use crate::extra_settings::{ExtraSettingsModel, ExtraSettingsOutput};
 use crate::package_manager::{PackageManagerModel, PackageManagerOutput};
 use crate::progress::{ProgressInput, ProgressModel, ProgressOutput};
-use crate::theme::{ThemeModel, ThemeOutput};
 use crate::welcome::{WelcomeModel, WelcomeOutput};
 
 pub(crate) struct CarouselPagesModel {
     current: u32,
 
     welcome: Controller<WelcomeModel>,
-    theme: Controller<ThemeModel>,
     package_manager: Controller<PackageManagerModel>,
     containers: Controller<ContainersModel>,
     extra_settings: Controller<ExtraSettingsModel>,
@@ -58,7 +56,6 @@ impl SimpleComponent for CarouselPagesModel {
             set_allow_long_swipes: false,
 
             append: model.welcome.widget(),
-            append: model.theme.widget(),
             append: model.package_manager.widget(),
             append: model.containers.widget(),
             append: model.extra_settings.widget(),
@@ -79,13 +76,6 @@ impl SimpleComponent for CarouselPagesModel {
                 .forward(sender.input_sender(), |msg| match msg {
                     WelcomeOutput::NextPage => CarouselInput::NextPage,
                 }),
-            theme: ThemeModel::builder().launch(()).forward(
-                sender.input_sender(),
-                |msg| match msg {
-                    ThemeOutput::NextPage => CarouselInput::NextPage,
-                    ThemeOutput::ErrorOccured => CarouselInput::SkipToErrorPage,
-                },
-            ),
             package_manager: PackageManagerModel::builder().launch(()).forward(
                 sender.input_sender(),
                 |msg| match msg {

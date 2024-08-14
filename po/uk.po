@@ -62,7 +62,7 @@ msgstr ""
 "Apport - це система повідомлень про збої, яка допомагає нам підвищити "
 "стабільність системи."
 
-#: src/extra_settings.rs:84 src/package_manager.rs:104 src/theme.rs:83
+#: src/extra_settings.rs:84 src/package_manager.rs:104
 msgid "Next"
 msgstr "Далі"
 
@@ -103,14 +103,6 @@ msgstr "Самодостатній і стислий виконуваний фо
 #: src/progress.rs:37
 msgid "The changes are being applied. Please Wait..."
 msgstr "Зміни застосовуються. Будь ласка, зачекайте..."
-
-#: src/theme.rs:77
-msgid "Color Scheme"
-msgstr "Кольорова схема"
-
-#: src/theme.rs:78
-msgid "Choose a color scheme for your system."
-msgstr "Виберіть кольорову схему для вашої системи."
 
 #: src/welcome.rs:44
 msgid "Make your choices, this wizard will take care of everything."

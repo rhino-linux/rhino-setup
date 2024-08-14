@@ -23,7 +23,6 @@ mod done;
 mod extra_settings;
 mod package_manager;
 mod progress;
-mod theme;
 mod welcome;
 
 /// Gathers all the commands to be executed from different pages.

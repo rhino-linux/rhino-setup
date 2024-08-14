@@ -3,4 +3,3 @@ data/org.rhinolinux.RhinoSetup.gschema.xml.in
 
 src/main.rs
 src/welcome.rs
-src/theme.rs

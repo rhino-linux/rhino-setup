@@ -57,7 +57,7 @@ msgstr "Nala 是 APT 的替代前端，具有漂亮的 UI/UX。"
 msgid "Apport is a crash reporting system that helps us improve the stability of the system."
 msgstr "Apport 是崩溃日志上报系统，可以帮助我们改进系统稳定性。"
 
-#: src/extra_settings.rs:84 src/package_manager.rs:104 src/theme.rs:83
+#: src/extra_settings.rs:84 src/package_manager.rs:104
 msgid "Next"
 msgstr "继续"
 
@@ -96,14 +96,6 @@ msgstr "适用于 Linux 平台的独立压缩可执行格式。"
 #: src/progress.rs:37
 msgid "The changes are being applied. Please Wait..."
 msgstr "正在应用更改。请稍候…"
-
-#: src/theme.rs:77
-msgid "Color Scheme"
-msgstr "配色方案"
-
-#: src/theme.rs:78
-msgid "Choose a color scheme for your system."
-msgstr "请为你的系统选择配色方案。"
 
 #: src/welcome.rs:44
 msgid "Make your choices, this wizard will take care of everything."
