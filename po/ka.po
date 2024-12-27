@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: rhino-setup 0.1.0\n"
 "Report-Msgid-Bugs-To: https://github.com/rhino-linux/rhino-setup/issues\n"
 "POT-Creation-Date: 2022-10-29 20:26+0000\n"
-"PO-Revision-Date: 2024-01-09 13:06+0000\n"
+"PO-Revision-Date: 2024-10-27 03:16+0000\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <https://hosted.weblate.org/projects/rhino-linux/"
 "rhino-setup/ka/>\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.4-dev\n"
+"X-Generator: Weblate 5.8.2-dev\n"
 
 #: src/done.rs:56
 msgid "Reboot Now"
@@ -31,7 +31,7 @@ msgstr "ყველაფერი მზადაა!"
 
 #: src/done.rs:91
 msgid "Restart your device to enjoy your Rhino Linux experience."
-msgstr ""
+msgstr "გადატვირთეთ თქვენი მოწყობილობა, რომ Rhino Linux-ით სიამოვნება დაიწყოთ."
 
 #: src/done.rs:108
 msgid "Something went wrong"
@@ -39,23 +39,31 @@ msgstr "რაღაც არასწორია"
 
 #: src/done.rs:109
 msgid "Please contact the distribution developers."
-msgstr ""
+msgstr "დაუკავშირდით დისტრიბუტივის პროგრამისტებს."
 
 #: src/extra_settings.rs:47
 msgid "Extra Settings"
 msgstr "დამატებითი პარამეტრები"
 
 #: src/extra_settings.rs:48
-msgid "The following are optional settings, leave them as they are if you don't know what they do."
+msgid ""
+"The following are optional settings, leave them as they are if you don't "
+"know what they do."
 msgstr ""
+"ესენი არასავალდებულო პარამეტრებია. დატოვეთ ისინი, როგორცაა, თუ არ იცით, ვინ "
+"არიან და რასთან ერთად იჭმება."
 
 #: src/extra_settings.rs:60
 msgid "Nala is an alternative front-end to APT, featuring a beautiful UI/UX."
-msgstr ""
+msgstr "Nala წარმოადგენს APT-ის წინაბოლოს, ლამაზი ინტერფეისით."
 
 #: src/extra_settings.rs:72
-msgid "Apport is a crash reporting system that helps us improve the stability of the system."
+msgid ""
+"Apport is a crash reporting system that helps us improve the stability of "
+"the system."
 msgstr ""
+"Apport ავარიების შესახებ ანგარიშების სისტემაა, რომელიც სისტემის სტაბილურობის "
+"გაუმჯობესებაში გვეხმარება."
 
 #: src/extra_settings.rs:84 src/package_manager.rs:104
 msgid "Next"
@@ -67,11 +75,11 @@ msgstr "პაკეტების მმართველი"
 
 #: src/package_manager.rs:51
 msgid "Choose one or more package managers to install"
-msgstr ""
+msgstr "აირჩიეთ ერთი ან მეტი პაკეტების მმართველი დასაყენებლად"
 
 #: src/package_manager.rs:63
 msgid "Will also configure the Flathub repository."
-msgstr ""
+msgstr "ასევე მოირგებს Flathub-ის რეპოზიტორიას."
 
 #: src/package_manager.rs:64
 msgid "System for application virtualization."
@@ -79,10 +87,11 @@ msgstr "სისტემა აპლიკაციის ვირტუა�
 
 #: src/package_manager.rs:76
 msgid "Uses the Snapcraft repository. Default in Ubuntu."
-msgstr ""
+msgstr "ინებეს Snapcraft-ის რეპოზიტორიას. ნაგულისხმევია Ubuntu-ში."
 
 #: src/package_manager.rs:77
-msgid "Software deployment and package management system developed by Canonical."
+msgid ""
+"Software deployment and package management system developed by Canonical."
 msgstr ""
 "Canonical-ის მიერ შემუშავებული პროგრამების მართვისა და პაკეტების მართვის "
 "სისტემა."
@@ -93,7 +102,7 @@ msgstr "დააყენებს საჭირო დამოკიდე�
 
 #: src/package_manager.rs:91
 msgid "Self-contained and compressed executable format for the Linux platform."
-msgstr ""
+msgstr "თვითშემცველი და შეკუმშული გამშვები ფორმატი Linux პლატფორმისთვის."
 
 #: src/progress.rs:37
 msgid "The changes are being applied. Please Wait..."
