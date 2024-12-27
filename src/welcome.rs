@@ -64,7 +64,7 @@ impl SimpleComponent for WelcomeModel {
         let model = WelcomeModel {
             title: "Welcome!",
             titles: [
-                "Welcome!",
+                "Welcome",
                 "Benvenuto",
                 "Bienvenido",
                 "Bienvenue",
