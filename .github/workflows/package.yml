@@ -5,7 +5,7 @@ on:
 
 jobs:
   build_amd64:
-    runs-on: buildjet-4vcpu-ubuntu-2204
+    runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3.1.0
 
@@ -27,7 +27,7 @@ jobs:
         path: build/builds/amd64/
         
   build_arm64:
-    runs-on: buildjet-4vcpu-ubuntu-2204-arm
+    runs-on: ubuntu-24.04-arm
     steps:
     - uses: actions/checkout@v3.1.0
 
