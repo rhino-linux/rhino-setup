@@ -292,7 +292,7 @@ impl Component for ContainersModel {
         }
 
         if self.enable_apptainer {
-            commands.push("pacstall -PIQ apptainer");
+            commands.push("pacstall -PIQ apptainer-deb");
         }
 
         if self.enable_qemu {
