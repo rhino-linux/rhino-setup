@@ -3,7 +3,6 @@
 <!-- Social -->
 <p align="center">
     <a href="https://discord.gg/uhdCz8vwV9"><img alt="join discord" src="https://img.shields.io/badge/Discord-%237289DA.svg?style=for-the-badge&logo=discord&logoColor=white"/></a>
-    <a href="https://matrix.to/#/#rolling-rhino-remix:matrix.org"><img alt="join matrix" src="https://img.shields.io/badge/matrix-000000?style=for-the-badge&logo=Matrix&logoColor=white"/></a>
     <br/>
     <a href="https://ko-fi.com/rhinolinux"><img alt="donate" width="205" src="https://user-images.githubusercontent.com/58742515/225977527-99938108-f434-4bdc-8cd0-7648f5c06148.png"/></a>
     <br/>
