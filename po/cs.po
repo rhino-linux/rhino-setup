@@ -6,106 +6,112 @@ msgstr ""
 "Project-Id-Version: rhino-setup 0.1.0\n"
 "Report-Msgid-Bugs-To: https://github.com/rhino-linux/rhino-setup/issues\n"
 "POT-Creation-Date: 2022-10-29 20:26+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2025-02-25 05:11+0000\n"
+"Last-Translator: zenobit <zenobit@users.noreply.hosted.weblate.org>\n"
+"Language-Team: Czech <https://hosted.weblate.org/projects/rhino-linux/"
+"rhino-setup/cs/>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+"X-Generator: Weblate 5.10.2-dev\n"
 
 #: src/done.rs:56
 msgid "Reboot Now"
-msgstr ""
+msgstr "Restartovat Teď"
 
 #: src/done.rs:67
 msgid "Close"
-msgstr ""
+msgstr "Zavřít"
 
 #: src/done.rs:90
 msgid "All done!"
-msgstr ""
+msgstr "Vše hotovo!"
 
 #: src/done.rs:91
 msgid "Restart your device to enjoy your Rhino Linux experience."
-msgstr ""
+msgstr "Restartujte své zařízení pro vychutnání zážitku z Rhino Linuxu."
 
 #: src/done.rs:108
 msgid "Something went wrong"
-msgstr ""
+msgstr "Něco bylo špatně"
 
 #: src/done.rs:109
 msgid "Please contact the distribution developers."
-msgstr ""
+msgstr "Obraťte se na vývojáře distribuce."
 
 #: src/extra_settings.rs:47
 msgid "Extra Settings"
-msgstr ""
+msgstr "Extra Nastavení"
 
 #: src/extra_settings.rs:48
 msgid "The following are optional settings, leave them as they are if you don't know what they do."
 msgstr ""
+"Následují nepovinná nastavení, nechte jak jsou, pokud nevíte, co dělají."
 
 #: src/extra_settings.rs:60
 msgid "Nala is an alternative front-end to APT, featuring a beautiful UI/UX."
 msgstr ""
+"Nala je alternativní front-end pro APT s krásným uživatelským rozhraním."
 
 #: src/extra_settings.rs:72
 msgid "Apport is a crash reporting system that helps us improve the stability of the system."
 msgstr ""
+"Apport je systém hlášení pádů, který nám pomáhá zlepšit stabilitu systému."
 
 #: src/extra_settings.rs:84 src/package_manager.rs:104
 msgid "Next"
-msgstr ""
+msgstr "Další"
 
 #: src/package_manager.rs:50
 msgid "Package Manager"
-msgstr ""
+msgstr "Správce balíčků"
 
 #: src/package_manager.rs:51
 msgid "Choose one or more package managers to install"
-msgstr ""
+msgstr "Vyberte jeden nebo více správců balíčků pro instalaci"
 
 #: src/package_manager.rs:63
 msgid "Will also configure the Flathub repository."
-msgstr ""
+msgstr "Také nakonfiguruje repozitář Flathub."
 
 #: src/package_manager.rs:64
 msgid "System for application virtualization."
-msgstr ""
+msgstr "Systém pro virtualizaci aplikací."
 
 #: src/package_manager.rs:76
 msgid "Uses the Snapcraft repository. Default in Ubuntu."
-msgstr ""
+msgstr "Využívá Snapcraft repozitář. Výchozí v Ubuntu."
 
 #: src/package_manager.rs:77
 msgid "Software deployment and package management system developed by Canonical."
-msgstr ""
+msgstr "Nasazení a systém správy balíčků vyvinutý společností Canonical."
 
 #: src/package_manager.rs:90
 msgid "Will install the necessary dependencies to run AppImages."
-msgstr ""
+msgstr "Nainstaluje potřebné závislosti pro spuštění AppImage."
 
 #: src/package_manager.rs:91
 msgid "Self-contained and compressed executable format for the Linux platform."
-msgstr ""
+msgstr "Komprimovaný sebe spustitelný formát pro platformu Linux."
 
 #: src/progress.rs:37
 msgid "The changes are being applied. Please Wait..."
-msgstr ""
+msgstr "Změny se aplikují. Počkejte..."
 
 #: src/welcome.rs:44
 msgid "Make your choices, this wizard will take care of everything."
-msgstr ""
+msgstr "Proveďte své volby, tento průvodce se postará o všechno."
 
 #: src/welcome.rs:46
 msgid "Let's Start"
-msgstr ""
+msgstr "Začněme"
 
 #: src/main.rs:69
 msgid "Back"
-msgstr ""
+msgstr "Zpět"
 
 #: src/main.rs:149
 msgid "Rhino Setup"
-msgstr ""
+msgstr "Nastavení Rhino"
