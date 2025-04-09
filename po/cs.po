@@ -6,121 +6,112 @@ msgstr ""
 "Project-Id-Version: rhino-setup 0.1.0\n"
 "Report-Msgid-Bugs-To: https://github.com/rhino-linux/rhino-setup/issues\n"
 "POT-Creation-Date: 2022-10-29 20:26+0000\n"
-"PO-Revision-Date: 2024-12-18 23:00+0000\n"
-"Last-Translator: Phantomwise <phantomwise67@protonmail.com>\n"
-"Language-Team: French <https://hosted.weblate.org/projects/rhino-linux/rhino-"
-"setup/fr/>\n"
-"Language: fr\n"
+"PO-Revision-Date: 2025-02-25 05:11+0000\n"
+"Last-Translator: zenobit <zenobit@users.noreply.hosted.weblate.org>\n"
+"Language-Team: Czech <https://hosted.weblate.org/projects/rhino-linux/"
+"rhino-setup/cs/>\n"
+"Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 5.9.2-dev\n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+"X-Generator: Weblate 5.10.2-dev\n"
 
 #: src/done.rs:56
 msgid "Reboot Now"
-msgstr "Redémarrer Maintenant"
+msgstr "Restartovat Teď"
 
 #: src/done.rs:67
 msgid "Close"
-msgstr "Fermer"
+msgstr "Zavřít"
 
 #: src/done.rs:90
 msgid "All done!"
-msgstr "Terminé !"
+msgstr "Vše hotovo!"
 
 #: src/done.rs:91
 msgid "Restart your device to enjoy your Rhino Linux experience."
-msgstr "Redémarrez votre appareil pour profiter de Rhino Linux."
+msgstr "Restartujte své zařízení pro vychutnání zážitku z Rhino Linuxu."
 
 #: src/done.rs:108
 msgid "Something went wrong"
-msgstr ""
+msgstr "Něco bylo špatně"
 
 #: src/done.rs:109
 msgid "Please contact the distribution developers."
-msgstr "Merci de contactez les développeurs de la distribution."
+msgstr "Obraťte se na vývojáře distribuce."
 
 #: src/extra_settings.rs:47
 msgid "Extra Settings"
-msgstr "Paramètres supplémentaires"
+msgstr "Extra Nastavení"
 
 #: src/extra_settings.rs:48
-msgid ""
-"The following are optional settings, leave them as they are if you don't "
-"know what they do."
+msgid "The following are optional settings, leave them as they are if you don't know what they do."
 msgstr ""
-"Les paramètres suivants sont optionnels, laissez-les tel quel si vous "
-"ignorez ce qu'ils font."
+"Následují nepovinná nastavení, nechte jak jsou, pokud nevíte, co dělají."
 
 #: src/extra_settings.rs:60
 msgid "Nala is an alternative front-end to APT, featuring a beautiful UI/UX."
 msgstr ""
+"Nala je alternativní front-end pro APT s krásným uživatelským rozhraním."
 
 #: src/extra_settings.rs:72
-msgid ""
-"Apport is a crash reporting system that helps us improve the stability of "
-"the system."
+msgid "Apport is a crash reporting system that helps us improve the stability of the system."
 msgstr ""
-"Apport est un système de rapport d'erreur qui nous aide à améliorer la "
-"stabilité du système."
+"Apport je systém hlášení pádů, který nám pomáhá zlepšit stabilitu systému."
 
 #: src/extra_settings.rs:84 src/package_manager.rs:104
 msgid "Next"
-msgstr "Suivant"
+msgstr "Další"
 
 #: src/package_manager.rs:50
 msgid "Package Manager"
-msgstr "Gestionnaire de paquets"
+msgstr "Správce balíčků"
 
 #: src/package_manager.rs:51
 msgid "Choose one or more package managers to install"
-msgstr "Choisissez un ou plusieurs gestionnaires de paquets à installer"
+msgstr "Vyberte jeden nebo více správců balíčků pro instalaci"
 
 #: src/package_manager.rs:63
 msgid "Will also configure the Flathub repository."
-msgstr "Le dépôt Flathub sera également configuré."
+msgstr "Také nakonfiguruje repozitář Flathub."
 
 #: src/package_manager.rs:64
 msgid "System for application virtualization."
-msgstr ""
+msgstr "Systém pro virtualizaci aplikací."
 
 #: src/package_manager.rs:76
 msgid "Uses the Snapcraft repository. Default in Ubuntu."
-msgstr "Utilise le dépôt Snapcraft. Défaut dans Ubuntu."
+msgstr "Využívá Snapcraft repozitář. Výchozí v Ubuntu."
 
 #: src/package_manager.rs:77
-#, fuzzy
-msgid ""
-"Software deployment and package management system developed by Canonical."
-msgstr ""
-"Système de déploiement et de gestion de paquets développé par Canonical."
+msgid "Software deployment and package management system developed by Canonical."
+msgstr "Nasazení a systém správy balíčků vyvinutý společností Canonical."
 
 #: src/package_manager.rs:90
 msgid "Will install the necessary dependencies to run AppImages."
-msgstr "Installera les dépendances nécessaires pour exécuter des AppImages."
+msgstr "Nainstaluje potřebné závislosti pro spuštění AppImage."
 
 #: src/package_manager.rs:91
 msgid "Self-contained and compressed executable format for the Linux platform."
-msgstr ""
+msgstr "Komprimovaný sebe spustitelný formát pro platformu Linux."
 
 #: src/progress.rs:37
 msgid "The changes are being applied. Please Wait..."
-msgstr ""
-"Les modifications sont en train d'être appliquées. Veuillez patienter..."
+msgstr "Změny se aplikují. Počkejte..."
 
 #: src/welcome.rs:44
 msgid "Make your choices, this wizard will take care of everything."
-msgstr ""
+msgstr "Proveďte své volby, tento průvodce se postará o všechno."
 
 #: src/welcome.rs:46
 msgid "Let's Start"
-msgstr ""
+msgstr "Začněme"
 
 #: src/main.rs:69
 msgid "Back"
-msgstr "Précédent"
+msgstr "Zpět"
 
 #: src/main.rs:149
 msgid "Rhino Setup"
-msgstr ""
+msgstr "Nastavení Rhino"
