@@ -21,7 +21,7 @@ jobs:
     - name: Build
       run: sudo DESTDIR="builds/amd64" ninja -C build install
 
-    - uses: actions/upload-artifact@v3.1.2
+    - uses: actions/upload-artifact@v4.6.2
       with:
         name: Rhino Setup (AMD64)
         path: build/builds/amd64/
@@ -43,7 +43,7 @@ jobs:
     - name: Build
       run: sudo DESTDIR="builds/arm64" ninja -C build install
 
-    - uses: actions/upload-artifact@v3.1.2
+    - uses: actions/upload-artifact@v4.6.2
       with:
         name: Rhino Setup (ARM64)
         path: build/builds/arm64/
