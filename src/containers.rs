@@ -300,7 +300,7 @@ impl Component for ContainersModel {
         }
 
         if self.enable_virtualbox {
-            commands.push("sudo apt-get install -y virtualbox");
+            commands.push("sudo apt-get install -y virtualbox-qt");
         }
 
         COMMANDS.write_inner().insert("containers", commands);
