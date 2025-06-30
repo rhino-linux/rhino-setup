@@ -335,11 +335,12 @@ impl Component for PackageManagerModel {
 
         if self.install_nix {
             commands.push("sudo apt-get install -y nix-bin nix-setup-systemd");
+            commands.push("{ rhino-hotfix nix-bin || :; }");
             commands.push("sudo groupadd -f nix-users");
             commands.push("sudo usermod -a -G nix-users $USER");
             commands.push("{ sudo systemctl enable nix-daemon.service || :; }");
-            commands.push("nix-channel --add https://nixos.org/channels/nixpkgs-unstable nixpkgs");
-            commands.push("nix-channel --update");
+            commands.push("sudo su $USER -c 'nix-channel --add https://nixos.org/channels/nixpkgs-unstable nixpkgs'");
+            commands.push("sudo su $USER -c 'nix-channel --update'");
         }
 
         if self.install_snap {
