@@ -115,7 +115,7 @@ impl Component for PackageManagerModel {
                             },
                             adw::ActionRow {
                                 set_title: "Nix",
-                                set_subtitle: &gettext("Will also configure the nixpkgs-unstable channel."),
+                                set_subtitle: &gettext("Will also configure the nixpkgs channel."),
                                 set_tooltip_text: Some(&gettext("Purely functional package manager.")),
 
                                 add_suffix = &gtk::Switch {
