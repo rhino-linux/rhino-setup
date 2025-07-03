@@ -1,3 +1,4 @@
+use std::fmt::Write;
 use std::io::{BufRead, BufReader};
 use std::process::{Command, Stdio};
 
@@ -146,7 +147,8 @@ impl SimpleComponent for ProgressModel {
 
                 // Aggregate all the commands.
                 for command in commands.clone() {
-                    commands_with_results += &format!(
+                    _ = write!(
+                        &mut commands_with_results,
                         "{command} && {{ echo ---successful---; }} || {{ echo ---failed---; }}; "
                     );
                 }
@@ -207,7 +209,7 @@ impl SimpleComponent for ProgressModel {
                         }
                     }
 
-                    if !error_occured {
+                    if processor.wait().is_ok() && !error_occured {
                         sender.output(Self::Output::InstallationComplete).unwrap();
                         tracing::info!("Installation complete");
                         Command::new("pkexec")
@@ -215,7 +217,7 @@ impl SimpleComponent for ProgressModel {
                             .status()
                             .unwrap();
                     }
-                });
+                })
             },
         };
     }

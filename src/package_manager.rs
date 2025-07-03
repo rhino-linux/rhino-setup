@@ -339,7 +339,10 @@ impl Component for PackageManagerModel {
             commands.push("sudo groupadd -f nix-users");
             commands.push("sudo usermod -a -G nix-users $USER");
             commands.push("{ sudo systemctl enable nix-daemon.service || :; }");
-            commands.push("sudo su $USER -c 'nix-channel --add https://nixos.org/channels/nixpkgs-unstable nixpkgs'");
+            commands.push(
+                "sudo su $USER -c 'nix-channel --add https://nixos.org/channels/nixpkgs-unstable \
+                 nixpkgs'",
+            );
             commands.push("sudo su $USER -c 'nix-channel --update'");
         }
 

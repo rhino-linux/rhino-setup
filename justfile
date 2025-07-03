@@ -55,5 +55,5 @@ fmt +ARGS="": spellcheck
 
 # Spellcheck the codebase
 spellcheck +ARGS="--write-changes":
-    @codespell  --builtin clear,rare,informal,code -I .codespellignore --skip target* "*.svg" data{{ARGS}}
+    @codespell  --builtin clear,rare,informal,code -I .codespellignore --skip target,data,build,po {{ARGS}}
     @echo Spellings look good!
