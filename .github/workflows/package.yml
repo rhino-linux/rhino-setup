@@ -22,7 +22,7 @@ jobs:
       run: ninja -C build
 
     - name: Install
-      run: sudo DESTDIR="builds/amd64" meson install --no-rebuild
+      run: cd build && sudo DESTDIR="builds/amd64" meson install --no-rebuild
 
     - uses: actions/upload-artifact@v4.6.2
       with:
@@ -47,7 +47,7 @@ jobs:
       run: ninja -C build
 
     - name: Install
-      run: sudo DESTDIR="builds/arm64" meson install --no-rebuild
+      run: cd build && sudo DESTDIR="builds/arm64" meson install --no-rebuild
 
     - uses: actions/upload-artifact@v4.6.2
       with:
