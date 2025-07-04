@@ -8,12 +8,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
-    - uses: actions-rust-lang/setup-rust-toolchain@v1
 
     - name: Install needed packages
       run: |
         sudo rm -rf /var/lib/apt/lists/*
-        sudo apt-get update && sudo apt-get install libgtk-4-dev libadwaita-1-dev gettext desktop-file-utils meson ninja-build -y
+        sudo apt-get update && sudo apt-get install libgtk-4-dev libadwaita-1-dev gettext desktop-file-utils meson ninja-build rustup -y
+        rustup update
 
     - name: Setup
       run: sudo meson build && mkdir -p builds/amd64
@@ -30,12 +30,12 @@ jobs:
     runs-on: ubuntu-24.04-arm
     steps:
     - uses: actions/checkout@v4
-    - uses: actions-rust-lang/setup-rust-toolchain@v1
 
     - name: Install needed packages
       run: |
         sudo rm -rf /var/lib/apt/lists/*
-        sudo apt-get update && sudo apt-get install libgtk-4-dev libadwaita-1-dev gettext desktop-file-utils meson ninja-build -y
+        sudo apt-get update && sudo apt-get install libgtk-4-dev libadwaita-1-dev gettext desktop-file-utils meson ninja-build rustup -y
+        rustup update
 
     - name: Setup
       run: sudo meson build && mkdir -p builds/arm64
