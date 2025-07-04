@@ -13,7 +13,7 @@ jobs:
       run: |
         sudo rm -rf /var/lib/apt/lists/*
         sudo apt-get update && sudo apt-get install libgtk-4-dev libadwaita-1-dev gettext desktop-file-utils meson ninja-build rustup -y
-        rustup update
+        rustup update && rustup default stable
 
     - name: Setup
       run: meson build && mkdir -p builds/amd64
@@ -35,7 +35,7 @@ jobs:
       run: |
         sudo rm -rf /var/lib/apt/lists/*
         sudo apt-get update && sudo apt-get install libgtk-4-dev libadwaita-1-dev gettext desktop-file-utils meson ninja-build rustup -y
-        rustup update
+        rustup update && rustup default stable
 
     - name: Setup
       run: meson build && mkdir -p builds/arm64
