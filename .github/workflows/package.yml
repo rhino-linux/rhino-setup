@@ -4,8 +4,15 @@ on:
   workflow_dispatch
 
 jobs:
-  build_amd64:
-    runs-on: ubuntu-latest
+  build:
+    strategy:
+      matrix:
+        include:
+        - arch: amd64
+          runner: ubuntu-latest
+        - arch: arm64
+          runner: ubuntu-24.04-arm
+    runs-on: ${{ matrix.runner }}
     steps:
     - uses: actions/checkout@v4
 
@@ -16,40 +23,15 @@ jobs:
         rustup update && rustup default stable
 
     - name: Setup
-      run: meson build && mkdir -p builds/amd64
+      run: meson build && mkdir -p builds/${{ matrix.arch }}
 
     - name: Build
       run: ninja -C build
 
     - name: Install
-      run: cd build && sudo DESTDIR="builds/amd64" meson install --no-rebuild
+      run: cd build && sudo DESTDIR="builds/${{ matrix.arch }}" meson install --no-rebuild
 
     - uses: actions/upload-artifact@v4.6.2
       with:
-        name: Rhino Setup (AMD64)
-        path: build/builds/amd64/
-
-  build_arm64:
-    runs-on: ubuntu-24.04-arm
-    steps:
-    - uses: actions/checkout@v4
-
-    - name: Install needed packages
-      run: |
-        sudo rm -rf /var/lib/apt/lists/*
-        sudo apt-get update && sudo apt-get install libgtk-4-dev libadwaita-1-dev gettext desktop-file-utils meson ninja-build rustup -y
-        rustup update && rustup default stable
-
-    - name: Setup
-      run: meson build && mkdir -p builds/arm64
-
-    - name: Build
-      run: ninja -C build
-
-    - name: Install
-      run: cd build && sudo DESTDIR="builds/arm64" meson install --no-rebuild
-
-    - uses: actions/upload-artifact@v4.6.2
-      with:
-        name: Rhino Setup (ARM64)
-        path: build/builds/arm64/
+        name: Rhino Setup (${{ matrix.arch }})
+        path: build/builds/${{ matrix.arch }}/
