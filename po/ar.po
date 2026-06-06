@@ -6,17 +6,17 @@ msgstr ""
 "Project-Id-Version: rhino-setup 0.1.0\n"
 "Report-Msgid-Bugs-To: https://github.com/rhino-linux/rhino-setup/issues\n"
 "POT-Creation-Date: 2022-10-29 20:26+0000\n"
-"PO-Revision-Date: 2024-02-08 09:01+0000\n"
-"Last-Translator: 7A9Oo <med.ahk.2018@gmail.com>\n"
-"Language-Team: Arabic <https://hosted.weblate.org/projects/rhino-linux/rhino-"
-"setup/ar/>\n"
+"PO-Revision-Date: 2025-09-11 23:01+0000\n"
+"Last-Translator: Ziad El-sayed <ziadelsayed1797@tutamail.com>\n"
+"Language-Team: Arabic <https://hosted.weblate.org/projects/rhino-linux/"
+"rhino-setup/ar/>\n"
 "Language: ar\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
 "&& n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
-"X-Generator: Weblate 5.4-dev\n"
+"X-Generator: Weblate 5.14-dev\n"
 
 #: src/done.rs:56
 msgid "Reboot Now"
@@ -36,31 +36,31 @@ msgstr "أعد تشغيل الجهاز و استمتع بتجربة Rhino Linux.
 
 #: src/done.rs:108
 msgid "Something went wrong"
-msgstr "يوجد خطأ ما"
+msgstr "لقد حدث خطأ ما"
 
 #: src/done.rs:109
 msgid "Please contact the distribution developers."
-msgstr "من فضلك اتصل بمطوري التوزيعة."
+msgstr "من فضلك تواصل مع مطوري التوزيعة."
 
 #: src/extra_settings.rs:47
 msgid "Extra Settings"
-msgstr "إعدادات أخرى"
+msgstr "إعدادات إضافية"
 
 #: src/extra_settings.rs:48
 msgid ""
 "The following are optional settings, leave them as they are if you don't "
 "know what they do."
-msgstr "هذه إعدادات إختيارية, اتركها كماهي إذا لم تكن تعرف ماذا تفعل."
+msgstr "هذه إعدادات إختيارية, إتركها كما هي إذا لم تكن تعرف ماذا تفعل."
 
 #: src/extra_settings.rs:60
 msgid "Nala is an alternative front-end to APT, featuring a beautiful UI/UX."
-msgstr "Nala هي واجهة بديلة لـ APT, مع جمالية واجهة المستخدم/تجربة المستخدم."
+msgstr "Nala هي واجهة بديلة لـ APT، تتميز بواجهة مستخدم/تجربة مستخدم جميلة."
 
 #: src/extra_settings.rs:72
 msgid ""
 "Apport is a crash reporting system that helps us improve the stability of "
 "the system."
-msgstr "Apport هو نظام تقارير الأعطال يساعدك على الحفاظ على استقرار الجهاز."
+msgstr "Apport هو نظام للإبلاغ عن الأعطال يساعدنا على تحسين استقرار النظام."
 
 #: src/extra_settings.rs:84 src/package_manager.rs:104
 msgid "Next"
@@ -80,7 +80,7 @@ msgstr "سوف يقوم بتعديل مستودع Flathub."
 
 #: src/package_manager.rs:64
 msgid "System for application virtualization."
-msgstr "نظام للتطبيقات الإفتراضية."
+msgstr "نظام لتطبيقات المحاكاة الافتراضية."
 
 #: src/package_manager.rs:76
 msgid "Uses the Snapcraft repository. Default in Ubuntu."
